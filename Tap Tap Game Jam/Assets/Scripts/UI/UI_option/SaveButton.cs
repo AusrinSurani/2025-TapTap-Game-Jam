@@ -1,14 +1,13 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-public class BackButton : BounceButton
-{
-    [Header("事件广播")]
-    public VoidEventSO optionToMenu;
 
+public class SaveButton : BounceButton
+{
     public override void OnPointerClick(PointerEventData eventData)
     {
         base.OnPointerClick(eventData);
-        optionToMenu?.OnEventRaise();
+        GetComponentInParent<AudioSettingsController>().SaveAudioSettingData();
     }
 }

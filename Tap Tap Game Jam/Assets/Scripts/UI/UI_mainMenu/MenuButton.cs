@@ -11,6 +11,7 @@ public class MenuButton : MonoBehaviour,
 {
 	[Header("事件广播")]
 	public VoidEventSO menuToOption;
+    public VoidEventSO quitGameEvent;
 	
 	[SerializeField] MenuButtonController menuButtonController;
 	[SerializeField] Animator animator;
@@ -94,8 +95,9 @@ public class MenuButton : MonoBehaviour,
                 menuToOption.OnEventRaise();
                 break;
             case 3:
-                //退出游戏
                 Debug.Log("退出游戏");
+                //退出游戏,触发保存等事件
+                quitGameEvent.RaiseEvent();
                 Application.Quit();
                 break;
         }

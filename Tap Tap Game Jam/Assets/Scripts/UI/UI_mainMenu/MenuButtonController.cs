@@ -2,16 +2,13 @@
 
 public class MenuButtonController : BaseUI 
 {
-	
 	public int index;
 	[SerializeField] bool keyDown;
 	[SerializeField] int maxIndex;
 	[SerializeField] private UI_option optionsUI;
-	public AudioSource audioSource;
 
 	void Start () 
 	{
-		audioSource = GetComponent<AudioSource>();
 	}
 
 	void Update () 

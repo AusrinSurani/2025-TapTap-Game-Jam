@@ -3,19 +3,20 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class BackButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    [Header("ÊÂ¼ş¹ã²¥")]
+    [Header("äº‹ä»¶å¹¿æ’­")]
     public VoidEventSO optionToMenu;
 
-    [Header("Qµ¯Ëõ·Å²ÎÊı")] 
+    [Header("Qå¼¹å‚æ•°")] 
     public float animationDuration = 0.3f;
     public float hoverScaleMultiplier = 1.1f;
     public float clickScaleMultiplier = 0.9f;
 
-    [Tooltip("¿ØÖÆËõ·Å¶¯»­µÄQµ¯ÇúÏß")]
+    [Tooltip("Qå¼¹æ›²çº¿")]
+    //é»˜è®¤å‚æ•°
     public AnimationCurve bounceCurve = new AnimationCurve(
         new Keyframe(0f, 0f),
-        new Keyframe(0.7f, 1.2f), // ÔÚ70%µÄÊ±¼ä´ïµ½1.2±¶´óĞ¡£¨³¬³öÄ¿±ê£©
-        new Keyframe(1f, 1f)      // ÔÚ100%µÄÊ±¼ä»Øµ½1±¶´óĞ¡£¨ÎÈ¶¨£©
+        new Keyframe(0.7f, 1.2f), 
+        new Keyframe(1f, 1f)      
     );
     
     private RectTransform rectTransform;
@@ -33,7 +34,6 @@ public class BackButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // ²¥·ÅĞüÍ£¶¯»­
         AnimateScale(originalScale * hoverScaleMultiplier);
     }
     
@@ -50,14 +50,9 @@ public class BackButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
         currentAnimation = StartCoroutine(ClickBounceRoutine());
         
-        //ÇĞ»»UI
         optionToMenu?.OnEventRaise();
     }
-
-    /// <summary>
-    /// Í³Ò»µÄËõ·Å¶¯»­·½·¨
-    /// </summary>
-    /// <param name="targetScale">Ä¿±êËõ·ÅÖµ</param>
+    
     private void AnimateScale(Vector3 targetScale)
     {
         if (currentAnimation != null)

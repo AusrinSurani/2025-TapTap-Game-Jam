@@ -9,9 +9,9 @@ public class SceneFader : MonoBehaviour
 
     private int fadeAmount = Shader.PropertyToID("_FadeAmount");
     
-    private int useShutters = Shader.PropertyToID("_UseShutters");
+    private int useShutters = Shader.PropertyToID("_UseShutter");
     
-    private int useRadiaWipe = Shader.PropertyToID("_UseRadiaWipe");
+    private int useRadiaWipe = Shader.PropertyToID("_UseWipe");
     
     private int usePlainBlack = Shader.PropertyToID("_UsePlainBlack");
     
@@ -43,7 +43,7 @@ public class SceneFader : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.B))
         {
             Debug.Log("FadeIn");
             FadeIn(currentFadeType);

@@ -43,6 +43,7 @@ public class SceneFader : MonoBehaviour
 
     private void Update()
     {
+        //test
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("FadeIn");
@@ -54,6 +55,7 @@ public class SceneFader : MonoBehaviour
             Debug.Log("FadeOut");
             FadeOut(currentFadeType);
         }
+        //endtest
     }
 
     public void FadeOut(FadeType fadeType)

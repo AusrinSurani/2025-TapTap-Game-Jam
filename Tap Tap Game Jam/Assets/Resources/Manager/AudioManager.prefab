@@ -189,22 +189,34 @@ MonoBehaviour:
   bgmAudioSourceTransform: {fileID: 7770895839974489816}
   soundEffectAudioSourceTransform: {fileID: 1661200968770761469}
   mainMenuBtnAudioPiece:
-    audioID: 0
+    audioID: 1
     audioClipDescription: 
-    sourceClip: {fileID: 0}
-    volumnValue: 0
+    sourceClip: {fileID: 8300000, guid: da1b160ba7e6b4bf0a40defe83b864d4, type: 3}
+    volumnValue: 1
     bCanMutPlay: 0
   bgmAudioPiece:
-    audioID: 1
+    audioID: 2
     audioClipDescription: test_bgm
     sourceClip: {fileID: 8300000, guid: 8ee985bf3666a5a46b8f3d18a418f23a, type: 3}
     volumnValue: 1
     bCanMutPlay: 0
   testAudioPiece:
-    audioID: 2
+    audioID: 3
     audioClipDescription: test_sf
     sourceClip: {fileID: 8300000, guid: e13f64e3f0923f047b6463ebec84d096, type: 3}
     volumnValue: 1
+    bCanMutPlay: 0
+  bgm2TestAudioPiece:
+    audioID: 4
+    audioClipDescription: 
+    sourceClip: {fileID: 0}
+    volumnValue: 0
+    bCanMutPlay: 0
+  bgm3TestAudioPiece:
+    audioID: 5
+    audioClipDescription: 
+    sourceClip: {fileID: 0}
+    volumnValue: 0
     bCanMutPlay: 0
 --- !u!1001 &404355388972324173
 PrefabInstance:

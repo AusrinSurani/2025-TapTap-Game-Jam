@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,10 +11,12 @@ public class AnimatorFunctions : MonoBehaviour
 	{
 		if(!disableOnce)
 		{
-			menuButtonController.audioSource.PlayOneShot (whichSound);
+            //menuButtonController.audioSource.PlayOneShot (whichSound);
+            AudioManager.Instance.AudioOncePlay(whichSound);
 		}else
 		{
 			disableOnce = false;
 		}
-	}
+        
+	} 
 }	

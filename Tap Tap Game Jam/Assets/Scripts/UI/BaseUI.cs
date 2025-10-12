@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BaseUI : MonoBehaviour
 {
-    [Header("ÒÆ¶¯ÉèÖÃ")]
-    //ÕâÊÇÒ»¸öAnchored Position
+    [Header("ç§»åŠ¨è®¾ç½®")]
+    //è¿™æ˜¯Anchored Position
     [SerializeField] public Vector2 startPosition;
     [SerializeField] public Vector2 targetPosition;
     [SerializeField] public float duration = 1.0f;
@@ -24,7 +24,7 @@ public class BaseUI : MonoBehaviour
     public void StartMove()
     {
         gameObject.SetActive(true);
-        // Èç¹ûÒÑ¾­ÓÐÒ»¸öÒÆ¶¯ÕýÔÚ½øÐÐ£¬ÏÈÍ£Ö¹Ëü
+        //ç»ˆæ–­å½“å‰çš„ç§»åŠ¨
         if (moveCoroutine != null)
         {
             StopCoroutine(moveCoroutine);
@@ -33,8 +33,7 @@ public class BaseUI : MonoBehaviour
         moveCoroutine = StartCoroutine(MoveRoutine(startPosition, targetPosition, false));
     }
     
-
-    //½«UIÔªËØ´Óµ±Ç°Î»ÖÃÒÆ¶¯»ØÆäÔ­Ê¼Æðµã
+    //UIç§»åŠ¨å›žåŽ»
     public void MoveBack()
     {
         Vector2 currentPos = rectTransform.anchoredPosition;
@@ -47,7 +46,7 @@ public class BaseUI : MonoBehaviour
         moveCoroutine = StartCoroutine(MoveRoutine(currentPos, destination, true));
     }
 
-    
+    //å¹³æ»‘ç§»åŠ¨UIçš„åç¨‹
     private IEnumerator MoveRoutine(Vector2 start, Vector2 end, bool disable)
     {
         if (delay > 0)

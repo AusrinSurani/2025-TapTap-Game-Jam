@@ -21,6 +21,7 @@ public class SceneFader : MonoBehaviour
 
     private Image image;
     private Material material;
+    private Canvas canvas;
 
     public enum FadeType
     {
@@ -32,6 +33,8 @@ public class SceneFader : MonoBehaviour
 
     private void Awake()
     {
+        canvas = GetComponentInParent<Canvas>();
+        
         image = GetComponent<Image>();
         
         Material mat = image.material;
@@ -42,7 +45,12 @@ public class SceneFader : MonoBehaviour
     }
 
     private void Update()
-    { 
+    {
+        if (canvas.renderMode == RenderMode.ScreenSpaceCamera)
+        {
+            
+        }
+        
         //test
        if (Input.GetKeyDown(KeyCode.Q))
         {  
@@ -50,7 +58,7 @@ public class SceneFader : MonoBehaviour
             FadeIn(currentFadeType);
         }
 
-        if (Input.GetKeyUp(KeyCode.A))
+        if (Input.GetKeyUp(KeyCode.E))
         {
             Debug.Log("FadeOut");
             FadeOut(currentFadeType);

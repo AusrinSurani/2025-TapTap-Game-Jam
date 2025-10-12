@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+ 
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine; 
+
 
 /// <summary>
 /// 按钮动画的触发函数
@@ -18,10 +22,12 @@ public class AnimatorFunctions : MonoBehaviour
 	{
 		if(!disableOnce)
 		{
-            audioManager.AudioOncePlay(AudioManager.Instance.mainMenuBtnAudioPiece);
+            //menuButtonController.audioSource.PlayOneShot (whichSound);
+            AudioManager.Instance.AudioOncePlay(whichSound);
 		}else
 		{
 			disableOnce = false;
 		}
-	}
+        
+	} 
 }	

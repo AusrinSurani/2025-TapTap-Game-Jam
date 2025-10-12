@@ -212,12 +212,21 @@ public class AudioManager : Singleton<AudioManager>
         public bool bCanMutPlay;
     }
     #endregion
-     
+
     /*public void AudioOncePlay(AudioClip audioClip,float volumnValue)
     { 
         //寻找空轨道 
         GetFreeAudioSourceFromSoundEffectChannel().PlayOneShot(audioClip, volumnValue);  
     }*/
+
+    public void AudioOncePlay(AudioClip clip)
+    {
+        AudioPiece temp = new AudioPiece();
+        temp.sourceClip = clip;
+        temp.audioID = 1000;//默认临时音片
+        temp.volumnValue = 1f;
+        AudioOncePlay(temp);
+    }
 
     public void AudioOncePlay(AudioPiece audioPiece)
     { 
@@ -433,7 +442,7 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-    [Header("AudioClips")]
+    [Header("AudioClipPieces")]
     public AudioPiece mainMenuBtnAudioPiece;
 
     public AudioPiece bgmAudioPiece;

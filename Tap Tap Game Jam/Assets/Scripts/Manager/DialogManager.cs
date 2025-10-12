@@ -1,0 +1,250 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+
+public class DialogManager : Singleton<DialogManager>
+{
+    public GameObject dialogBox;
+    
+    /// <summary>
+    /// 打字机效果，每秒显示多少字
+    /// </summary>
+    [SerializeField] private float charsPerSecond;
+    
+    /// <summary>
+    /// 协程句柄，方便打断
+    /// </summary>
+    private Coroutine typingCoroutine;
+    
+    /// <summary>
+    /// csv-UTH-8格式的文本
+    /// </summary>
+    public TextAsset dialogTextAsset;
+    
+    /// <summary>
+    /// 左右的角色图片
+    /// </summary>
+    public Image leftCharacter;
+    public Image rightCharacter;
+    
+    /// <summary>
+    /// 对话文本
+    /// </summary>
+    public TextMeshProUGUI dialogText;
+    
+    /// <summary>
+    /// 角色名字
+    /// </summary>
+    public TextMeshProUGUI leftCharacterName;
+    public TextMeshProUGUI rightCharacterName;
+    
+    /// <summary>
+    /// 角色图片列表
+    /// </summary>
+    public List<Sprite> sprites = new List<Sprite>();
+    
+    /// <summary>
+    /// 名字->图片字典
+    /// </summary>
+    Dictionary<string, Sprite> imageDic = new Dictionary<string, Sprite>();
+    
+    /// <summary>
+    /// 当前对话索引
+    /// </summary>
+    public int dialogIndex = 0;
+
+    /// <summary>
+    /// 分割的对话文本
+    /// </summary>
+    public string[] dialogRows;
+    
+    /// <summary>
+    /// 是否在选项页面
+    /// </summary>
+    public bool hasChoices = false;
+    
+    /// <summary>
+    /// 选项按钮预制体
+    /// </summary>
+    public GameObject optionButtonPrefab;
+    
+    /// <summary>
+    /// 选项按钮的父节点，用于自动排列
+    /// </summary>
+    public Transform optionButtonGroup;
+    
+    protected override void Awake()
+    {
+        base.Awake();
+        imageDic["P"] = sprites[0];
+        imageDic["A"] = sprites[1];
+    }
+
+    private void Start()
+    {
+        dialogBox.SetActive(false);//先隐藏，等待调用
+    }
+
+    private void Update()
+    {
+        if(!dialogBox.activeSelf)
+            return;
+        
+        if (Input.GetKeyDown(KeyCode.Space) && !hasChoices)
+        {
+            ShowDialog();
+        }
+
+        if (!hasChoices && optionButtonGroup.childCount > 0)
+        {
+            for (int i = 0; i < optionButtonGroup.childCount; i++)
+            {
+                Destroy(optionButtonGroup.GetChild(i).gameObject);
+            }
+        }
+    }
+
+    private void UpdateText(string _name, string _text, bool isLeft)
+    {
+        if (isLeft)
+            leftCharacterName.text = _name;
+        else
+            leftCharacterName.text = _name; //左侧分布
+            /*rightCharacterName.text = _name; //左右分布*/
+        
+        if (typingCoroutine != null)
+            StopCoroutine(typingCoroutine);
+
+        typingCoroutine = StartCoroutine(TypeText(_text));
+    }
+    
+    private IEnumerator TypeText(string fullText)
+    {
+        dialogText.text = "";                 // 先清空
+        float interval = 1f / charsPerSecond; // 单字间隔
+        foreach (char c in fullText)
+        {
+            dialogText.text += c;
+            yield return new WaitForSeconds(interval);
+        }
+        typingCoroutine = null;               // 标记完成
+    }
+
+    private void UpdateImage(string _name, bool atLeft)
+    {
+        if (atLeft)
+        {
+            leftCharacter.sprite = imageDic[_name];
+        }
+        else
+        {
+            leftCharacter.sprite = imageDic[_name]; //左侧分布
+            /*rightCharacter.sprite = imageDic[_name]; //左右分布*/
+        }
+    }
+
+    private void ReadText(TextAsset _textAsset)
+    {
+        dialogRows = _textAsset.text.Split('\n');//分割文本
+        
+        Debug.Log("文本读取成功！");
+    }
+
+    private void ShowDialog()
+    {
+        for (int i = 1; i < dialogRows.Length; i++)
+        {
+            string[] cells = dialogRows[i].Split(',');
+            
+            //Debug.Log(int.Parse(cells[1]));
+            //Debug.Log(int.Parse(cells[1]) == dialogIndex);
+            
+            if(int.Parse(cells[1]) == dialogIndex)
+            {
+                if (cells[0] == "#")
+                {
+                    UpdateText(cells[2], cells[4], cells[3] == "左" ? true : false);
+                    UpdateImage(cells[2], cells[3]=="左" ? true:false);
+
+                    dialogIndex = int.Parse(cells[5]);
+                    break;
+                }
+                
+                if (cells[0] == "&")
+                {
+                    hasChoices = true;
+                    GenerateOption(i);
+                    break;
+                }
+
+                if (cells[0] == "END")
+                {
+                    Debug.Log("对话结束");
+                    dialogBox.SetActive(false);
+                    break;
+                }
+            }
+        }
+    }
+
+    private void GenerateOption(int index)
+    {
+        string[] cells = dialogRows[index].Split(',');
+        
+        if (cells[0] == "&")
+        {
+            GameObject button = Instantiate(optionButtonPrefab, optionButtonGroup);
+            button.GetComponentInChildren<TextMeshProUGUI>().text = cells[4];
+            button.GetComponent<Button>().onClick.AddListener(
+                delegate
+                {
+                    OnOptionClick(int.Parse(cells[5]));
+                });
+            
+            GenerateOption(index + 1);
+        }
+    }
+
+    private void OnOptionClick(int nextIndex)
+    {
+        dialogIndex = nextIndex;
+        hasChoices = false;
+        ShowDialog();
+    }
+
+    private void OptionEffect(string effect, int param, string target)
+    {
+        
+    }
+    
+    //外部接口
+    public void StartDialog(TextAsset dialogAsset)
+    {
+        dialogBox.SetActive(true);
+        dialogBox.GetComponent<UI_Dialog>().StartMove();
+        
+        dialogIndex = 0; 
+        hasChoices = false; // 清除可能存在的选项状态
+        
+        if (optionButtonGroup.childCount > 0)
+        {
+            for (int i = 0; i < optionButtonGroup.childCount; i++)
+            {
+                Destroy(optionButtonGroup.GetChild(i).gameObject);
+            }
+        }
+
+        ReadText(dialogAsset);
+        ShowDialog();
+    }
+
+    [ContextMenu("Test Start")]
+    public void TestStart()
+    {
+        dialogBox.SetActive(true);
+        dialogBox.GetComponent<UI_Dialog>().StartMove();
+    }
+}

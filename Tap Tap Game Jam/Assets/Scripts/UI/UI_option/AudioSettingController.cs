@@ -28,11 +28,15 @@ public class AudioSettingsController : MonoBehaviour
         if(File.Exists(Path.Combine(Application.persistentDataPath,AUDIO_SETTING_DATA_FILE)))
         {
             LoadAudioSettingData();
+            AudioManager.Instance.BgmVolumn = bgmSlider.value;
+            AudioManager.Instance.SfVolumn =  sfxSlider.value;
         }
         else
         {
             //第一次玩没有数据，准备默认的数据
             SetDefaultAudioSettingData();
+            AudioManager.Instance.BgmVolumn = bgmSlider.value;
+            AudioManager.Instance.SfVolumn =  sfxSlider.value;
         }
         
         if (AudioManager.Instance == null)

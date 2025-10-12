@@ -45,10 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroy: 1
-  scenesDisplayID: 0000000001000000
+  scenesDisplayID: 00000000010000000200000003000000
   scenesPath:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/LevelOne.unity
+  - Assets/Scenes/EnterDreamScene.unity
+  - Assets/Scenes/DanceDream.unity
   curLoadStatus: 0
   onSceneLoadBegin:
     m_PersistentCalls:

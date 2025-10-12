@@ -41,11 +41,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FadeAmount: 0
+    - _FadeAmount: 1
     - _GoopScale: 0
     - _NumOfShutters: 10
-    - _UseGoop: 1
-    - _UsePlainBlack: 0
+    - _UseGoop: 0
+    - _UsePlainBlack: 1
     - _UseShutter: 0
     - _UseWipe: 0
     m_Colors:

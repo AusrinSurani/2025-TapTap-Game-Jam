@@ -44,8 +44,8 @@ public class SceneFader : MonoBehaviour
     private void Update()
     {
         //test
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+       if (Input.GetKeyDown(KeyCode.Q))
+        { 
             Debug.Log("FadeIn");
             FadeIn(currentFadeType);
         }
@@ -115,7 +115,7 @@ public class SceneFader : MonoBehaviour
     }
     
     private IEnumerator HandleFade(float targetAmount, float startAmount)
-    {
+    { 
         float elapsedTime = 0f;
         while (elapsedTime < fadeDuration)
         {
@@ -127,6 +127,6 @@ public class SceneFader : MonoBehaviour
             yield return null;
         }
         
-        material.SetFloat(fadeAmount, targetAmount);
+        material.SetFloat(fadeAmount, targetAmount); 
     }
 }

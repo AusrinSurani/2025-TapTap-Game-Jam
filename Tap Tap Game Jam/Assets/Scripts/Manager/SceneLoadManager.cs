@@ -64,7 +64,10 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
     public enum SceneDisplayID
     {
         StartMenu,
-        Level_1
+        Level_1,
+        EnterDreamLoad,
+        DanceDream,
+
     }
 
 
@@ -131,10 +134,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
     /// <returns></returns>
     public bool TryLoadToTargetSceneAsync(SceneDisplayID targetSceneID)
     {
-       
-
-
-
+        
         string scenePath = "";
         foreach (var i in _sceneFile_DisplayIDAndPath)
         {
@@ -187,7 +187,11 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         {
             //TODO: 加载过渡界面
 
-
+            //黑屏过渡
+            if (UIManager.Instance.sceneFader != null)
+                UIManager.Instance.sceneFader.FadeIn(UIManager.Instance.sceneFader.currentFadeType);
+            else
+                Debug.Log("UIManager.Instance.sceneFader is NULL!");
 
             //调用GC
             System.GC.Collect();

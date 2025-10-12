@@ -35,6 +35,8 @@ public class UIManager : Singleton<UIManager>
     //GC时立即清理PanelPool
     //TODO:切换场景进入加载动画时进行GC
     //public UnityEvent onGameGC;
+    [Header("SceneFade")]
+    public SceneFader sceneFader; 
 
     protected override void Awake()
     {

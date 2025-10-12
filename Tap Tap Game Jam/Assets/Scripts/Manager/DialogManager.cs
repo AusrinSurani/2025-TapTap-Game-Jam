@@ -76,6 +76,16 @@ public class DialogManager : Singleton<DialogManager>
     /// </summary>
     public Transform optionButtonGroup;
     
+    /// <summary>
+    /// 标记当前是否正在显示一个简单的、无角色的消息
+    /// </summary>
+    private bool isShowingSimpleMessage = false;
+    
+    /// <summary>
+    /// 当前正在显示或打字的完整文本
+    /// </summary>
+    private string currentFullText;
+    
     protected override void Awake()
     {
         base.Awake();
@@ -93,9 +103,17 @@ public class DialogManager : Singleton<DialogManager>
         if(!dialogBox.activeSelf)
             return;
         
-        if (Input.GetKeyDown(KeyCode.Space) && !hasChoices)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            ShowDialog();
+            if (isShowingSimpleMessage)
+            {
+                dialogBox.SetActive(false);
+                isShowingSimpleMessage = false;
+            }
+            else if(!hasChoices)
+            {
+                ShowDialog();
+            }
         }
 
         if (!hasChoices && optionButtonGroup.childCount > 0)
@@ -155,6 +173,11 @@ public class DialogManager : Singleton<DialogManager>
 
     private void ShowDialog()
     {
+        isShowingSimpleMessage = false;
+        
+        if(!IsOnRightPosition())
+            return;
+        
         for (int i = 1; i < dialogRows.Length; i++)
         {
             string[] cells = dialogRows[i].Split(',');
@@ -183,7 +206,7 @@ public class DialogManager : Singleton<DialogManager>
                 if (cells[0] == "END")
                 {
                     Debug.Log("对话结束");
-                    dialogBox.SetActive(false);
+                    dialogBox.GetComponent<UI_Dialog>().MoveBack();
                     break;
                 }
             }
@@ -215,6 +238,11 @@ public class DialogManager : Singleton<DialogManager>
         ShowDialog();
     }
 
+    private bool IsOnRightPosition()
+    {
+        return transform.position.y == 0;
+    }
+
     private void OptionEffect(string effect, int param, string target)
     {
         
@@ -239,6 +267,27 @@ public class DialogManager : Singleton<DialogManager>
 
         ReadText(dialogAsset);
         ShowDialog();
+    }
+    
+    public void ShowMessage(string message)
+    {
+        dialogBox.GetComponent<UI_Dialog>().StartMove();
+        dialogBox.SetActive(true);
+
+        isShowingSimpleMessage = true;
+        hasChoices = false; 
+
+        leftCharacter.gameObject.SetActive(false);
+        rightCharacter.gameObject.SetActive(false);
+        leftCharacterName.text = "";
+        rightCharacterName.text = "";
+
+        if (typingCoroutine != null && IsOnRightPosition())
+        {
+            StopCoroutine(typingCoroutine);
+        }
+
+        typingCoroutine = StartCoroutine(TypeText(message));
     }
 
     [ContextMenu("Test Start")]

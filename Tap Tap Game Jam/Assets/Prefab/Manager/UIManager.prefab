@@ -469,3 +469,4 @@ MonoBehaviour:
   PanelPoolSizeCount: 5
   SelfPanelCanvasTransform: {fileID: 6466664831160370655}
   BackgroundCoverImage: {fileID: 9027097411922903996}
+  sceneFader: {fileID: 0}

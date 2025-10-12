@@ -1,10 +1,8 @@
-<<<<<<< HEAD
+ 
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-=======
-﻿using UnityEngine;
->>>>>>> 9d7854228de69e87ce428786b426272b895e5e43
+using UnityEngine; 
+
 
 /// <summary>
 /// 按钮动画的触发函数

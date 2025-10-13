@@ -188,8 +188,11 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
             //TODO: 加载过渡界面
 
             //黑屏过渡
-            if (UIManager.Instance.sceneFader != null)
-                UIManager.Instance.sceneFader.FadeIn(UIManager.Instance.sceneFader.currentFadeType);
+            if (UIManager.Instance.coverFader != null)
+            { 
+                yield return UIManager.Instance.coverFader.FadeIn();
+                //UIManager.Instance.sceneFader.FadeIn(UIManager.Instance.sceneFader.currentFadeType);
+            }
             else
                 Debug.Log("UIManager.Instance.sceneFader is NULL!");
 
@@ -207,7 +210,15 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
             _bLoadingAORunning = false;
             _loadAO = null;
             curLoadStatus = SceneLoadStatus.Success;
-             
+            //黑屏过渡
+            if (UIManager.Instance.coverFader != null)
+            {
+                yield return UIManager.Instance.coverFader.FadeOut();
+                //UIManager.Instance.sceneFader.FadeIn(UIManager.Instance.sceneFader.currentFadeType);
+            }
+            else
+                Debug.Log("UIManager.Instance.coverFader is NULL!");
+
             onSceneLoadEnd?.Invoke();
 
             Debug.Log("Load Scene Async Success");

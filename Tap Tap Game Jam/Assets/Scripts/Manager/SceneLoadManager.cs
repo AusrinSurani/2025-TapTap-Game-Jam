@@ -64,8 +64,9 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
     public enum SceneDisplayID
     {
         StartMenu,
-        Level_1,
+        ConsultationRoom,
         EnterDreamLoad,
+        DressingRoom,
         DanceDream,
 
     }

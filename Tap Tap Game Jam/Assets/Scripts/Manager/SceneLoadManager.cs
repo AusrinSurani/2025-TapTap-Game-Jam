@@ -25,6 +25,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         base.Awake();
         //将List数据存入dictionary中
         ImportSceneDataFromListToDictionary();
+        
     }
 
     #region ScenePath输入
@@ -34,7 +35,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
     public List<string> scenesPath = new List<string>();
      
     public bool ImportSceneDataFromListToDictionary()
-    {
+    { 
         if (scenesDisplayID.Count != scenesPath.Count)
             return false;
         if (scenesDisplayID.Count == 0)
@@ -51,8 +52,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
                 Debug.LogError("Fail to Import ScenePath Data: Repeat Key [" + scenesDisplayID[i].ToString() + "] at index " + i + " .");
                 return false;
             }
-        }
-        Debug.Log("dic count:" + _sceneFile_DisplayIDAndPath.Count);
+        } 
         return true;
     }
 
@@ -191,6 +191,9 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
             if (UIManager.Instance.coverFader != null)
             { 
                 yield return UIManager.Instance.coverFader.FadeIn();
+                //test
+                yield return UIManager.Instance.coverFader.TextType("\t简短内容显示效果测试。简短内容显示效果测试。简短内容显示效果测试。\n简短内容显示效果测试。");
+                //endtest
                 //UIManager.Instance.sceneFader.FadeIn(UIManager.Instance.sceneFader.currentFadeType);
             }
             else
@@ -202,7 +205,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
             onSceneLoadBegin?.Invoke();
 
             curLoadStatus = SceneLoadStatus.Running;
-            Debug.Log("sPath" + sPath);
+            //Debug.Log("sPath" + sPath);
             _loadAO = SceneManager.LoadSceneAsync(SceneUtility.GetBuildIndexByScenePath(sPath));
             _bLoadingAORunning = true;
             //等待异步加载完成

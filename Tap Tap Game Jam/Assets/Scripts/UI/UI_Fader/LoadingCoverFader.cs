@@ -9,38 +9,76 @@ public class LoadingCoverFader : MonoBehaviour
     public float fadeSpeed=1f;
     private CanvasGroup _coverGroup;
 
-    public TextMeshProUGUI showText;
+    public TextMeshProUGUI DisplayTextPro;
     private void Awake()
     {
         _coverGroup = GetComponent<CanvasGroup>();
+        DisplayTextPro.text = string.Empty;
     }
 
-   /* private void OnEnable()
-    {
-        if(SceneLoadManager.Instance!=null)
-        {
-            SceneLoadManager.Instance.onSceneLoadBegin.AddListener(BeginFadeIn);
-            SceneLoadManager.Instance.onSceneLoadEnd.AddListener(BeginFadeOut);
-        }
-    }
-    private void OnDisable()
-    {
-        if (SceneLoadManager.Instance != null)
-        {
-            SceneLoadManager.Instance.onSceneLoadBegin.RemoveListener(BeginFadeIn);
-            SceneLoadManager.Instance.onSceneLoadEnd.RemoveListener(BeginFadeOut);
-        }
-    }*/
+    /* private void OnEnable()
+     {
+         if(SceneLoadManager.Instance!=null)
+         {
+             SceneLoadManager.Instance.onSceneLoadBegin.AddListener(BeginFadeIn);
+             SceneLoadManager.Instance.onSceneLoadEnd.AddListener(BeginFadeOut);
+         }
+     }
+     private void OnDisable()
+     {
+         if (SceneLoadManager.Instance != null)
+         {
+             SceneLoadManager.Instance.onSceneLoadBegin.RemoveListener(BeginFadeIn);
+             SceneLoadManager.Instance.onSceneLoadEnd.RemoveListener(BeginFadeOut);
+         }
+     }*/
+
+    public bool BTextTyping;
 
     public void ShowText(string text)
-    {
-        //TODO:打字效果
+    { 
+        _preShowTextContent = text;
+        //showText.text = text;
+        BTextTyping = true;
+        if (_textTypingIE != null)
+            StopCoroutine(_textTypingIE);
+        _textTypingIE = TextType();
+        StartCoroutine(_textTypingIE);
     }
-
-    //TODO
+    private IEnumerator _textTypingIE;
+    private string _preShowTextContent;
+    //打字间隔
+    private WaitForSeconds _typeWaitTime = new WaitForSeconds(0.1f);
+    //打字结束后过渡等待滞留时间
+    private WaitForSeconds _finishWaitTime = new WaitForSeconds(2f);
+    private IEnumerator TextType()
+    {
+        BTextTyping = true;
+        DisplayTextPro.text = string.Empty;
+        for(int i = 0; i < _preShowTextContent.Length; i++) 
+        { 
+            DisplayTextPro.text += _preShowTextContent[i];
+            yield return _typeWaitTime;
+        }
+        BTextTyping = false;
+    } 
+    //TODO:响应点击，快速展示所有内容
+    public IEnumerator TextType(string content)
+    {
+        _preShowTextContent = content;
+        BTextTyping = true;
+        DisplayTextPro.text = string.Empty;
+        for (int i = 0; i < _preShowTextContent.Length; i++)
+        {
+            DisplayTextPro.text += _preShowTextContent[i];
+            yield return _typeWaitTime;
+        }
+        yield return _finishWaitTime;
+        BTextTyping = false;
+    }
     public bool GetIsTextShowEnd()
     {
-        return false;
+        return BTextTyping;
     }
 
 
@@ -99,5 +137,5 @@ public class LoadingCoverFader : MonoBehaviour
         }
         this.gameObject.SetActive(false);
     }
-    /**/
+     
 }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: "\u793A\u4F8B"
   m_EditorClassIdentifier: 
   itemName: "\u5B9E\u4F8B"
-  icon: {fileID: 0}
-  description: show the description of item
+  icon: {fileID: 21300000, guid: 2610de8f1486711459ccb8df150930a1, type: 3}
+  description: "\u663E\u793A\u7269\u54C1\u76F8\u5173\u7684\u4FE1\u606F\uFF0C\u8BED\u53E5\u4E4B\u7C7B\u7684"

@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 1371aeb39e4201a4e979a3c9f2d34a1a
+  - enabled: 1
+    path: Assets/Scenes/EnterDreamScene.unity
+    guid: eb776b12e73d64642885479956ad8f54
+  - enabled: 1
+    path: Assets/Scenes/DanceDream.unity
+    guid: 9491c4307a6d094439cb1ab3c1eed744
   m_configObjects: {}

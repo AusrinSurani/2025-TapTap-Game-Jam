@@ -1,0 +1,141 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEditor.Rendering;
+using UnityEngine;
+
+public class LoadingCoverFader : MonoBehaviour
+{
+    public float fadeSpeed=1f;
+    private CanvasGroup _coverGroup;
+
+    public TextMeshProUGUI DisplayTextPro;
+    private void Awake()
+    {
+        _coverGroup = GetComponent<CanvasGroup>();
+        DisplayTextPro.text = string.Empty;
+    }
+
+    /* private void OnEnable()
+     {
+         if(SceneLoadManager.Instance!=null)
+         {
+             SceneLoadManager.Instance.onSceneLoadBegin.AddListener(BeginFadeIn);
+             SceneLoadManager.Instance.onSceneLoadEnd.AddListener(BeginFadeOut);
+         }
+     }
+     private void OnDisable()
+     {
+         if (SceneLoadManager.Instance != null)
+         {
+             SceneLoadManager.Instance.onSceneLoadBegin.RemoveListener(BeginFadeIn);
+             SceneLoadManager.Instance.onSceneLoadEnd.RemoveListener(BeginFadeOut);
+         }
+     }*/
+
+    public bool BTextTyping;
+
+    public void ShowText(string text)
+    { 
+        _preShowTextContent = text;
+        //showText.text = text;
+        BTextTyping = true;
+        if (_textTypingIE != null)
+            StopCoroutine(_textTypingIE);
+        _textTypingIE = TextType();
+        StartCoroutine(_textTypingIE);
+    }
+    private IEnumerator _textTypingIE;
+    private string _preShowTextContent;
+    //打字间隔
+    private WaitForSeconds _typeWaitTime = new WaitForSeconds(0.1f);
+    //打字结束后过渡等待滞留时间
+    private WaitForSeconds _finishWaitTime = new WaitForSeconds(2f);
+    private IEnumerator TextType()
+    {
+        BTextTyping = true;
+        DisplayTextPro.text = string.Empty;
+        for(int i = 0; i < _preShowTextContent.Length; i++) 
+        { 
+            DisplayTextPro.text += _preShowTextContent[i];
+            yield return _typeWaitTime;
+        }
+        BTextTyping = false;
+    } 
+    //TODO:响应点击，快速展示所有内容
+    public IEnumerator TextType(string content)
+    {
+        _preShowTextContent = content;
+        BTextTyping = true;
+        DisplayTextPro.text = string.Empty;
+        for (int i = 0; i < _preShowTextContent.Length; i++)
+        {
+            DisplayTextPro.text += _preShowTextContent[i];
+            yield return _typeWaitTime;
+        }
+        yield return _finishWaitTime;
+        BTextTyping = false;
+    }
+    public bool GetIsTextShowEnd()
+    {
+        return BTextTyping;
+    }
+
+
+    /*public void BeginFadeIn()
+    {
+        this.gameObject.SetActive(true);
+        _coverGroup.alpha = 0f;
+        if (_fadeIE != null)
+            StopCoroutine(_fadeIE);
+        _fadeIE = FadeIn();
+        StartCoroutine(_fadeIE);
+    }
+    public void BeginFadeOut()
+    {
+        _coverGroup.alpha = 1f;
+        if (_fadeIE != null)
+            StopCoroutine(_fadeIE);
+        _fadeIE = FadeOut();
+        StartCoroutine(_fadeIE);
+    }*/
+
+    private IEnumerator _fadeIE;
+
+    private WaitForSeconds _waitTime=new WaitForSeconds(0.5f);
+    public IEnumerator FadeIn()
+    {
+        this.gameObject.SetActive(true);
+        _coverGroup.alpha = 0f;
+        while (_coverGroup.alpha<1f)
+        {
+            _coverGroup.alpha += Time.deltaTime * fadeSpeed; 
+            //_coverGroup.alpha = Mathf.Lerp(_coverGroup.alpha, 1f, Time.deltaTime * fadeSpeed); 
+           
+            yield return null; 
+            if (_coverGroup.alpha > 0.99f)
+            {
+                _coverGroup.alpha = 1f;
+                yield return _waitTime;
+                yield break;
+            }
+        }
+    }
+    public IEnumerator FadeOut()
+    {
+        _coverGroup.alpha = 1f;
+        while (_coverGroup.alpha > 0f)
+        {
+            _coverGroup.alpha -= Time.deltaTime * fadeSpeed; 
+            //_coverGroup.alpha = Mathf.Lerp(_coverGroup.alpha, 0f, Time.deltaTime * fadeSpeed);
+            yield return null;
+            if(_coverGroup.alpha<0.01f)
+            {
+                _coverGroup.alpha = 0f;
+                break;
+            }
+        }
+        this.gameObject.SetActive(false);
+    }
+     
+}

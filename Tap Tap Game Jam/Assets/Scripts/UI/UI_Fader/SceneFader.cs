@@ -63,6 +63,9 @@ public class SceneFader : MonoBehaviour
             Debug.Log("FadeOut");
             FadeOut(currentFadeType);
         }
+
+        Debug.Log("Apha" + image.color.a);
+        //endtest
     }
 
     public void FadeOut(FadeType fadeType)

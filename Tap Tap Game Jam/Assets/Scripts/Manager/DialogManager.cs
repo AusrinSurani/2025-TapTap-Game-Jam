@@ -107,7 +107,7 @@ public class DialogManager : Singleton<DialogManager>
         {
             if (isShowingSimpleMessage)
             {
-                dialogBox.SetActive(false);
+                dialogBox.GetComponent<UI_Dialog>().MoveBack();
                 isShowingSimpleMessage = false;
             }
             else if(!hasChoices)

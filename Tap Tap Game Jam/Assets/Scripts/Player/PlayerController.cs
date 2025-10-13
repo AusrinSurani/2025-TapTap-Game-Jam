@@ -10,7 +10,10 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private SpriteRenderer spriteRenderer;
 
-    private enum State { Idle, Move }
+    public KeyCode torchKey = KeyCode.I;
+    public KeyCode sleepKey = KeyCode.O;
+    
+    private enum State { Idle, Move, Touch, Sleep }
     private State currentState;
 
     private float horizontalInput;
@@ -48,15 +51,25 @@ public class PlayerController : MonoBehaviour
             if (currentState != State.Move)
             {
                 SwitchState(State.Move);
+                return;
             }
         }
-        else
+
+        if (Input.GetKeyDown(torchKey))
         {
-            if (currentState != State.Idle)
-            {
-                SwitchState(State.Idle);
-            }
+            SwitchState(currentState == State.Touch ? State.Idle : State.Touch);
+            return;
         }
+        
+        if (Input.GetKeyDown(sleepKey))
+        {
+            SwitchState(currentState == State.Sleep ? State.Idle : State.Sleep);
+            return;
+        }
+        
+        if(Mathf.Abs(horizontalInput) == 0)
+            //没有任何输入直接转成Idle
+            SwitchState(State.Idle);
     }
     
     private void SwitchState(State newState)
@@ -65,6 +78,8 @@ public class PlayerController : MonoBehaviour
 
         anim.SetBool("Idle", currentState == State.Idle);
         anim.SetBool("Move", currentState == State.Move);
+        anim.SetBool("Touch", currentState == State.Touch);
+        anim.SetBool("Sleep", currentState == State.Sleep);
     }
     
     private void HandleStateActions()
@@ -72,6 +87,8 @@ public class PlayerController : MonoBehaviour
         switch (currentState)
         {
             case State.Idle:
+            case State.Touch:
+            case State.Sleep:
                 rb.velocity = new Vector2(0, rb.velocity.y);
                 break;
             case State.Move:

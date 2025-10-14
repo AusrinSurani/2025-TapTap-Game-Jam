@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1197494861553681273}
   - component: {fileID: 997921746290297723}
   m_Layer: 0
-  m_Name: SceneManager
+  m_Name: SceneLoadManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroy: 1
-  scenesDisplayID: 00000000010000000200000003000000
+  scenesDisplayID: 00000000010000000300000004000000
   scenesPath:
   - Assets/Scenes/MainMenu.unity
-  - Assets/Scenes/LevelOne.unity
-  - Assets/Scenes/EnterDreamScene.unity
+  - Assets/Scenes/ConsultationRoom.unity
+  - Assets/Scenes/DressingRoom.unity
   - Assets/Scenes/DanceDream.unity
   curLoadStatus: 0
   onSceneLoadBegin:

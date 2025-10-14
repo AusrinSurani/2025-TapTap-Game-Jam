@@ -1250,7 +1250,7 @@ MonoBehaviour:
   m_text: Name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
-  m_sharedMaterial: {fileID: -4022063154879668290, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
+  m_sharedMaterial: {fileID: -1889915185071042296, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
   m_fontSharedMaterials:
   - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
@@ -1893,7 +1893,7 @@ MonoBehaviour:
   m_text: "--\u6309\u4E0B SPACE \u7EE7\u7EED--"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
-  m_sharedMaterial: {fileID: -4022063154879668290, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
+  m_sharedMaterial: {fileID: -1889915185071042296, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3175,7 +3175,7 @@ MonoBehaviour:
   m_text: This is the Dialog box
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
-  m_sharedMaterial: {fileID: -4022063154879668290, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
+  m_sharedMaterial: {fileID: -1889915185071042296, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
   m_fontSharedMaterials:
   - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
@@ -4289,7 +4289,7 @@ MonoBehaviour:
   m_text: Name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
-  m_sharedMaterial: {fileID: -4022063154879668290, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
+  m_sharedMaterial: {fileID: -1889915185071042296, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
   m_fontSharedMaterials:
   - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}

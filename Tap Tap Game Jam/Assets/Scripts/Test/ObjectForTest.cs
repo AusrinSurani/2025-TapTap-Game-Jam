@@ -8,7 +8,8 @@ public class ObjectForTest : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.T))
         {
-            UIManager.Instance.ShowPanelByPath<TestUIManagerPanel>("UI/TestUIManagerPanel");
+            //UIManager.Instance.ShowPanelByPath<TestUIManagerPanel>("UI/TestUIManagerPanel");
+            SceneLoadManager.Instance.TryLoadToTargetSceneAsync(SceneLoadManager.SceneDisplayID.DressingRoom);
         }
     }
 }

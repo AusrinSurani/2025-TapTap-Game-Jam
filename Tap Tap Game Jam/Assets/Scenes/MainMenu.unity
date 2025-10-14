@@ -1250,7 +1250,7 @@ MonoBehaviour:
   m_text: Name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
-  m_sharedMaterial: {fileID: -9070434896659912619, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
+  m_sharedMaterial: {fileID: -4022063154879668290, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
   m_fontSharedMaterials:
   - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
@@ -1893,7 +1893,7 @@ MonoBehaviour:
   m_text: "--\u6309\u4E0B SPACE \u7EE7\u7EED--"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
-  m_sharedMaterial: {fileID: -9070434896659912619, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
+  m_sharedMaterial: {fileID: -4022063154879668290, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2529,38 +2529,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 997921746290297723, guid: 4ecd56e339ad3d04b8b4a5039ec129a6, type: 3}
-      propertyPath: scenesPath.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 997921746290297723, guid: 4ecd56e339ad3d04b8b4a5039ec129a6, type: 3}
-      propertyPath: scenesPath.Array.data[0]
-      value: Assets/Scenes/MainMenu.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 997921746290297723, guid: 4ecd56e339ad3d04b8b4a5039ec129a6, type: 3}
-      propertyPath: scenesPath.Array.data[1]
-      value: Assets/Scenes/ConsultationRoom.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 997921746290297723, guid: 4ecd56e339ad3d04b8b4a5039ec129a6, type: 3}
-      propertyPath: scenesPath.Array.data[2]
-      value: Assets/Scenes/DressingRoom.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 997921746290297723, guid: 4ecd56e339ad3d04b8b4a5039ec129a6, type: 3}
-      propertyPath: scenesPath.Array.data[3]
-      value: Assets/Scenes/DanceDream.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 997921746290297723, guid: 4ecd56e339ad3d04b8b4a5039ec129a6, type: 3}
-      propertyPath: scenesDisplayID.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 997921746290297723, guid: 4ecd56e339ad3d04b8b4a5039ec129a6, type: 3}
-      propertyPath: scenesDisplayID.Array.data[2]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 997921746290297723, guid: 4ecd56e339ad3d04b8b4a5039ec129a6, type: 3}
-      propertyPath: scenesDisplayID.Array.data[3]
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 1197494861553681273, guid: 4ecd56e339ad3d04b8b4a5039ec129a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2603,7 +2571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1481490164703440452, guid: 4ecd56e339ad3d04b8b4a5039ec129a6, type: 3}
       propertyPath: m_Name
-      value: SceneManager
+      value: SceneLoadManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3207,7 +3175,7 @@ MonoBehaviour:
   m_text: This is the Dialog box
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
-  m_sharedMaterial: {fileID: -9070434896659912619, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
+  m_sharedMaterial: {fileID: -4022063154879668290, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
   m_fontSharedMaterials:
   - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
@@ -4321,7 +4289,7 @@ MonoBehaviour:
   m_text: Name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
-  m_sharedMaterial: {fileID: -9070434896659912619, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
+  m_sharedMaterial: {fileID: -4022063154879668290, guid: d914e3a7972c228438caa9ca30b4236e, type: 2}
   m_fontSharedMaterials:
   - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}

@@ -445,10 +445,11 @@ public class AudioManager : Singleton<AudioManager>
     [Header("AudioClipPieces")]
     public AudioPiece mainMenuBtnAudioPiece;
 
-    public AudioPiece bgmAudioPiece;
+    public AudioPiece bgmAudioPiece; 
 
-    public AudioPiece testAudioPiece;
+    [Header("DancerDreamAudioPieces")]
+    public AudioPiece sceneLightSwitchAudioPiece;
+    public AudioPiece spotLightSwitchAudioPiece;
 
-    public AudioPiece bgm2TestAudioPiece;
-    public AudioPiece bgm3TestAudioPiece;
+    public AudioPiece dancerBGMAudioPiece;
 }

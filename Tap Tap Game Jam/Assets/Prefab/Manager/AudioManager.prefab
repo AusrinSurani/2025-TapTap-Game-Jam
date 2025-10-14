@@ -200,23 +200,23 @@ MonoBehaviour:
     sourceClip: {fileID: 8300000, guid: 8ee985bf3666a5a46b8f3d18a418f23a, type: 3}
     volumnValue: 1
     bCanMutPlay: 0
-  testAudioPiece:
-    audioID: 3
-    audioClipDescription: test_sf
-    sourceClip: {fileID: 8300000, guid: e13f64e3f0923f047b6463ebec84d096, type: 3}
+  sceneLightSwitchAudioPiece:
+    audioID: 10001
+    audioClipDescription: "\u821E\u53F0\u573A\u666F\u62C9\u95F8\u58F0"
+    sourceClip: {fileID: 8300000, guid: b60c032489535044fa4429755ab32bc0, type: 3}
+    volumnValue: 0.8
+    bCanMutPlay: 0
+  spotLightSwitchAudioPiece:
+    audioID: 10002
+    audioClipDescription: "\u805A\u5149\u706F\u5F00\u5173\u58F0"
+    sourceClip: {fileID: 8300000, guid: b60c032489535044fa4429755ab32bc0, type: 3}
+    volumnValue: 0.8
+    bCanMutPlay: 0
+  dancerBGMAudioPiece:
+    audioID: 10003
+    audioClipDescription: "\u821E\u53F0\u6E38\u620F\u6D41\u7A0B\u80CC\u666F\u97F3\u4E50"
+    sourceClip: {fileID: 8300000, guid: de012321d2e6c294c8a60f16c6221e26, type: 3}
     volumnValue: 1
-    bCanMutPlay: 0
-  bgm2TestAudioPiece:
-    audioID: 4
-    audioClipDescription: 
-    sourceClip: {fileID: 0}
-    volumnValue: 0
-    bCanMutPlay: 0
-  bgm3TestAudioPiece:
-    audioID: 5
-    audioClipDescription: 
-    sourceClip: {fileID: 0}
-    volumnValue: 0
     bCanMutPlay: 0
 --- !u!1001 &404355388972324173
 PrefabInstance:

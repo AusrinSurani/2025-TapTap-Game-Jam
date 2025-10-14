@@ -51,7 +51,7 @@ public class DanceOrderDisplay : MonoBehaviour
             return 1;
         }
         //反按
-        else if (allowInverse&&((int)getOrder * 2 == (int)ShowOrder || (int)ShowOrder * 2 == (int)getOrder))
+        else if (allowInverse&&(((int)getOrder * 2) == (int)ShowOrder || ((int)ShowOrder) * 2 == (int)getOrder))
         {
             //Color.Blue 
             SpriteRenderer.color = Color.blue;

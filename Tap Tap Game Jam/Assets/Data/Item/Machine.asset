@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3ea681a7e70d2f4c860bdc778e8b467, type: 3}
+  m_Name: Machine
+  m_EditorClassIdentifier: 
+  itemName: 
+  icon: {fileID: 21300000, guid: 18573e2489349ec4c8ad51488dd30b9d, type: 3}
+  outline: {fileID: 21300000, guid: e11f8a280dd7e954e9857b59d089bc5d, type: 3}
+  description: "\u5165\u68A6\u88C5\u7F6ERtoM-1010\u3002\u79D1\u7814\u673A\u6784\u7684\u5DE5\u7A0B\u5E08\u6539\u88C5\u8FC7\u7684\u68A6\u5883\u89E3\u6790\u8BBE\u5907\uFF0C\u5173\u8054\u8BA1\u7B97\u673A\u7684\u5165\u68A6\u7A0B\u5E8F\uFF0C\u7528\u4E8E\u8FDB\u5165\u75C5\u60A3\u68A6\u5883\uFF0C\u5B8C\u6210\u8BCA\u7597\u5DE5\u4F5C\u3002\u5229\u7528RtoM\u5165\u68A6\u88C5\u7F6E\uFF0C\u53EF\u89E3\u6790\u667A\u80FD\u4EFF\u751F\u4EBA\u68A6\u5883\u6570\u636E\u4FE1\u53F7\uFF0C\u751F\u6210\u68A6\u5883\u8D44\u6E90\uFF0C\u5E76\u901A\u8FC7\u7EB3\u7C73\u673A\u5668\u4EBA\uFF0C\u5BF9\u7C7B\u4EBA\u8111\u795E\u7ECF\u5143\u4EF6\u3001\u6570\u636E\u5E93\u7F51\u7EDC\u3001\u4EFF\u751F\u610F\u8BC6\u4FE1\u606F\u5B58\u50A8\u6A21\u5757\u7B49\u7CFB\u7EDF\u6545\u969C\u8FDB\u884C\u4FEE\u590D\u3002 "

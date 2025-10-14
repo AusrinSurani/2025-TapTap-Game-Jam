@@ -38,6 +38,8 @@ public class Interactable:MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             return;
         
         gameObject.GetComponent<SpriteRenderer>().sprite = itemData.icon;
-        outLine.GetComponent<SpriteRenderer>().sprite = itemData.icon;
+        
+        if(itemData.outline != null)
+            outLine.GetComponent<SpriteRenderer>().sprite = itemData.outline;
     }
 }

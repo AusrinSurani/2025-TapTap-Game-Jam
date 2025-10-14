@@ -42,12 +42,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: BackGround
-    uniqueID: 4003350927
+  - name: sky
+    uniqueID: 101191283
     locked: 0
-  - name: OutLine
-    uniqueID: 2430761697
+  - name: city
+    uniqueID: 476035745
+    locked: 0
+  - name: Windows
+    uniqueID: 881469231
+    locked: 0
+  - name: Room
+    uniqueID: 4003350927
     locked: 0
   - name: Item
     uniqueID: 1520078233
+    locked: 0
+  - name: OutLine
+    uniqueID: 2430761697
     locked: 0

@@ -9,6 +9,6 @@ public class DreamButton : BounceButton
     {
         base.OnPointerClick(eventData);
         
-        GetComponentInParent<UI_Computer>().LoadScene();
+        GetComponentInParent<UI_Computer>().LoadNextScene();
     }
 }

@@ -132,8 +132,10 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
     /// 异步加载,协程状态不为Wait或者无法找到对应场景则return false,正常使用会开一个场景加载协程
     /// </summary>
     /// <param name="targetSceneID"></param>
+    /// <param name="words"></param>
+    /// <param name="needWords"></param>
     /// <returns></returns>
-    public bool TryLoadToTargetSceneAsync(SceneDisplayID targetSceneID)
+    public bool TryLoadToTargetSceneAsync(SceneDisplayID targetSceneID, string words, bool needWords)
     {
         
         string scenePath = "";
@@ -156,7 +158,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         {
             if (_loadSceneAsync_ie != null)
                 StopCoroutine(_loadSceneAsync_ie);
-            _loadSceneAsync_ie = LoadToTargetSceneAsync(scenePath);
+            _loadSceneAsync_ie = LoadToTargetSceneAsync(scenePath, words,  needWords);
             StartCoroutine(_loadSceneAsync_ie); 
             return true;
         }
@@ -182,7 +184,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
     private AsyncOperation _loadAO;
     private bool _bLoadingAORunning; 
     //异步加载协程处理
-    private IEnumerator LoadToTargetSceneAsync(string sPath)
+    private IEnumerator LoadToTargetSceneAsync(string sPath, string words, bool needWords)
     {
         if (sPath != "")
         {
@@ -193,7 +195,9 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
             { 
                 yield return UIManager.Instance.coverFader.FadeIn();
                 //test
-                yield return UIManager.Instance.coverFader.TextType("\t简短内容显示效果测试。简短内容显示效果测试。简短内容显示效果测试。\n简短内容显示效果测试。");
+                
+                if(needWords)
+                    yield return UIManager.Instance.coverFader.TextType(words);
                 //endtest
                 //UIManager.Instance.sceneFader.FadeIn(UIManager.Instance.sceneFader.currentFadeType);
             }
@@ -218,6 +222,9 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
             if (UIManager.Instance.coverFader != null)
             {
                 yield return UIManager.Instance.coverFader.FadeOut();
+                
+                //as:加载完把原来残留的Text删掉
+                UIManager.Instance.coverFader.DisplayTextPro.text = String.Empty;
                 //UIManager.Instance.sceneFader.FadeIn(UIManager.Instance.sceneFader.currentFadeType);
             }
             else

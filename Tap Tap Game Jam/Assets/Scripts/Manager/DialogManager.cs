@@ -89,8 +89,10 @@ public class DialogManager : Singleton<DialogManager>
     protected override void Awake()
     {
         base.Awake();
-        imageDic["P"] = sprites[0];
-        imageDic["A"] = sprites[1];
+        imageDic["尼安德·华莱士"] = sprites[0];
+        imageDic["妮娜·奥蜜可"] = sprites[1];
+        imageDic["德尔塔·布莱梅"] = sprites[2];
+        imageDic["黑客"] = sprites[3];
     }
 
     private void Start()

@@ -83,7 +83,8 @@ public class MenuButton : MonoBehaviour,
             case 0:
                 //TODO:切换场景开始游戏
 
-                sceneLoadManager.TryLoadToTargetSceneAsync(SceneLoadManager.SceneDisplayID.ConsultationRoom);
+                sceneLoadManager.TryLoadToTargetSceneAsync
+                    (SceneLoadManager.SceneDisplayID.ConsultationRoom, "开场白",true);
                 Debug.Log("开始游戏");
                 break;
             case 1:

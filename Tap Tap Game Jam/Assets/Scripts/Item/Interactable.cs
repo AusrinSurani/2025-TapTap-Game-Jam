@@ -7,7 +7,7 @@ public class Interactable:MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     public ItemData itemData;
     public GameObject outLine;
 
-    private void Start()
+    public virtual void Start()
     {
         outLine.SetActive(false);
     }
@@ -29,17 +29,29 @@ public class Interactable:MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             return;
         
         Debug.Log(itemData.itemName);
-        DialogManager.Instance.ShowMessage(itemData.description);
+        DialogManager.Instance.ShowMessage(itemData?.description);
     }
 
     public void OnValidate()
     {
-        if(itemData == null)
+        if (itemData == null)
+        {
+            Debug.Log("没有物品数据");
             return;
+        }
+
+        if (itemData.icon == null)
+        {
+            Debug.Log("没有物品图");
+        }
+
+        if (itemData.outline == null)
+        {
+            Debug.Log("没有边框图");
+        }
         
         gameObject.GetComponent<SpriteRenderer>().sprite = itemData.icon;
-        
-        if(itemData.outline != null)
-            outLine.GetComponent<SpriteRenderer>().sprite = itemData.outline;
+        gameObject.name = "Interactable-" + itemData.itemName;
+        outLine.GetComponent<SpriteRenderer>().sprite = itemData.outline;
     }
 }

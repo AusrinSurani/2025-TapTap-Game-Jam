@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Wall"))
         {
-            DialogManager.Instance.ShowMessage("Maybe I'd better not delve too far into other's dream");
+            DialogManager.Instance.ShowMessage("十分昏暗的房间，我最好不要在他人的梦境中走得太深");
         }
     }
 }

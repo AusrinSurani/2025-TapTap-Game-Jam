@@ -452,4 +452,8 @@ public class AudioManager : Singleton<AudioManager>
     public AudioPiece spotLightSwitchAudioPiece;
 
     public AudioPiece dancerBGMAudioPiece;
+    [Header("DanceGamePlay")]
+    public AudioPiece correctInteractAudioPiece;
+    public AudioPiece specialInteractAudioPiece;
+    public AudioPiece wrongInteractAudioPiece;
 }

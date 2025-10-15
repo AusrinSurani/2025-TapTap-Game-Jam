@@ -54,6 +54,8 @@ public class DanceGamePlay : MonoBehaviour
         BHaveIntro_1 = false;
         BHaveIntro_2 = false;
 
+        failCountUI.gameObject.SetActive(true);
+
         if (_startDanceIE != null)
             StopCoroutine(_startDanceIE);
         _startDanceIE = StartDance();
@@ -194,7 +196,19 @@ public class DanceGamePlay : MonoBehaviour
     }
     public void PauseGamePlay()
     {
-        BPause = true;
+        BPause = true; 
+    }
+
+    public void FailCurrentRound()
+    {
+        //将 未结算的DanceOrderDisplay销毁
+        for (int i = 0; i < AlreadyAppearedOrderDisplays.Count; i++)
+        {
+            if (AlreadyAppearedOrderDisplays != null && AlreadyAppearedOrderDisplays[i] != null)
+            {
+                AlreadyAppearedOrderDisplays[i].OnEndGamePlay();
+            }
+        }
     }
 
     public RoundEndUI RoundEndui;
@@ -308,14 +322,30 @@ public class DanceGamePlay : MonoBehaviour
     public int FailCount { get => failCount; set
         { 
             failCount = value;
+            if(failCountUI.gameObject.activeSelf)
+            {
+                failCountUI.SetInfo(failCount, BCurRoundHaveSpecialInput);
+            }
             if (failCount > 2)
             {
                 PauseGamePlay();
+                FailCurrentRound();
                 if (RoundEndui != null)
                 {
                     RoundEndui.gameObject.SetActive(true);
                     RoundEndui.SetButtonShow(1);
                 }
+            }
+        }
+    }
+
+    public bool BCurRoundHaveSpecialInput { get => bCurRoundHaveSpecialInput;
+        set 
+        { 
+            bCurRoundHaveSpecialInput = value; 
+            if (failCountUI.gameObject.activeSelf)
+            {
+                failCountUI.SetInfo(FailCount, bCurRoundHaveSpecialInput);
             }
         }
     }
@@ -340,24 +370,39 @@ public class DanceGamePlay : MonoBehaviour
         if(_curOrderIndex < GameOrders.Count)
         { 
             //Debug.Log("Instiante");
+            //TODO:记录Order使用情况，有指令尚未处理则生成在位置2(原位置下 子物体0
             if (GameOrders[_curOrderIndex] ==DanceOrder.Up)
             {
-                _tempDanceOrder = Instantiate(DanceOrderPrefab, OrdersTransforms[0]).GetComponent<DanceOrderDisplay>();
+                if(OrdersTransforms[0].childCount<=1)
+                    _tempDanceOrder = Instantiate(DanceOrderPrefab, OrdersTransforms[0]).GetComponent<DanceOrderDisplay>();
+                else
+                    _tempDanceOrder = Instantiate(DanceOrderPrefab, OrdersTransforms[0].GetChild(0)).GetComponent<DanceOrderDisplay>();
 
             }
             else if (GameOrders[_curOrderIndex] == DanceOrder.Down)
             {
-                _tempDanceOrder = Instantiate(DanceOrderPrefab, OrdersTransforms[1]).GetComponent<DanceOrderDisplay>();
+                if (OrdersTransforms[1].childCount <= 1)
+                    _tempDanceOrder = Instantiate(DanceOrderPrefab, OrdersTransforms[1]).GetComponent<DanceOrderDisplay>();
+                else
+                    _tempDanceOrder = Instantiate(DanceOrderPrefab, OrdersTransforms[1].GetChild(0)).GetComponent<DanceOrderDisplay>();
 
             }
             else if (GameOrders[_curOrderIndex] == DanceOrder.Left)
             {
-                _tempDanceOrder = Instantiate(DanceOrderPrefab, OrdersTransforms[2]).GetComponent<DanceOrderDisplay>();
+                if (OrdersTransforms[2].childCount <= 1)
+                    _tempDanceOrder = Instantiate(DanceOrderPrefab, OrdersTransforms[2]).GetComponent<DanceOrderDisplay>();
+                else
+                    _tempDanceOrder = Instantiate(DanceOrderPrefab, OrdersTransforms[2].GetChild(0)).GetComponent<DanceOrderDisplay>();
+
 
             }
             else if (GameOrders[_curOrderIndex] == DanceOrder.Right)
             {
-                _tempDanceOrder = Instantiate(DanceOrderPrefab, OrdersTransforms[3]).GetComponent<DanceOrderDisplay>();
+                if (OrdersTransforms[3].childCount <= 1)
+                    _tempDanceOrder = Instantiate(DanceOrderPrefab, OrdersTransforms[3]).GetComponent<DanceOrderDisplay>();
+                else
+                    _tempDanceOrder = Instantiate(DanceOrderPrefab, OrdersTransforms[3].GetChild(0)).GetComponent<DanceOrderDisplay>();
+
 
             }
             AlreadyAppearedOrderDisplays.Add(_tempDanceOrder);
@@ -381,7 +426,7 @@ public class DanceGamePlay : MonoBehaviour
         //音效
          
     }
-    public bool BCurRoundHaveSpecialInput;
+    private bool bCurRoundHaveSpecialInput;
     public void GetDanceOrderInput(int x,DanceOrder dOrder)
     {
         _curInputIndex++;
@@ -389,6 +434,8 @@ public class DanceGamePlay : MonoBehaviour
         { 
             FailCount++;
             //失败音效
+            AudioManager.Instance.AudioOncePlay(AudioManager.Instance.wrongInteractAudioPiece);
+
             DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.Wrong);
             DancerCtr.SetDanceMaterialWrongOnce();
              
@@ -397,6 +444,8 @@ public class DanceGamePlay : MonoBehaviour
         else if(x==1)
         {
             //成功音效
+            AudioManager.Instance.AudioOncePlay(AudioManager.Instance.correctInteractAudioPiece);
+
             switch (dOrder)
             {
                 case DanceOrder.Up: 
@@ -422,6 +471,7 @@ public class DanceGamePlay : MonoBehaviour
         {
             BCurRoundHaveSpecialInput = true;
             //成功音效2
+            AudioManager.Instance.AudioOncePlay(AudioManager.Instance.specialInteractAudioPiece);
             switch (dOrder)
             {
                 case DanceOrder.Up:
@@ -446,6 +496,8 @@ public class DanceGamePlay : MonoBehaviour
     public bool BMustInverseInput;
     public bool BAllowInverseInput;
 
+
+    public JoystickController JoystickCtr;
     private void HandlePlayerInput()
     {
         if (BCanGetInput)
@@ -457,18 +509,22 @@ public class DanceGamePlay : MonoBehaviour
             //识别玩家输入
             if (Input.GetKeyDown(leftOrderKey))
             {
+                JoystickCtr.SetAnimatorStatus(JoystickController.JoystickStatus.Left);
                 GetDanceOrderInput(AlreadyAppearedOrderDisplays[_curInputIndex].GetInteractOrder(DanceOrder.Left, BAllowInverseInput, BMustInverseInput), DanceOrder.Left);
             }
             else if (Input.GetKeyDown(rightOrderKey))
             {
+                JoystickCtr.SetAnimatorStatus(JoystickController.JoystickStatus.Right);
                 GetDanceOrderInput(AlreadyAppearedOrderDisplays[_curInputIndex].GetInteractOrder(DanceOrder.Right, BAllowInverseInput, BMustInverseInput), DanceOrder.Right);
             }
             else if (Input.GetKeyDown(upOrderKey))
             {
+                JoystickCtr.SetAnimatorStatus(JoystickController.JoystickStatus.Up);
                 GetDanceOrderInput(AlreadyAppearedOrderDisplays[_curInputIndex].GetInteractOrder(DanceOrder.Up, BAllowInverseInput, BMustInverseInput), DanceOrder.Up);
             }
             else if (Input.GetKeyDown(downOrderKey))
             {
+                JoystickCtr.SetAnimatorStatus(JoystickController.JoystickStatus.Down);
                 GetDanceOrderInput(AlreadyAppearedOrderDisplays[_curInputIndex].GetInteractOrder(DanceOrder.Down, BAllowInverseInput, BMustInverseInput), DanceOrder.Down);
             }
         }
@@ -478,6 +534,8 @@ public class DanceGamePlay : MonoBehaviour
     public IntroductionCtr IntroCtr;
     public bool BHaveIntro_1;
     public bool BHaveIntro_2;
+
+    public DanceGamePlayInfo failCountUI;
 
     //test --late to delete
     private void Update()

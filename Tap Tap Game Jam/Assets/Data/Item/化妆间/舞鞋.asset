@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "\u821E\u978B"
   icon: {fileID: 0}
-  outline: {fileID: 0}
-  description: 
+  outline: {fileID: 21300000, guid: 503272eb1500d3e4b946a9b0670c50b4, type: 3}
+  closeUp: {fileID: 21300000, guid: 260ac9dddd41fab49b30c71210c023c1, type: 3}
+  description: "\u821E\u978B"

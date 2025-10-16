@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TV
   m_EditorClassIdentifier: 
   itemName: "\u7535\u89C6"
-  icon: {fileID: 21300000, guid: 8fcddb40fc171b344b9e12f96fb92e39, type: 3}
-  outline: {fileID: 21300000, guid: e1a6cbf68effdc546a894ad96fecdf58, type: 3}
+  icon: {fileID: -1819994577, guid: 35c1a01b2f8215840b86dd5eb304c93f, type: 3}
+  outline: {fileID: 1584880318, guid: 35c1a01b2f8215840b86dd5eb304c93f, type: 3}
   description: "\u7535\u89C6"

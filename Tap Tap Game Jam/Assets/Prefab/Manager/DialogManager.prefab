@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroy: 1
   dialogBox: {fileID: 0}
+  textDialog: {fileID: 4900000, guid: 72b1bf8346cec894784c66a0fdc273b8, type: 3}
   charsPerSecond: 30
   dialogTextAsset: {fileID: 0}
   leftCharacter: {fileID: 0}
@@ -54,7 +55,9 @@ MonoBehaviour:
   leftCharacterName: {fileID: 0}
   rightCharacterName: {fileID: 0}
   sprites:
-  - {fileID: 21300000, guid: 2610de8f1486711459ccb8df150930a1, type: 3}
+  - {fileID: 21300000, guid: 5189cc5bb18b54845b8cd90ac2969746, type: 3}
+  - {fileID: -1116539716, guid: 1ab52914d7136014a80363c8d63b468a, type: 3}
+  - {fileID: 0}
   - {fileID: 0}
   dialogIndex: 0
   dialogRows: []

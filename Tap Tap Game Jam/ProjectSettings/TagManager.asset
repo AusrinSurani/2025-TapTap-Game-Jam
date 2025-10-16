@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wall
+  - ChangeScene
   layers:
   - Default
   - TransparentFX
@@ -53,6 +54,9 @@ TagManager:
     locked: 0
   - name: Room
     uniqueID: 4003350927
+    locked: 0
+  - name: Player
+    uniqueID: 438222921
     locked: 0
   - name: Item
     uniqueID: 1520078233

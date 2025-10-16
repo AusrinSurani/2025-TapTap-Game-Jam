@@ -190,8 +190,8 @@ MonoBehaviour:
   soundEffectAudioSourceTransform: {fileID: 1661200968770761469}
   mainMenuBtnAudioPiece:
     audioID: 1
-    audioClipDescription: 
-    sourceClip: {fileID: 8300000, guid: da1b160ba7e6b4bf0a40defe83b864d4, type: 3}
+    audioClipDescription: "\u6309\u94AE\u97F3\u6548"
+    sourceClip: {fileID: 8300000, guid: 24acd23b2414c3f4482d2b813a92cb8e, type: 3}
     volumnValue: 1
     bCanMutPlay: 0
   bgmAudioPiece:

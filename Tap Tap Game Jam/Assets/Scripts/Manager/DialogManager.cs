@@ -8,6 +8,10 @@ using UnityEngine.UI;
 public class DialogManager : Singleton<DialogManager>
 {
     public GameObject dialogBox;
+
+    public TextAsset textDialog;
+
+    private Vector2 originalSize;
     
     /// <summary>
     /// 打字机效果，每秒显示多少字
@@ -90,13 +94,17 @@ public class DialogManager : Singleton<DialogManager>
     {
         base.Awake();
         imageDic["尼安德·华莱士"] = sprites[0];
+        imageDic["尼安德"] = sprites[0];
         imageDic["妮娜·奥蜜可"] = sprites[1];
+        imageDic["来问诊的女人"] = sprites[1];
+        imageDic["妮娜"] = sprites[1];
         imageDic["德尔塔·布莱梅"] = sprites[2];
-        imageDic["黑客"] = sprites[3];
+        imageDic["桥田缪"] = sprites[3];
     }
 
     private void Start()
     {
+        
         dialogBox.SetActive(false);//先隐藏，等待调用
     }
 
@@ -107,6 +115,8 @@ public class DialogManager : Singleton<DialogManager>
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("Get Key");
+            
             if (isShowingSimpleMessage)
             {
                 dialogBox.GetComponent<UI_Dialog>().MoveBack();
@@ -114,6 +124,7 @@ public class DialogManager : Singleton<DialogManager>
             }
             else if(!hasChoices)
             {
+                Debug.Log("begin");
                 ShowDialog();
             }
         }
@@ -177,9 +188,6 @@ public class DialogManager : Singleton<DialogManager>
     {
         isShowingSimpleMessage = false;
         
-        if(!IsOnRightPosition())
-            return;
-        
         for (int i = 1; i < dialogRows.Length; i++)
         {
             string[] cells = dialogRows[i].Split(',');
@@ -240,11 +248,6 @@ public class DialogManager : Singleton<DialogManager>
         ShowDialog();
     }
 
-    private bool IsOnRightPosition()
-    {
-        return transform.position.y == 0;
-    }
-
     private void OptionEffect(string effect, int param, string target)
     {
         
@@ -254,9 +257,11 @@ public class DialogManager : Singleton<DialogManager>
     public void StartDialog(TextAsset dialogAsset)
     {
         dialogBox.SetActive(true);
+        leftCharacter.gameObject.SetActive(true);
         dialogBox.GetComponent<UI_Dialog>().StartMove();
         
         dialogIndex = 0; 
+        isShowingSimpleMessage = false;
         hasChoices = false; // 清除可能存在的选项状态
         
         if (optionButtonGroup.childCount > 0)
@@ -284,7 +289,7 @@ public class DialogManager : Singleton<DialogManager>
         leftCharacterName.text = "";
         rightCharacterName.text = "";
 
-        if (typingCoroutine != null && IsOnRightPosition())
+        if (typingCoroutine != null)
         {
             StopCoroutine(typingCoroutine);
         }
@@ -292,10 +297,10 @@ public class DialogManager : Singleton<DialogManager>
         typingCoroutine = StartCoroutine(TypeText(message));
     }
 
-    [ContextMenu("Test Start")]
+    [ContextMenu("Test")]
     public void TestStart()
     {
         dialogBox.SetActive(true);
-        dialogBox.GetComponent<UI_Dialog>().StartMove();
+        StartDialog(textDialog);
     }
 }

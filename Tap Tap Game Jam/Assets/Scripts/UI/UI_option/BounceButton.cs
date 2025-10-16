@@ -16,11 +16,11 @@ public class BounceButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         new Keyframe(1f, 1f)      
     );
     
-    private RectTransform rectTransform;
-    private Vector3 originalScale;
+    public RectTransform rectTransform;
+    public Vector3 originalScale;
     private Coroutine currentAnimation;
 
-    private void Awake()
+    public virtual void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         if (rectTransform != null)
@@ -48,7 +48,7 @@ public class BounceButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         currentAnimation = StartCoroutine(ClickBounceRoutine());
     }
     
-    private void AnimateScale(Vector3 targetScale)
+    protected void AnimateScale(Vector3 targetScale)
     {
         if (currentAnimation != null)
         {

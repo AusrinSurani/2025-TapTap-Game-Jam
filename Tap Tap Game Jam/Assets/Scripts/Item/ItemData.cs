@@ -8,5 +8,6 @@ public class ItemData : ScriptableObject
     public string itemName;
     public Sprite icon;
     public Sprite outline;
+    public Sprite closeUp;
     public string description;
 }

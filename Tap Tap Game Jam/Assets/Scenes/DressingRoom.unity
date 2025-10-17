@@ -453,7 +453,9 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: e52f682d618be4643aa0efae0fb93706, type: 2}
   outLine: {fileID: 2055130320}
   imageForItem: {fileID: 2058530934}
-  duration: 0.5
+  background: {fileID: 1033697023}
+  raiseDuration: 0.7
+  backDuration: 0.5
 --- !u!60 &587431210
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -786,6 +788,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1033697025}
   - component: {fileID: 1033697024}
+  - component: {fileID: 1033697026}
   m_Layer: 6
   m_Name: BackGround
   m_TagString: Untagged
@@ -861,6 +864,27 @@ Transform:
   - {fileID: 756920155}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1033697026
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033697023}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d1cf604fcd4d01b4ea1de648ddbba595, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1064382989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3269,7 +3293,9 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: 4cfdff1a5619c9542b2a273278c83010, type: 2}
   outLine: {fileID: 4929557647139808650}
   imageForItem: {fileID: 2058530934}
-  duration: 0.5
+  background: {fileID: 1033697023}
+  raiseDuration: 0.7
+  backDuration: 0.5
 --- !u!60 &6744960385783833582
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3335,7 +3361,9 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: 32a0f5e6c7dacd243ad87de5677a6bbf, type: 2}
   outLine: {fileID: 4929557647056521770}
   imageForItem: {fileID: 2058530934}
-  duration: 0.5
+  background: {fileID: 1033697023}
+  raiseDuration: 0.7
+  backDuration: 0.5
 --- !u!60 &6744960386304207537
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3401,7 +3429,9 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: 6e5f13bc19ab6aa48888f264cfe303d2, type: 2}
   outLine: {fileID: 4929557646569702261}
   imageForItem: {fileID: 2058530934}
-  duration: 0.5
+  background: {fileID: 1033697023}
+  raiseDuration: 0.7
+  backDuration: 0.5
 --- !u!60 &6744960386925853300
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3469,7 +3499,9 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: 200065081e020d54ba8659aa5e6ef24a, type: 2}
   outLine: {fileID: 4929557645920867248}
   imageForItem: {fileID: 2058530934}
-  duration: 0.5
+  background: {fileID: 1033697023}
+  raiseDuration: 0.7
+  backDuration: 0.5
 --- !u!60 &6744960387240241763
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3537,7 +3569,9 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: 3127e050bf955164d983d0bde797d6ff, type: 2}
   outLine: {fileID: 4929557645631570855}
   imageForItem: {fileID: 2058530934}
-  duration: 0.5
+  background: {fileID: 1033697023}
+  raiseDuration: 0.7
+  backDuration: 0.5
 --- !u!60 &6744960387389801976
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3606,7 +3640,9 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: ce593899489bd97459bd9c69f34277cd, type: 2}
   outLine: {fileID: 4929557645441117244}
   imageForItem: {fileID: 2058530934}
-  duration: 0.5
+  background: {fileID: 1033697023}
+  raiseDuration: 0.7
+  backDuration: 0.5
 --- !u!60 &6744960387520180189
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3672,7 +3708,9 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: f5a22316a51833f46b6996a9358fa948, type: 2}
   outLine: {fileID: 4929557645840336409}
   imageForItem: {fileID: 2058530934}
-  duration: 0.5
+  background: {fileID: 1033697023}
+  raiseDuration: 0.7
+  backDuration: 0.5
 --- !u!60 &6744960387732266724
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3740,7 +3778,9 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: 8d6e447c5f329164d84c7263ac7bd678, type: 2}
   outLine: {fileID: 4929557645653423904}
   imageForItem: {fileID: 2058530934}
-  duration: 0.5
+  background: {fileID: 1033697023}
+  raiseDuration: 0.7
+  backDuration: 0.5
 --- !u!212 &7300762704113415408
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4239,7 +4279,9 @@ MonoBehaviour:
   itemData: {fileID: 11400000, guid: 23610e792bee1c848b641c23575c5cf5, type: 2}
   outLine: {fileID: 2025856120119849550}
   imageForItem: {fileID: 2058530934}
-  duration: 0.5
+  background: {fileID: 1033697023}
+  raiseDuration: 0.7
+  backDuration: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

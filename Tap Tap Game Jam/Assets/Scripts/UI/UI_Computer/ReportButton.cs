@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ReportButton : BounceButton
 {
@@ -10,7 +11,7 @@ public class ReportButton : BounceButton
     private bool isOpenWindows = false;
     
     public GameObject windows;
-    public GameObject backButton;
+    public GameObject darkMask;
 
     private void Start()
     {
@@ -21,7 +22,7 @@ public class ReportButton : BounceButton
 
     private void Update()
     {
-        backButton.SetActive(isOpenWindows);
+        
     }
 
     public override void OnPointerEnter(PointerEventData eventData)
@@ -44,7 +45,8 @@ public class ReportButton : BounceButton
             return;
         
         base.OnPointerClick(eventData);
-        
+
+        StartCoroutine(DarkMaskCoroutine(true));
         animator.SetBool("Open", true);
         AnimateScale(originalScale);
         isOpenWindows = true;
@@ -54,8 +56,23 @@ public class ReportButton : BounceButton
 
     public void CloseWindows()
     {
+        StartCoroutine(DarkMaskCoroutine(false));
         animator.SetBool("Open", false);
         isOpenWindows = false;
         windows.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        rectTransform.SetAsFirstSibling();
+    }
+
+    private IEnumerator DarkMaskCoroutine(bool isDark)
+    {
+        float timer = 0f;
+
+        while (timer < 0.35f)
+        {
+            timer += Time.deltaTime;
+            darkMask.GetComponent<CanvasGroup>().alpha = 
+                isDark ? Mathf.Lerp(0, 0.93f,timer/0.35f): Mathf.Lerp(0.93f,0, timer / 0.35f);
+        }
+        yield return null;
     }
 }

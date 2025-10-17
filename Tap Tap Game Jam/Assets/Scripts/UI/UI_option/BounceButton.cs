@@ -1,12 +1,18 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
 public class BounceButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [Header("Q弹参数")] 
     public float animationDuration = 0.3f;
     public float hoverScaleMultiplier = 1.1f;
     public float clickScaleMultiplier = 0.9f;
+    
+    [Header("悬浮变化")]
+    public Sprite hoverSprite;
+    private Sprite defaultSprite;
 
     [Tooltip("Q弹曲线")]
     //默认参数
@@ -27,16 +33,22 @@ public class BounceButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             originalScale = rectTransform.localScale;
         }
+        
+        defaultSprite = GetComponent<Image>()?.sprite;
     }
     
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
         AnimateScale(originalScale * hoverScaleMultiplier);
+        if(hoverSprite != null)
+            gameObject.GetComponent<Image>().sprite = hoverSprite;
     }
     
     public virtual void OnPointerExit(PointerEventData eventData)
     {
         AnimateScale(originalScale);
+        if (hoverSprite != null)
+            gameObject.GetComponent<Image>().sprite = defaultSprite;
     }
     
     public virtual void OnPointerClick(PointerEventData eventData)
@@ -46,6 +58,8 @@ public class BounceButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             StopCoroutine(currentAnimation);
         }
         currentAnimation = StartCoroutine(ClickBounceRoutine());
+        if(defaultSprite != null)
+            gameObject.GetComponent<Image>().sprite = defaultSprite;
     }
     
     protected void AnimateScale(Vector3 targetScale)

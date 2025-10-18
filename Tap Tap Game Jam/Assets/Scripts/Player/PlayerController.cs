@@ -33,10 +33,14 @@ public class PlayerController : MonoBehaviour
         SwitchState(State.Idle);
     }
 
+    public bool BInvertInput;
     void Update()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        
+        if (BInvertInput)
+            horizontalInput = Input.GetAxisRaw("Horizontal") * -1f;
+        else
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+
         //检测状态是否要更换
         UpdateState();
 

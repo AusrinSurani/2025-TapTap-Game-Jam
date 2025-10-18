@@ -61,7 +61,7 @@ public class DancerController : MonoBehaviour
     public Material errorMaterial;
     private IEnumerator ErrorShow()
     {  
-        dancerSpriteRenderer.material.SetFloat("_Intensity", 0.03f);
+        dancerSpriteRenderer.material.SetFloat("_Intensity", 0.015f);
         yield return ErrorTime;
         errorMaterial.SetFloat("_Intensity", 0f);
         dancerSpriteRenderer.material.CopyPropertiesFromMaterial(errorMaterial);
@@ -69,7 +69,12 @@ public class DancerController : MonoBehaviour
     /*//输入判定允许的偏差值，计时单位 秒second
     public float inputAllowableDeviation;*/
 
-     
+    public DanceGamePlay parentGamePlay;
+    //自动舞蹈中途调用
+    public void AnimatorEventSpecialActionEnd()
+    {
+        parentGamePlay.SpecialActionEnd();
+    }
      
 
      

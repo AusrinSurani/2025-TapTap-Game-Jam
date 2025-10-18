@@ -8,6 +8,7 @@ public class JoystickController : MonoBehaviour
     public enum JoystickStatus
     {
         Middle,
+        MiddleOff,
         Up,
         Down,
         Left,
@@ -23,6 +24,7 @@ public class JoystickController : MonoBehaviour
     public void ResetAllAnimatorStatus()
     { 
         JoystickAnimator.SetBool(JoystickStatus.Middle.ToString(), false);
+        JoystickAnimator.SetBool(JoystickStatus.MiddleOff.ToString(), false);
         JoystickAnimator.SetBool(JoystickStatus.Up.ToString(), false);
         JoystickAnimator.SetBool(JoystickStatus.Down.ToString(), false);
         JoystickAnimator.SetBool(JoystickStatus.Left.ToString(), false);

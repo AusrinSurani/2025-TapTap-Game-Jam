@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class DialogManager : Singleton<DialogManager>
 {
@@ -217,6 +218,7 @@ public class DialogManager : Singleton<DialogManager>
                 {
                     Debug.Log("对话结束");
                     dialogBox.GetComponent<UI_Dialog>().MoveBack();
+                    OnDialogueClose?.Invoke();
                     break;
                 }
             }
@@ -296,6 +298,9 @@ public class DialogManager : Singleton<DialogManager>
 
         typingCoroutine = StartCoroutine(TypeText(message));
     }
+    [Header("Events")]
+    public UnityEvent OnDialogueClose;
+
 
     [ContextMenu("Test")]
     public void TestStart()
@@ -303,4 +308,6 @@ public class DialogManager : Singleton<DialogManager>
         dialogBox.SetActive(true);
         StartDialog(textDialog);
     }
+
+   
 }

@@ -6,7 +6,23 @@ using UnityEngine.Events;
 
 public class DanceGamePlay : MonoBehaviour
 {
-    public DancerController DancerCtr;
+    private void Start()
+    {
+        if(DialogManager.Instance!=null)
+        {
+            DialogManager.Instance.OnDialogueClose.AddListener(OnReceiveDiaolgueEnd);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (DialogManager.Instance != null)
+        {
+            DialogManager.Instance.OnDialogueClose.RemoveListener(OnReceiveDiaolgueEnd);
+        }
+    }
+
+    public DancerController DancerCtr; 
 
     public enum DanceOrder
     {
@@ -44,6 +60,8 @@ public class DanceGamePlay : MonoBehaviour
     private bool _bGameEnd;
 
     public bool BPause;
+
+    public PlayerController playerCtr;
     public void StartDanceGamePlay()
     {
         _bGameEnd = false;
@@ -55,6 +73,10 @@ public class DanceGamePlay : MonoBehaviour
         BHaveIntro_2 = false;
 
         failCountUI.gameObject.SetActive(true);
+
+        //关闭玩家移动交互
+        playerCtr.enabled = false;
+
 
         if (_startDanceIE != null)
             StopCoroutine(_startDanceIE);
@@ -154,6 +176,8 @@ public class DanceGamePlay : MonoBehaviour
         {
             GameOrders.AddRange(GameRound_3);
             OrdersAppearTime.AddRange(Round3_OrdersAppearTime);
+            //重置 自动跳舞状态
+            DancerCtr.ResetAnimatorAllParams();
         }
         else if (targetRound == 4)
         {
@@ -188,6 +212,9 @@ public class DanceGamePlay : MonoBehaviour
     public void EndGame()
     {
         _bGameEnd = true;
+
+        //关闭玩家移动交互
+        playerCtr.enabled = true;
     }
 
     public void ResumeGamePlay()
@@ -258,44 +285,104 @@ public class DanceGamePlay : MonoBehaviour
                     OnGameRoundSuccessEnd?.Invoke(CurRound);
 
                     //处理不同轮次结束后的反应
-                    if (CurRound == 0 && BCurRoundHaveSpecialInput)
+                    if (CurRound == 0  )
                     {
+                        if(BCurRoundHaveSpecialInput)
+                        { 
+                            ShowButtonDialogueEnd(0, true);
+                        }
+                        else
+                        {
+                            ShowButtonDialogueEnd(0, true); 
+                        }
                         //教程关上半
-                        DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.Special_1);
+                        //DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.Special_1);
                     }
-                    else if (CurRound == 2 && BCurRoundHaveSpecialInput)
+                    else if (CurRound == 1)
                     {
-                        //第一关
-                        DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.Special_1);
+                        if (BCurRoundHaveSpecialInput)
+                        {
+                            ShowButtonDialogueEnd(0, true);
+                        }
+                        else
+                        {
+                            ShowButtonDialogueEnd(0, true);
+                        }
+
                     }
-                    else if (CurRound == 3 && BCurRoundHaveSpecialInput)
+                    else if (CurRound == 2)
                     {
-                        //第二关
-                        DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.Special_1);
-                        //自由意志，失败演出  
+                        if (BCurRoundHaveSpecialInput)
+                        {
+                            //第一关
+                            DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.Special_1);
+                            //延时时长要大于人物舞蹈时间，TODO:监听人物舞蹈结束事件
+                            _dialogueDisplayDelayTime = 0.5f;
+                            SetDiaolgueTextAsset(dialogue_LevelOneSpecialActionEnd);
+                            ShowButtonDialogueEnd(0, false); 
+                        }
+                        else
+                        {
+                            ShowButtonDialogueEnd(0, true);
+                        }
                     }
-                    else if (CurRound > 5)
+                    else if (CurRound == 3  )
                     {
-                        //视为通关  
+                        if (BCurRoundHaveSpecialInput)
+                        {
+                            //第二关
+                            DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.Special_2);
+                            //自由意志，失败演出 
+                            _dialogueDisplayDelayTime = 2f;
+                            SetDiaolgueTextAsset(dialogue_LevelTwoSpecialActionEnd);
+                            ShowButtonDialogueEnd(1, false); 
+                        }
+                        else
+                        {
+                            ShowButtonDialogueEnd(0, true); 
+                        }
+                    }
+                    else if (CurRound == 4  )
+                    {
+                        if (BCurRoundHaveSpecialInput)
+                        {
+                            ShowButtonDialogueEnd(0, true);
+                        }
+                        else
+                        {
+                            ShowButtonDialogueEnd(0, true);
+                        }
+                    }
+                    else if (CurRound == 5)
+                    {
+                        //视为通关
+                        if (BCurRoundHaveSpecialInput)
+                        {
+                            ShowButtonDialogueEnd(2, true);
+                        }
+                        else
+                        {
+                            //
+                            SetDiaolgueTextAsset(dialogue_LevleFourEnd);
+                            ShowButtonDialogueEnd(2, false);
+                        }
+                    }
+                    else
+                    {
+                        //视为通关
+                        if (BCurRoundHaveSpecialInput)
+                        {
+                            ShowButtonDialogueEnd(2, true);
+                        }
+                        else
+                        { 
+                            ShowButtonDialogueEnd(2, false);
+                        }
                     }
 
                     //暂停，等待玩家交互轮次
-                    PauseGamePlay();
-                    //开启下一轮
-                    RoundEndui.gameObject.SetActive(true);
-                    if (CurRound == 3 && BCurRoundHaveSpecialInput)
-                    { 
-                        //第二关 有反按视为失败
-                        RoundEndui.SetButtonShow(1);
-                    }
-                    //其余关正常通过
-                    else if (CurRound < 5)
-                    {
-                        RoundEndui.SetButtonShow(0);
-                    }
-                    //第四关（CurRound==5)则视为游戏完成
-                    else if(CurRound>=5)
-                        RoundEndui.SetButtonShow(2);
+                    PauseGamePlay(); 
+                     
 
                 }
                 else
@@ -332,8 +419,7 @@ public class DanceGamePlay : MonoBehaviour
                 FailCurrentRound();
                 if (RoundEndui != null)
                 {
-                    RoundEndui.gameObject.SetActive(true);
-                    RoundEndui.SetButtonShow(1);
+                    ShowButtonDialogueEnd(1, true);
                 }
             }
         }
@@ -414,6 +500,15 @@ public class DanceGamePlay : MonoBehaviour
         { 
         }  
     }
+
+    private float _dialogueDisplayDelayTime;
+    public void SpecialActionEnd()
+    {
+        Invoke(nameof(BeginDialogue), _dialogueDisplayDelayTime);
+
+    }
+     
+     
 
     private int failCount = 0;
     public void FailCurOrderInput()
@@ -537,20 +632,66 @@ public class DanceGamePlay : MonoBehaviour
 
     public DanceGamePlayInfo failCountUI;
 
-    //test --late to delete
-    private void Update()
-    {/*
-        if (Input.GetKey(KeyCode.P))
-            StartDanceGamePlay();*/
-        /*if(Input.GetKeyDown(KeyCode.T))
-        {
-            IntroCtr.DoIntroMask(1);
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            IntroCtr.DoIntroMask(2);
-        }*/
+    //延迟一定时间播放
+    private TextAsset _curTextAsset;
+
+    public void SetDiaolgueTextAsset(TextAsset targetText)
+    { 
+        _curTextAsset = targetText;
     }
 
-    //testend
+    public void BeginDialogue()
+    { 
+        //开始对话
+        if (_curTextAsset != null && DialogManager.Instance != null)
+            DialogManager.Instance.StartDialog(_curTextAsset);
+    }
+
+     
+
+     
+    private int _targetActiveButtonIndex;
+    /// <summary>
+    /// 第一个参数0对应下一轮，1对应重新，2对应结束游戏，第二个参数为true则无需对话立即显示,为false则等对话结束后显示
+    /// </summary>
+    /// <param name="butttonIndex"></param>
+    private void ShowButtonDialogueEnd(int butttonIndex,bool bDisplayAtOnce)
+    {
+        if (RoundEndui == null)
+        {
+            Debug.Log("Not Found RoundEndui in DanceGamePlay");
+            return;
+        }
+
+        if (bDisplayAtOnce)
+        {
+            RoundEndui.gameObject.SetActive(true);
+            RoundEndui.SetButtonShow(butttonIndex);
+        }
+        else
+        {
+            _targetActiveButtonIndex = butttonIndex;
+        }
+    }
+
+    public void OnReceiveDiaolgueEnd()
+    {
+        if (_targetActiveButtonIndex != -1)
+        {
+            RoundEndui.gameObject.SetActive(true);
+            RoundEndui.SetButtonShow(_targetActiveButtonIndex);
+            _targetActiveButtonIndex = -1;
+        }
+
+    }
+
+
+    [Header("DialogueTextAsset")]
+    //Round2
+    public TextAsset dialogue_LevelOneSpecialActionEnd;
+    //Round3
+    public TextAsset dialogue_LevelTwoSpecialActionEnd;
+    //Round5
+    public TextAsset dialogue_LevleFourEnd;
+      
 }

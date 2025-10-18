@@ -34,7 +34,7 @@ public class BaseUI : MonoBehaviour
     }
     
     //UI移动回去
-    public void MoveBack()
+    public virtual void MoveBack(bool isVanish = true)
     {
         Vector2 currentPos = rectTransform.anchoredPosition;
         Vector2 destination = startPosition;
@@ -43,11 +43,11 @@ public class BaseUI : MonoBehaviour
         {
             StopCoroutine(moveCoroutine);
         }
-        moveCoroutine = StartCoroutine(MoveRoutine(currentPos, destination, true));
+        moveCoroutine = StartCoroutine(MoveRoutine(currentPos, destination, isVanish));
     }
 
     //平滑移动UI的协程
-    private IEnumerator MoveRoutine(Vector2 start, Vector2 end, bool disable)
+    public IEnumerator MoveRoutine(Vector2 start, Vector2 end, bool disable)
     {
         if (delay > 0)
         {

@@ -28,9 +28,8 @@ public class UI_Computer : BaseUI
         }
     }
 
-    public void LoadNextScene()
+    public void LoadScene()
     {
-        SceneLoadManager.Instance.ResetSceneLoadStatus();
-        SceneLoadManager.Instance.TryLoadToTargetSceneAsync(SceneLoadManager.SceneDisplayID.DressingRoom, "过场文字", true);
+        
     }
 }

@@ -34,9 +34,14 @@ public class BounceButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             originalScale = rectTransform.localScale;
         }
         
-        defaultSprite = GetComponent<Image>()?.sprite;
+        defaultSprite = GetDefaultSprite();
     }
-    
+
+    public virtual Sprite GetDefaultSprite()
+    {
+        return GetComponent<Image>()?.sprite;
+    }
+
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
         AnimateScale(originalScale * hoverScaleMultiplier);
@@ -98,5 +103,10 @@ public class BounceButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         yield return StartCoroutine(ScaleRoutine(pressDownScale));
         yield return StartCoroutine(ScaleRoutine(hoverScale));
+    }
+
+    public void SetDefaultSprite(Sprite sprite)
+    {
+        defaultSprite = sprite;
     }
 }

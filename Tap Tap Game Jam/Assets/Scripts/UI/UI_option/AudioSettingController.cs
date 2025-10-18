@@ -11,7 +11,7 @@ public class AudioSettingsController : MonoBehaviour
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider sfxSlider;
     
-    const string AUDIO_SETTING_DATA_FILE = "AudioSettingData.txet";
+    const string AUDIO_SETTING_DATA_FILE = "AudioSettingData.txt";
 
     private void OnEnable()
     {

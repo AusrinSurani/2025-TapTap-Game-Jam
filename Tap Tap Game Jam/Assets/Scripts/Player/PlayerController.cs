@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
 
     private float horizontalInput;
 
+    private int countOfWrongAction = 0;
+    private bool haveTip = false;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -42,6 +45,13 @@ public class PlayerController : MonoBehaviour
         
         //处理转向
         HandleSpriteFlipping();
+
+        if (countOfWrongAction > 5 && !haveTip)
+        {
+            Debug.Log("Tip");
+            DialogManager.Instance.ShowMessage("左右颠倒的动作……这就是妮娜说的“想出左手出了右手，想出左脚出了右脚”");
+            haveTip = true;
+        }
     }
     
     private void UpdateState()
@@ -51,6 +61,7 @@ public class PlayerController : MonoBehaviour
             if (currentState != State.Move)
             {
                 SwitchState(State.Move);
+                countOfWrongAction++;
                 return;
             }
         }
@@ -99,16 +110,18 @@ public class PlayerController : MonoBehaviour
     
     private void MovePlayer()
     {
-        rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+        //操作与运动相反
+        rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y) * (-1);
     }
 
     private void HandleSpriteFlipping()
     {
-        if (horizontalInput > 0)
+        //乘以-1是为了匹配相反的操作
+        if (horizontalInput * -1 > 0)
         {
             spriteRenderer.flipX = false;
         }
-        else if (horizontalInput < 0)
+        else if (horizontalInput * -1 < 0)
         {
             spriteRenderer.flipX = true;
         }

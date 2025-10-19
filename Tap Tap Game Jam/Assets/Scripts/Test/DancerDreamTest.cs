@@ -8,8 +8,9 @@ public class DancerDreamTest : MonoBehaviour
     public DanceGamePlay gamePlay;
     public TextMeshProUGUI roundShowText;
 
-    private void Update()
+
+    public void BackToMenu()
     {
-        roundShowText.text = gamePlay.CurRound.ToString();
+        SceneLoadManager.Instance.TryLoadToTargetSceneAsync(SceneLoadManager.SceneDisplayID.StartMenu,null,false);
     }
 }

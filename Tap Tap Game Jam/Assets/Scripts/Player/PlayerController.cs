@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public bool BInvertInput;
+    public bool BRemoveWrongActionTip;
     void Update()
     {
         if (BInvertInput)
@@ -50,7 +52,7 @@ public class PlayerController : MonoBehaviour
         //处理转向
         HandleSpriteFlipping();
 
-        if (countOfWrongAction > 5 && !haveTip)
+        if (!BRemoveWrongActionTip&&countOfWrongAction > 5 && !haveTip)
         {
             Debug.Log("Tip");
             DialogManager.Instance.ShowMessage("左右颠倒的动作……这就是妮娜说的“想出左手出了右手，想出左脚出了右脚”");

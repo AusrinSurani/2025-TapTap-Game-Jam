@@ -213,8 +213,10 @@ public class DanceGamePlay : MonoBehaviour
     {
         _bGameEnd = true;
 
-        //关闭玩家移动交互
+        //激活玩家移动交互
         playerCtr.enabled = true;
+        playerCtr.BInvertInput = true;//恢复正常
+        //
     }
 
     public void ResumeGamePlay()
@@ -278,7 +280,7 @@ public class DanceGamePlay : MonoBehaviour
                 } 
             } */
 
-            if (OrdersAppearTime.Count==0||_danceGameTimer > OrdersAppearTime[OrdersAppearTime.Count-1]+5f/*远超出指令自行结束时间+滞留时间*/)
+            if (OrdersAppearTime.Count==0||_danceGameTimer > OrdersAppearTime[OrdersAppearTime.Count-1]+3f/*远超出指令自行结束时间+滞留时间*/)
             {
                 if (FailCount <= 2)
                 {
@@ -362,9 +364,10 @@ public class DanceGamePlay : MonoBehaviour
                         }
                         else
                         {
-                            //
+                            // 
                             SetDiaolgueTextAsset(dialogue_LevleFourEnd);
                             ShowButtonDialogueEnd(2, false);
+                            BeginDialogue();
                         }
                     }
                     else
@@ -376,7 +379,7 @@ public class DanceGamePlay : MonoBehaviour
                         }
                         else
                         { 
-                            ShowButtonDialogueEnd(2, false);
+                            ShowButtonDialogueEnd(2, true);
                         }
                     }
 
@@ -693,5 +696,7 @@ public class DanceGamePlay : MonoBehaviour
     public TextAsset dialogue_LevelTwoSpecialActionEnd;
     //Round5
     public TextAsset dialogue_LevleFourEnd;
+
+
       
 }

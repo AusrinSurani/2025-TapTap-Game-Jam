@@ -112,8 +112,10 @@ public class AudioSettingsController : MonoBehaviour
         sfxSlider.value = savedData.SFXVolume;
     }
 
+#if UNITY_EDITOR
     //方便操作
     [UnityEditor.MenuItem("Developer/Delete Audio Setting")]
+#endif
     public static void DeleteAudioSetting()
     {
         SaveSystem.DeleteSavedFile(AUDIO_SETTING_DATA_FILE);

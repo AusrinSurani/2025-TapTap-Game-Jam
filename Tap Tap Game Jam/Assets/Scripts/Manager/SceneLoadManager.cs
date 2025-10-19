@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement; 
@@ -172,9 +171,13 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
             return false;
         }
         else if(curLoadStatus==SceneLoadStatus.Success)
-        { 
-            Debug.Log("Last LoadProgress success,But not Reset LoadStatus To [Wait].");
-            return false;
+        {
+            if (_loadSceneAsync_ie != null)
+                StopCoroutine(_loadSceneAsync_ie);
+            _loadSceneAsync_ie = LoadToTargetSceneAsync(scenePath, words, needWords);
+            Debug.Log("Last LoadProgress success,Not Reset but current order still Load."); 
+            StartCoroutine(_loadSceneAsync_ie);
+            return true;
         }
         else
         {

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Audio;
 using static UnityEngine.GraphicsBuffer;
@@ -319,6 +318,37 @@ public class AudioManager : Singleton<AudioManager>
             }
         }
     }
+
+    public void ClearTargetAudioPiece(AudioPiece targetAP)
+    {
+        //找到对应音效,若为可同时播放音效，则全部暂停
+        for (int i = 0; i < bgmAudiosPlayData.Count; i++)
+        {
+            if (bgmAudiosPlayData[i].playingAuidoPiece.audioID != 0
+                && targetAP.audioID == bgmAudiosPlayData[i].playingAuidoPiece.audioID)
+            {
+                if (bgmAudiosPlayData[i].curStatus == AudioStatus.Playing
+                    || bgmAudiosPlayData[i].curStatus == AudioStatus.Loop)
+                {
+                    bgmAudiosPlayData[i].source.Stop();
+                    bgmAudiosPlayData[i].curStatus = AudioStatus.None;
+                }
+            }
+        }
+        for (int i = 0; i < soundEffectAudiosPlayData.Count; i++)
+        {
+            if (soundEffectAudiosPlayData[i].playingAuidoPiece.audioID != 0
+                && targetAP.audioID == soundEffectAudiosPlayData[i].playingAuidoPiece.audioID)
+            {
+                if (soundEffectAudiosPlayData[i].curStatus == AudioStatus.Playing)
+                {
+                    soundEffectAudiosPlayData[i].source.Stop();
+                    soundEffectAudiosPlayData[i].curStatus = AudioStatus.None;
+                }
+            }
+        }
+    }
+
     public void ResumeTargetAudioPiece(AudioPiece targetAP)
     {
         //找到对应音效,若为可同时播放音效，则全部暂停

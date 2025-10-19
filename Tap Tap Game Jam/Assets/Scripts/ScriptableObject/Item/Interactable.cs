@@ -25,9 +25,10 @@ public class Interactable:MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
     public virtual void OnPointerClick(PointerEventData eventData)
     {
-        if(DialogManager.Instance.dialogBox.activeSelf == true)
+        if (DialogManager.Instance.dialogBox.activeSelf == true)
+        { 
             return;
-        
+        }
         Debug.Log(itemData.itemName);
         DialogManager.Instance.ShowMessage(itemData?.description);
     }

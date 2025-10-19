@@ -227,6 +227,8 @@ public class UIManager : Singleton<UIManager>
             }
 
         }
+        if (_panelOpenStack.Count == 0)
+            BackgroundCoverImage.gameObject.SetActive(false);
         //处理PanelPool相关
         //对象池中已存在则直接结束 TODO?:将已存在的Panel放到末尾
         foreach (BaseUIPanel p in _panelPoolQueue)

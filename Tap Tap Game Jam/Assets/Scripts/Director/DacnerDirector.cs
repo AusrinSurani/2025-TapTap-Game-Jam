@@ -154,6 +154,20 @@ public class DacnerDirector : MonoBehaviour
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.AudioOncePlay(AudioManager.Instance.spotLightSwitchAudioPiece);
+            //关闭背景音乐
+            AudioManager.Instance.ClearTargetAudioPiece(AudioManager.Instance.dancerBGMAudioPiece);
         }
+    }
+
+    public GameObject InteractPart; 
+
+    public void HideInteractItem()
+    {
+        InteractPart.gameObject.SetActive(false); 
+    }
+    public void ShowInteractItem()
+    {
+        InteractPart.gameObject.SetActive(true); 
+
     }
 }

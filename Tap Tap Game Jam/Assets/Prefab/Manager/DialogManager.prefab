@@ -125,7 +125,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: -999
+  m_SortingOrder: 999
   m_TargetDisplay: 0
 --- !u!114 &1330877242378768477
 MonoBehaviour:
@@ -175,6 +175,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1277521692013763867}
     m_Modifications:
+    - target: {fileID: 635979882063305351, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d2d4d9394084de6459fe37178525c327, type: 2}
+    - target: {fileID: 635979882063305351, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3804514851135917923, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -255,9 +263,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4329113862669501763, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}
+      propertyPath: m_text
+      value: ...
+      objectReference: {fileID: 0}
+    - target: {fileID: 4329113862669501763, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d2d4d9394084de6459fe37178525c327, type: 2}
+    - target: {fileID: 4329113862669501763, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7066464743748835923, guid: d2d4d9394084de6459fe37178525c327, type: 2}
     - target: {fileID: 7867743058079156044, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}
       propertyPath: m_Name
       value: UI_Dialog
+      objectReference: {fileID: 0}
+    - target: {fileID: 7867743058079156044, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9179591219253480097, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9179591219253480097, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d2d4d9394084de6459fe37178525c327, type: 2}
+    - target: {fileID: 9179591219253480097, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -275,7 +311,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 7838583398419130607}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 

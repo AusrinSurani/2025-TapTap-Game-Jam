@@ -94,8 +94,10 @@ public class EmailController : MonoBehaviour
         
         GetComponentInParent<EmailButton>().newEmail.SetBool("New", !haveAllRead);
     }
-    
+
+#if UNITY_EDITOR
     [UnityEditor.MenuItem("Developer/Delete Emails Data")]
+#endif
     public static void DeleteDataOfEmails()
     {
         SaveSystem.DeleteSavedFile(HAVE_RAED_EMAIL_DATA_FILE);

@@ -23,6 +23,8 @@ public class MenuButton : MonoBehaviour,
     
     private SceneLoadManager sceneLoadManager;
     
+    private bool isLoadingScene = false;
+    
     private void Awake()
     {
         //TODO:把开头就会出现的按钮音效去掉
@@ -42,6 +44,9 @@ public class MenuButton : MonoBehaviour,
 
     private void KeyBoardCheck()
     {
+        if(isLoadingScene)
+            return;
+        
         if(menuButtonController.index == thisIndex)
         {
             animator.SetBool ("selected", true);
@@ -85,6 +90,7 @@ public class MenuButton : MonoBehaviour,
 
                 sceneLoadManager.TryLoadToTargetSceneAsync
                     (SceneLoadManager.SceneDisplayID.ConsultationRoom, "开场白",true);
+                isLoadingScene = true;
                 Debug.Log("开始游戏");
                 break;
             case 1:

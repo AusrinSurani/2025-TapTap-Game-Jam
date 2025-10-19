@@ -22,6 +22,9 @@ public class ButtonOfDoor : Interactable
         
         //TODO:触发事件，可能要黑屏，然后患者出现
         StartCoroutine(OnDancerComeIn());
+        
+        //切换至舞女章节,但是治疗没结束
+        GameFlowManager.Instance.ChangeChapter(ChapterOfGame.ChapterDancer,false);
     }
 
     private void Update()

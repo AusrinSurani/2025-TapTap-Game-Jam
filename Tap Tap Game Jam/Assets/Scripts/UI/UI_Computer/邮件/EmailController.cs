@@ -36,7 +36,7 @@ public class EmailController : MonoBehaviour
     private void OnChapterChange()
     {
         ChapterOfGame currentChapter = GameFlowManager.Instance.currentChapter;
-        if (currentChapter == ChapterOfGame.ChapterWaiter)
+        if (currentChapter == ChapterOfGame.ChapterWaiter || currentChapter == ChapterOfGame.NoOne)
         {
             email4.SetActive(true);
         }

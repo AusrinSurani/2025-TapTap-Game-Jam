@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,13 +9,8 @@ public class DialogManager : Singleton<DialogManager>
 {
     public GameObject dialogBox;
 
-    public TextAsset textDialog;
-
     private Vector2 originalSize;
-    
-    /// <summary>
-    /// 打字机效果，每秒显示多少字
-    /// </summary>
+
     [SerializeField] private float charsPerSecond;
     
     /// <summary>
@@ -29,17 +23,8 @@ public class DialogManager : Singleton<DialogManager>
     /// </summary>
     public TextAsset dialogTextAsset;
     
-    /// <summary>
-    /// 左右的角色图片
-    /// </summary>
-    /*public Image leftCharacter;
-    public Image rightCharacter;*/
-    
     public Animator leftCharaAnim;//现在使用动画器/10/18
-    
-    /// <summary>
-    /// 对话文本
-    /// </summary>
+
     public TextMeshProUGUI dialogText;
     
     /// <summary>
@@ -48,10 +33,6 @@ public class DialogManager : Singleton<DialogManager>
     public TextMeshProUGUI leftCharacterName;
     public TextMeshProUGUI rightCharacterName;
     
-    /// <summary>
-    /// 角色图片列表
-    /// </summary>
-    public List<Sprite> sprites = new List<Sprite>();
     
     /// <summary>
     /// 名字->图片字典; 名字->anim Trigger
@@ -97,17 +78,6 @@ public class DialogManager : Singleton<DialogManager>
     protected override void Awake()
     {
         base.Awake();
-        /*imageDic["尼安德·华莱士"] = sprites[0];
-        imageDic["尼安德"] = sprites[0];
-        
-        imageDic["妮娜·奥蜜可"] = sprites[1];
-        imageDic["来问诊的女人"] = sprites[1];
-        imageDic["妮娜"] = sprites[1];
-        
-        imageDic["德尔塔·布莱梅"] = sprites[2];
-        
-        imageDic["桥田缪"] = sprites[3];*/
-        
         //使用动画
         animDict["尼安德·华莱士"] = "Doctor";
         animDict["尼安德"] = "Doctor";
@@ -132,7 +102,7 @@ public class DialogManager : Singleton<DialogManager>
         if(!dialogBox.activeSelf)
             return;
         
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             if (typingCoroutine != null)
             {
@@ -330,15 +300,10 @@ public class DialogManager : Singleton<DialogManager>
         
         leftCharacterName.text = "尼安德";
         
-        if (SceneLoadManager.Instance.currentScene == SceneLoadManager.SceneDisplayID.ConsultationRoom)
-        {
-            leftCharaAnim.SetTrigger("Doctor");
-        }
-        else
-        {
-            leftCharaAnim.SetTrigger("Robot");
-        }
-        
+        //梦里是机器人形象，在问诊时是医生形象
+        leftCharaAnim.SetTrigger(
+            SceneLoadManager.Instance.currentScene == SceneLoadManager.SceneDisplayID.ConsultationRoom ? "Doctor" : "Robot");
+
         //在启动协程前，保存完整文本
         currentFullText = message;
         if (typingCoroutine != null)
@@ -348,16 +313,17 @@ public class DialogManager : Singleton<DialogManager>
 
         typingCoroutine = StartCoroutine(TypeText(message));
     }
-    [Header("Events")]
-    public UnityEvent OnDialogueClose;
 
-
-    [ContextMenu("Test")]
-    public void TestStart()
+    public bool IsDialogOpen()
     {
-        dialogBox.SetActive(true);
-        StartDialog(textDialog);
+        return dialogBox.activeSelf;
     }
 
-   
+    public bool IsTyping()
+    {
+        return typingCoroutine != null;
+    }
+    
+    [Header("Events")]
+    public UnityEvent OnDialogueClose;
 }

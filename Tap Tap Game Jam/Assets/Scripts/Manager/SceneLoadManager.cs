@@ -138,6 +138,12 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
     /// <returns></returns>
     public bool TryLoadToTargetSceneAsync(SceneDisplayID targetSceneID, string words, bool needWords)
     {
+        //检测是否有对话框并关闭之
+        if (DialogManager.Instance.IsDialogOpen())
+        {
+            DialogManager.Instance.dialogBox.GetComponent<UI_Dialog>().MoveBack();
+        }
+        
         currentScene =  targetSceneID;
         
         string scenePath = "";

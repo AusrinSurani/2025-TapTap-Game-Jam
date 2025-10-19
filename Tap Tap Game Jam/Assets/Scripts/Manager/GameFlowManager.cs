@@ -6,6 +6,7 @@ using UnityEngine;
 
 public enum ChapterOfGame
 {
+    NoOne,
     ChapterDancer,
     ChapterWaiter,
     ChapterProgrammer
@@ -15,6 +16,7 @@ public class GameFlowManager : Singleton<GameFlowManager>
 {
     [Header("当前章节")] 
     public ChapterOfGame currentChapter;
+    public bool currentSceneIsOver;
     
     [Header("事件广播")]
     public VoidEventSO chapterChangeEvent;
@@ -39,13 +41,14 @@ public class GameFlowManager : Singleton<GameFlowManager>
         //TEST
         if (Input.GetKeyDown(KeyCode.L))
         {
-            ChangeChapter(ChapterOfGame.ChapterWaiter);
+            ChangeChapter(ChapterOfGame.ChapterWaiter, false);
         }
     }
 
-    public void ChangeChapter(ChapterOfGame chapter)
+    public void ChangeChapter(ChapterOfGame chapter, bool isOver)
     {
         currentChapter = chapter;
+        currentSceneIsOver = isOver;
         
         //改变章节立马保存，然后刷新所有物体数据
         SaveChapterData();
@@ -58,6 +61,7 @@ public class GameFlowManager : Singleton<GameFlowManager>
     [Serializable]public class GameProgress
     {
         public ChapterOfGame chapter;
+        public bool isOver;
     }
     
     public void SetDefaultChapterData()
@@ -65,8 +69,11 @@ public class GameFlowManager : Singleton<GameFlowManager>
         var data = new GameProgress();
         
         //第一次玩，从舞者篇开始
-        data.chapter = ChapterOfGame.ChapterDancer;
+        data.chapter = ChapterOfGame.NoOne;
+        data.isOver = false;
+        
         currentChapter = data.chapter;
+        currentSceneIsOver = data.isOver;
         
         SaveSystem.SaveByJson(CHAPTER_DATA_FILE, data);
         

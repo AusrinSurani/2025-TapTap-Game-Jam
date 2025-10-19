@@ -1,28 +1,87 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ReportButton : BounceButton
 {
+    [Header("事件监听")]
+    public VoidEventSO chapterChangeEvent;
+    
     private Animator animator;
     private bool isOpenWindows = false;
     
     public GameObject windows;
     public GameObject darkMask;
+    
+    [Header("信息控制")] 
+    public int currentInformation = 0;
+    public ReportInformation[] informationList;
+    public TextMeshProUGUI informationText;
+    public TMP_Dropdown dropdown;
+    
+    private void OnEnable()
+    {
+        chapterChangeEvent.OnEventRaise += RefreshInformation;
+    }
 
+    public void OnDisable()
+    {
+        chapterChangeEvent.OnEventRaise -= RefreshInformation;
+    }
+    
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
         rectTransform = GetComponent<RectTransform>();
         windows.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        
+        RefreshInformation();
     }
 
     private void Update()
     {
         
+    }
+
+    private void RefreshInformation()
+    {
+        if(!GameFlowManager.Instance.currentSceneIsOver)
+        { 
+            currentInformation = 0;
+            
+            informationText.text = informationList[currentInformation].information;
+            dropdown.ClearOptions();
+            dropdown.AddOptions(informationList[currentInformation].options);
+            
+            return;
+        }
+        
+        switch (GameFlowManager.Instance.currentChapter)
+        {
+            case ChapterOfGame.NoOne:
+                currentInformation = 0;
+                break;
+            case ChapterOfGame.ChapterDancer:
+                currentInformation = 1;
+                break;
+            case ChapterOfGame.ChapterWaiter:
+                currentInformation = 2;
+                break;
+            case ChapterOfGame.ChapterProgrammer:
+                currentInformation = 3;
+                break;
+            default:
+                currentInformation = 0;
+                break;
+        }
+        
+        informationText.text = informationList[currentInformation].information;
+        dropdown.ClearOptions();
+        dropdown.AddOptions(informationList[currentInformation].options);
     }
 
     public override void OnPointerEnter(PointerEventData eventData)

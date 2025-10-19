@@ -30,7 +30,6 @@ public class InteractableInDream : Interactable
     {
         base.Start();
         canvasGroup = imageForItem.GetComponent<CanvasGroup>();
-        canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = 0;
         if (!BNoAnimator)
             animator = background.GetComponent<Animator>();
@@ -42,6 +41,9 @@ public class InteractableInDream : Interactable
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            if(DialogManager.Instance.IsTyping())
+                return;
+            
             if (isShowing)
             {
                 //配合文本一起消失
@@ -71,7 +73,7 @@ public class InteractableInDream : Interactable
         else
             imageForItem.GetComponent<Image>().gameObject.SetActive(false);
         StartCoroutine(FadeCoroutine(0, 1, raiseDuration));
-        imageForItem.GetComponent<CanvasGroup>().blocksRaycasts = true;
+
         if (!BNoAnimator)
             animator.SetBool("Darker",true);
         else 

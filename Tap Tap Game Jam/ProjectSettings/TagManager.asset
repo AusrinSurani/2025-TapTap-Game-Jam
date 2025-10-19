@@ -55,12 +55,12 @@ TagManager:
   - name: Room
     uniqueID: 4003350927
     locked: 0
+  - name: OutLine
+    uniqueID: 2430761697
+    locked: 0
   - name: Player
     uniqueID: 438222921
     locked: 0
   - name: Item
     uniqueID: 1520078233
-    locked: 0
-  - name: OutLine
-    uniqueID: 2430761697
     locked: 0

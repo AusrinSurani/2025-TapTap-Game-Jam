@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class DreamButton : BounceButton
 {
+    [Header("事件监听")] public VoidEventSO chapterChangeEvent;
+    
     private Animator animator;
     private bool isOpenWindows = false;
     
@@ -14,22 +16,57 @@ public class DreamButton : BounceButton
     public Animator machineAnimator;
     
     [Header("表格")]
-    public DreamSystemConfig dreamSystemConfig;
+    private int currentConfig = 0;
+    public DreamSystemConfig[] dreamSystemConfig;
     public TextMeshProUGUI nameOfPatient;
     public TextMeshProUGUI keyWords;
     public TextMeshProUGUI initialDiagnosis;
     public TextMeshProUGUI advice;
+    
+    private void OnEnable()
+    {
+        chapterChangeEvent.OnEventRaise += RefreshData;
+    }
 
+    public void OnDisable()
+    {
+        chapterChangeEvent.OnEventRaise -= RefreshData;
+    }
+    
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
         rectTransform = GetComponent<RectTransform>();
         windows.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+        RefreshData();
+    }
+
+    private void RefreshData()
+    {
+        switch (GameFlowManager.Instance.currentChapter)
+        {
+            case ChapterOfGame.NoOne:
+                currentConfig = 0;
+                break;
+            case ChapterOfGame.ChapterDancer:
+                currentConfig = 1;
+                break;
+            case ChapterOfGame.ChapterWaiter:
+                currentConfig = 2;
+                break;
+            case ChapterOfGame.ChapterProgrammer:
+                currentConfig = 3;
+                break;
+            default:
+                currentConfig = 0;
+                break;
+        }
         
-        nameOfPatient.text = dreamSystemConfig.nameOfPatient;
-        keyWords.text = dreamSystemConfig.keyWords;
-        initialDiagnosis.text = dreamSystemConfig.initialDiagnosis;
-        advice.text = dreamSystemConfig.advice;
+        nameOfPatient.text = dreamSystemConfig[currentConfig].nameOfPatient;
+        keyWords.text = dreamSystemConfig[currentConfig].keyWords;
+        initialDiagnosis.text = dreamSystemConfig[currentConfig].initialDiagnosis;
+        advice.text = dreamSystemConfig[currentConfig].advice;
     }
 
     private void Update()
@@ -89,6 +126,9 @@ public class DreamButton : BounceButton
 
     public void LoadNextLevel()
     {
+        if(GameFlowManager.Instance.currentChapter == ChapterOfGame.NoOne)
+            return;
+        
         StartCoroutine(BeforeLoadCoroutine());
     }
 
@@ -106,6 +146,7 @@ public class DreamButton : BounceButton
 
         yield return new WaitForSeconds(2.6f);
         SceneLoadManager.Instance.ResetSceneLoadStatus();
-        SceneLoadManager.Instance.TryLoadToTargetSceneAsync(dreamSystemConfig.idOfSceneToLoad, "入梦", true);
+        SceneLoadManager.Instance.TryLoadToTargetSceneAsync
+            (dreamSystemConfig[currentConfig].idOfSceneToLoad, "入梦", true);
     }
 }   

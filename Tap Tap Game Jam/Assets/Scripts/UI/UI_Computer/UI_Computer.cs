@@ -27,9 +27,4 @@ public class UI_Computer : BaseUI
             MoveBack();
         }
     }
-
-    public void LoadScene()
-    {
-        
-    }
 }

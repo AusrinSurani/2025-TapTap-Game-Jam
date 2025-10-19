@@ -137,5 +137,12 @@ public class PlayerController : MonoBehaviour
         {
             DialogManager.Instance.ShowMessage("十分昏暗的房间，我最好不要在他人的梦境中走得太深");
         }
+
+        if (other.CompareTag("ChangeScene"))
+        {
+            SceneLoadManager.Instance.ResetSceneLoadStatus();
+            SceneLoadManager.Instance.TryLoadToTargetSceneAsync
+                (other.GetComponent<SceneLoadTrigger>().sceneToLoadID, "", false);
+        }
     }
 }

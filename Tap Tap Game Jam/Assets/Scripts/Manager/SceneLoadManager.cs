@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoadManager : Singleton<SceneLoadManager>
 {
+    public SceneDisplayID currentScene = SceneDisplayID.StartMenu;
+    
     //test
     private void Update()
     {
@@ -137,6 +139,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
     /// <returns></returns>
     public bool TryLoadToTargetSceneAsync(SceneDisplayID targetSceneID, string words, bool needWords)
     {
+        currentScene =  targetSceneID;
         
         string scenePath = "";
         foreach (var i in _sceneFile_DisplayIDAndPath)
@@ -178,6 +181,8 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
             Debug.Log("Last LoadProgress fails,But not Reset LoadStatus To [Wait].");
             return false; 
         }    
+        
+        
     }
 
     private IEnumerator _loadSceneAsync_ie;

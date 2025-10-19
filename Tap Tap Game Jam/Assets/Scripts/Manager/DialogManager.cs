@@ -109,8 +109,10 @@ public class DialogManager : Singleton<DialogManager>
         imageDic["桥田缪"] = sprites[3];*/
         
         //使用动画
-        animDict["尼安德·华莱士"] = "Robot";
-        animDict["尼安德"] = "Robot";
+        animDict["尼安德·华莱士"] = "Doctor";
+        animDict["尼安德"] = "Doctor";
+
+        animDict["机器人"] = "Robot";
         
         animDict["妮娜·奥蜜可"] = "Dancer";
         animDict["来问诊的女人"] = "Dancer";
@@ -325,8 +327,17 @@ public class DialogManager : Singleton<DialogManager>
         hasChoices = false; 
         
         leftCharaAnim.gameObject.SetActive(true);
-        leftCharaAnim.SetTrigger("Robot");
+        
         leftCharacterName.text = "尼安德";
+        
+        if (SceneLoadManager.Instance.currentScene == SceneLoadManager.SceneDisplayID.ConsultationRoom)
+        {
+            leftCharaAnim.SetTrigger("Doctor");
+        }
+        else
+        {
+            leftCharaAnim.SetTrigger("Robot");
+        }
         
         //在启动协程前，保存完整文本
         currentFullText = message;

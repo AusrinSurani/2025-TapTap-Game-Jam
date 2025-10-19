@@ -49,6 +49,13 @@ public class Interactable:MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         {
             Debug.Log("没有边框图");
         }
+
+        if (outLine == null)
+        {
+            Debug.Log("未分配边框");
+            return;
+        }
+            
         
         gameObject.GetComponent<SpriteRenderer>().sprite = itemData.icon;
         gameObject.name = "Interactable-" + itemData.itemName;

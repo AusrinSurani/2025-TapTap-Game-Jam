@@ -125,7 +125,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: -999
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &1330877242378768477
 MonoBehaviour:
@@ -175,6 +175,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1277521692013763867}
     m_Modifications:
+    - target: {fileID: 217942809276051344, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 447
+      objectReference: {fileID: 0}
+    - target: {fileID: 217942809276051344, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 3804514851135917923, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -262,7 +270,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2577029036606101580, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9132245506575565957}
   m_SourcePrefab: {fileID: 100100000, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}
 --- !u!1 &137334163481128867 stripped
 GameObject:
@@ -280,6 +291,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5695730063237836963 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2577029036606101580, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}
+  m_PrefabInstance: {fileID: 7838583398419130607}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9132245506575565957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5695730063237836963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 20
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!95 &5741147504477387596 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 2550331708531889059, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}

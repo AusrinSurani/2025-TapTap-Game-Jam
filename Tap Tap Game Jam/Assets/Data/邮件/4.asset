@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9287415a042b30044b64c335fa9564ac, type: 3}
   m_Name: 4
   m_EditorClassIdentifier: 
-  id: 
-  title: 
+  id: 4
+  title: 444444
   sender: 
-  content: 
+  content: 444444
   isRead: 0

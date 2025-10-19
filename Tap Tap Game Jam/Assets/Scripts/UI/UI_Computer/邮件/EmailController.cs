@@ -6,16 +6,52 @@ using UnityEngine;
 
 public class EmailController : MonoBehaviour
 {
+    [Header("事件监听")] public VoidEventSO chapterChangeEvent;
+    
+    [Header("隐藏信件")]
+    public GameObject email4;
+    public GameObject email5;
+    
     private int numOfEmails = 5;
     const string HAVE_RAED_EMAIL_DATA_FILE = "HaveReadEmailData.txt";
 
     private EmailNameButton[] emailNameButtons;
     private bool haveAllRead = false;
 
-    private void Start()
+    private void Awake()
     {
         emailNameButtons = GetComponentsInChildren<EmailNameButton>();
+    }
+
+    private void OnEnable()
+    {
+        chapterChangeEvent.OnEventRaise += OnChapterChange;
+    }
+
+    public void OnDisable()
+    {
+        chapterChangeEvent.OnEventRaise -= OnChapterChange;
+    }
+
+    private void OnChapterChange()
+    {
+        ChapterOfGame currentChapter = GameFlowManager.Instance.currentChapter;
+        if (currentChapter == ChapterOfGame.ChapterWaiter)
+        {
+            email4.SetActive(true);
+        }
+        else if (currentChapter == ChapterOfGame.ChapterProgrammer)
+        {
+            email4.SetActive(true);
+            email5.SetActive(true);
+        }
         
+        SaveEmailsData();
+        LoadEmailsData();
+    }
+
+    private void Start()
+    {
         /*Debug.Log(emailNameButtons.Length);
         Debug.Log(File.Exists(Path.Combine(Application.persistentDataPath,HAVE_RAED_EMAIL_DATA_FILE)));*/
         
@@ -57,6 +93,8 @@ public class EmailController : MonoBehaviour
     
     public void SaveEmailsData()
     {
+        emailNameButtons = GetComponentsInChildren<EmailNameButton>();
+        
         var data = new HaveReadEmailData();
         
         haveAllRead = true;
@@ -82,11 +120,14 @@ public class EmailController : MonoBehaviour
             emailNameButtons[i].haveRead = savedData.haveReadEmailData[i];
             haveAllRead = savedData.haveAllRead;
         }
+        
         ApplyData();
     }
 
     private void ApplyData()
     {
+        //刷新贴图，刷新有无新消息的动画
+        
         for (int i = 0; i < emailNameButtons.Length; i++)
         {
             emailNameButtons[i].ReFresh();

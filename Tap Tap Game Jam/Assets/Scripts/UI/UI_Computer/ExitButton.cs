@@ -8,6 +8,6 @@ public class ExitButton : BounceButton
     public override void OnPointerClick(PointerEventData eventData)
     {
         base.OnPointerClick(eventData);
-        GetComponentInParent<BaseUI>().MoveBack();
+        GetComponentInParent<BaseUI>().MoveBack(false);
     }
 }

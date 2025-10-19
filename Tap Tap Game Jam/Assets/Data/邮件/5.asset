@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9287415a042b30044b64c335fa9564ac, type: 3}
   m_Name: 5
   m_EditorClassIdentifier: 
-  id: 
-  title: 
-  sender: 
-  content: 
+  id: 5
+  title: 5555555
+  sender: 555555
+  content: 55555555555
   isRead: 0

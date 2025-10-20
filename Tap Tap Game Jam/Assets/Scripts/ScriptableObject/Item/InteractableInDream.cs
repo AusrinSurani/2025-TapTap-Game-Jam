@@ -32,9 +32,7 @@ public class InteractableInDream : Interactable
         canvasGroup = imageForItem.GetComponent<CanvasGroup>();
         canvasGroup.alpha = 0;
         if (!BNoAnimator)
-            animator = background.GetComponent<Animator>();
-        
-            //background.gameObject.SetActive(true);
+            animator = background.GetComponent<Animator>(); 
     }
 
     private void Update()

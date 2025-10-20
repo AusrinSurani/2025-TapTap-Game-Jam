@@ -15,7 +15,7 @@ public class BeginDanceGamePlayPanel : BaseUIPanel
             //GameObject.Find("DanceGamePlay").GetComponent<DanceGamePlay>().StartDanceGamePlay();
             //隐藏交互物品
             GameObject.Find("DancerDirector").GetComponent<DacnerDirector>().HideInteractItem();
-            GameObject.Find("DancerDirector").GetComponent<PlayableDirector>().Play();
+            GameObject.Find("DancerDirector").GetComponent<DacnerDirector>().MovePlayer();
             UIManager.Instance.HidePanelByPath<BeginDanceGamePlayPanel>("UI/DanceGamePlay/BeginDanceGamePlayPanel");
         });
         CanceBtn.onClick.AddListener(() =>

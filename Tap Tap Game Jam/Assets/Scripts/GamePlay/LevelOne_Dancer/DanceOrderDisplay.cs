@@ -39,7 +39,12 @@ public class DanceOrderDisplay : MonoBehaviour
             this.transform.GetChild(4).gameObject.SetActive(true);
             SpriteRenderer = this.transform.GetChild(4).GetComponent<SpriteRenderer>();
         }
-         
+        else if (ShowOrder == DanceGamePlay.DanceOrder.Space)
+        {
+            this.transform.GetChild(5).gameObject.SetActive(true);
+            SpriteRenderer = this.transform.GetChild(5).GetComponent<SpriteRenderer>();
+        }
+
     }
     public int GetInteractOrder(DanceGamePlay.DanceOrder getOrder,bool allowInverse,bool mustInverse)
     {
@@ -48,7 +53,7 @@ public class DanceOrderDisplay : MonoBehaviour
         //滞留一定时间后销毁
         Invoke(nameof(DestroySelf), extraExistTime);
         //正按
-        if (getOrder == ShowOrder&&!mustInverse)
+        if (getOrder == ShowOrder&&(!mustInverse||getOrder==DanceGamePlay.DanceOrder.Space))
         {
             //Color.Green
             SpriteRenderer.color = Color.green;
@@ -66,7 +71,7 @@ public class DanceOrderDisplay : MonoBehaviour
         else
         {
             //ParentGamePlay.FailCurOrderInput();
-            this.transform.GetChild(5).gameObject.SetActive(true);
+            this.transform.GetChild(6).gameObject.SetActive(true);
             return 0;
         }
     }
@@ -133,7 +138,7 @@ public class DanceOrderDisplay : MonoBehaviour
             TimerImage.fillAmount = 0f;
             //通知 DanceGamePlay Error
             _bGetInteract = true; 
-            this.transform.GetChild(5).gameObject.SetActive(true);
+            this.transform.GetChild(6).gameObject.SetActive(true);
             ParentGamePlay.FailCurOrderInput();
             Invoke(nameof(DestroySelf), 0.5f);
         }

@@ -19,7 +19,9 @@ public class DancerController : MonoBehaviour
         Wrong,
         Start,
         End,
-        AutoDance
+        AutoDance,
+        StandardAction,
+        KeepStandardAction
     }
     public DancerStatus curStatus;
     public SpriteRenderer dancerSpriteRenderer;
@@ -46,6 +48,8 @@ public class DancerController : MonoBehaviour
         dancerAnimator.SetBool(DancerStatus.Start.ToString(), false);
         dancerAnimator.SetBool(DancerStatus.End.ToString(), false);
         dancerAnimator.SetBool(DancerStatus.AutoDance.ToString(), false);
+        dancerAnimator.SetBool(DancerStatus.StandardAction.ToString(), false);
+        dancerAnimator.SetBool(DancerStatus.KeepStandardAction.ToString(), false);
     }
 
     private IEnumerator _errorShowIE;

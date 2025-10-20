@@ -6,7 +6,7 @@ using UnityEngine.Playables;
 public class DirectorTrigger : MonoBehaviour
 {
     public PlayableDirector danceDirector;
-    public bool BDirectorHaveStart;
+   /* public bool BDirectorHaveStart;
     private void Update()
     {
         if(Input.GetAxis("Horizontal")!=0&& !BDirectorHaveStart)
@@ -15,5 +15,15 @@ public class DirectorTrigger : MonoBehaviour
             danceDirector.Play();
             
         }
+    }*/
+
+    private void Start()
+    {
+        Invoke(nameof(StartDirector), 2f);
+    }
+
+    private void StartDirector()
+    {
+        danceDirector.Play();
     }
 }

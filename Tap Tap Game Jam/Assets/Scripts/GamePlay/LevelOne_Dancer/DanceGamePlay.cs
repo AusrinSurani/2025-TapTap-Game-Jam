@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class DanceGamePlay : MonoBehaviour
 {
@@ -29,7 +30,9 @@ public class DanceGamePlay : MonoBehaviour
         Up=3,
         Down=6,
         Left=4,
-        Right=8
+        Right=8,
+        Space=11,
+
     }
      
     //舞蹈指令
@@ -98,21 +101,27 @@ public class DanceGamePlay : MonoBehaviour
     {
         //重置指令表的索引
         _curOrderIndex = 0;
-        _curInputIndex = 0;
+        _curInputIndex = 0; 
         FailCount = 0;
         _danceGameTimer = 0;
-        BCurRoundHaveSpecialInput = false;
-        Debug.Log("Round Start");
 
+        BCurRoundHaveHaveNormalInpt = false;
+        BCurRoundHaveSpecialInput = false;
+        HideRepairProgress();
+        //Debug.Log("Round Start");
+        //重置舞者动画
+        DancerCtr.ResetAnimatorAllParams();
         if (targetRound > 5)
         {
             EndGame();
             return; 
         }
 
+
         //轮次初始设置
         if (CurRound == 0)
         {
+                IntroCtr.HideFixedTip();
             if(BHaveIntro_1==false)
             {
                 IntroCtr.DoIntroMask(1);
@@ -126,6 +135,7 @@ public class DanceGamePlay : MonoBehaviour
         }
         else if(CurRound==1)
         {
+            IntroCtr.HideFixedTip();
             if (BHaveIntro_2 == false)
             {
                 IntroCtr.DoIntroMask(2);
@@ -137,13 +147,29 @@ public class DanceGamePlay : MonoBehaviour
             BMustInverseInput = false;
             BAllowInverseInput = false;
         }
-        else if(CurRound==2||CurRound==3)
+        else if(CurRound==2)
         { 
+            IntroCtr.ShowFixedTip();
+            if (!BHaveIntro_3)
+            {
+                IntroCtr.DoIntroMask(3);
+                BHaveIntro_3 = true;
+                PauseGamePlay();
+            }
+            BMustInverseInput = false;
+            BAllowInverseInput = true;
+
+        }
+        else if (CurRound ==3)
+        {
+            
+            IntroCtr.ShowFixedTip();
             BMustInverseInput = false;
             BAllowInverseInput = true;
         }
         else if(CurRound == 4 || CurRound == 5||CurRound==6)
-        { 
+        {
+            IntroCtr.ShowFixedTip();
             BMustInverseInput = false;
             BAllowInverseInput = false;
         }
@@ -212,11 +238,14 @@ public class DanceGamePlay : MonoBehaviour
     public void EndGame()
     {
         _bGameEnd = true;
-
+        BCanGetInput = false;
         //激活玩家移动交互
         playerCtr.enabled = true;
         playerCtr.BInvertInput = true;//恢复正常
-        //
+                                      //
+
+        IntroCtr.HideFixedTip();
+
     }
 
     public void ResumeGamePlay()
@@ -243,7 +272,8 @@ public class DanceGamePlay : MonoBehaviour
     public RoundEndUI RoundEndui;
     private IEnumerator _danceGamePlayIE;
     [SerializeField]
-    private float _danceGameTimer; 
+    private float _danceGameTimer;
+     
     private IEnumerator DanceGamePlayProgress()
     {
         while (!_bGameEnd)
@@ -280,83 +310,107 @@ public class DanceGamePlay : MonoBehaviour
                 } 
             } */
 
-            if (OrdersAppearTime.Count==0||_danceGameTimer > OrdersAppearTime[OrdersAppearTime.Count-1]+3f/*远超出指令自行结束时间+滞留时间*/)
+            //if (OrdersAppearTime.Count==0||_danceGameTimer > OrdersAppearTime[OrdersAppearTime.Count-1]+3f/*远超出指令自行结束时间+滞留时间*/)
+            if(//指令全部出现 玩家未成功结算
+                _danceGameTimer > OrdersAppearTime[OrdersAppearTime.Count - 1] + 2.5f //至少最后一个指令过0.5s后才结算
+                //最后一个指令结算并销毁
+                && (AlreadyAppearedOrderDisplays.Count == 0 || AlreadyAppearedOrderDisplays[AlreadyAppearedOrderDisplays.Count-1]==null))
             {
                 if (FailCount <= 2)
-                {
+                { 
+                    //对应不同的特殊动作
                     OnGameRoundSuccessEnd?.Invoke(CurRound);
 
                     //处理不同轮次结束后的反应
-                    if (CurRound == 0  )
-                    {
-                        if(BCurRoundHaveSpecialInput)
-                        { 
+                    if (CurRound == 0)
+                    { 
+                            DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.StandardAction);
+                        if (BCurRoundHaveSpecialInput )
+                        {
                             ShowButtonDialogueEnd(0, true);
                         }
                         else
-                        {
-                            ShowButtonDialogueEnd(0, true); 
+                        { 
+                            ShowButtonDialogueEnd(0, true);
                         }
                         //教程关上半
                         //DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.Special_1);
                     }
                     else if (CurRound == 1)
                     {
+                            DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.StandardAction);
                         if (BCurRoundHaveSpecialInput)
                         {
                             ShowButtonDialogueEnd(0, true);
                         }
                         else
-                        {
+                        { 
                             ShowButtonDialogueEnd(0, true);
                         }
 
                     }
                     else if (CurRound == 2)
                     {
-                        if (BCurRoundHaveSpecialInput)
+                        //有反向，无正向，且无失误，显示特殊动作
+                        if (BCurRoundHaveSpecialInput && !BCurRoundHaveHaveNormalInpt&&FailCount==0)
                         {
                             //第一关
                             DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.Special_1);
                             //延时时长要大于人物舞蹈时间，TODO:监听人物舞蹈结束事件
                             _dialogueDisplayDelayTime = 0.5f;
                             SetDiaolgueTextAsset(dialogue_LevelOneSpecialActionEnd);
-                            ShowButtonDialogueEnd(0, false); 
+                            ShowButtonDialogueEnd(0, false);
                         }
                         else
                         {
+                            DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.StandardAction);
+                            _curRepairValue++;
+                            //修复进度增加
+                            ShowRepairProgress();
+                            SetValueRepairProgress(_curRepairValue);
                             ShowButtonDialogueEnd(0, true);
                         }
                     }
-                    else if (CurRound == 3  )
+                    else if (CurRound == 3)
                     {
-                        if (BCurRoundHaveSpecialInput)
+                        if (BCurRoundHaveSpecialInput && !BCurRoundHaveHaveNormalInpt && FailCount == 0)
                         {
                             //第二关
                             DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.Special_2);
                             //自由意志，失败演出 
                             _dialogueDisplayDelayTime = 2f;
                             SetDiaolgueTextAsset(dialogue_LevelTwoSpecialActionEnd);
-                            ShowButtonDialogueEnd(1, false); 
+                            ShowButtonDialogueEnd(1, false);
                         }
                         else
                         {
-                            ShowButtonDialogueEnd(0, true); 
+                            DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.StandardAction);
+                            //修复进度增加
+                            _curRepairValue++;
+                            ShowRepairProgress();
+                            SetValueRepairProgress(_curRepairValue);
+                            ShowButtonDialogueEnd(0, true);
                         }
                     }
-                    else if (CurRound == 4  )
+                    else if (CurRound == 4)
                     {
+                        DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.StandardAction);
                         if (BCurRoundHaveSpecialInput)
                         {
                             ShowButtonDialogueEnd(0, true);
                         }
                         else
                         {
+                            //修复进度增加
+                            _curRepairValue++;
+                            ShowRepairProgress();
+                            SetValueRepairProgress(_curRepairValue);
                             ShowButtonDialogueEnd(0, true);
                         }
                     }
                     else if (CurRound == 5)
                     {
+                        DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.KeepStandardAction);
                         //视为通关
                         if (BCurRoundHaveSpecialInput)
                         {
@@ -364,7 +418,11 @@ public class DanceGamePlay : MonoBehaviour
                         }
                         else
                         {
-                            // 
+                            //修复进度无论当前多少，都设置为满
+                            ShowRepairProgress();
+                            _curRepairValue = 4;
+                            SetValueRepairProgress(_curRepairValue);
+                            //开始对话
                             SetDiaolgueTextAsset(dialogue_LevleFourEnd);
                             ShowButtonDialogueEnd(2, false);
                             BeginDialogue();
@@ -378,23 +436,24 @@ public class DanceGamePlay : MonoBehaviour
                             ShowButtonDialogueEnd(2, true);
                         }
                         else
-                        { 
+                        {
                             ShowButtonDialogueEnd(2, true);
                         }
                     }
 
                     //暂停，等待玩家交互轮次
-                    PauseGamePlay(); 
-                     
-
+                    PauseGamePlay();
                 }
                 else
                 {
                     //游戏失败
                 }
             }
-            //待出现指令没有溢界
-            if (_curOrderIndex<OrdersAppearTime.Count&&_danceGameTimer > OrdersAppearTime[_curOrderIndex])
+             
+
+
+                //待出现指令没有溢界
+                if (_curOrderIndex<OrdersAppearTime.Count&&_danceGameTimer > OrdersAppearTime[_curOrderIndex])
             {
                 //索引小于已生成Order说明还未生成
                 if(_curOrderIndex<=AlreadyAppearedOrderDisplays.Count)
@@ -428,6 +487,9 @@ public class DanceGamePlay : MonoBehaviour
         }
     }
 
+    //记录是否有正向输入，无视空格
+    public bool BCurRoundHaveHaveNormalInpt;
+
     public bool BCurRoundHaveSpecialInput { get => bCurRoundHaveSpecialInput;
         set 
         { 
@@ -443,6 +505,8 @@ public class DanceGamePlay : MonoBehaviour
     public KeyCode rightOrderKey;
     public KeyCode upOrderKey;
     public KeyCode downOrderKey;
+
+    public KeyCode endOrderkey;
     //输入反转
     public bool bInputReverse;
 
@@ -453,7 +517,9 @@ public class DanceGamePlay : MonoBehaviour
     public List<Transform> OrdersTransforms=new List<Transform>();//上下左右
 
     public UnityEvent<int> OnGameRoundSuccessEnd;
-    private DanceOrderDisplay _tempDanceOrder; 
+    private DanceOrderDisplay _tempDanceOrder;
+
+    public List<float> DisappearTime_Round=new List<float>();
     public void ShowOrder(int targetIndex)
     {
         if(_curOrderIndex < GameOrders.Count)
@@ -494,7 +560,17 @@ public class DanceGamePlay : MonoBehaviour
 
 
             }
+            else if (GameOrders[_curOrderIndex] == DanceOrder.Space)
+            {
+                if (OrdersTransforms[4].childCount <= 1)
+                    _tempDanceOrder = Instantiate(DanceOrderPrefab, OrdersTransforms[4]).GetComponent<DanceOrderDisplay>();
+                else
+                    _tempDanceOrder = Instantiate(DanceOrderPrefab, OrdersTransforms[4].GetChild(0)).GetComponent<DanceOrderDisplay>();
+
+
+            }
             AlreadyAppearedOrderDisplays.Add(_tempDanceOrder);
+            _tempDanceOrder.DisappearTime = DisappearTime_Round[CurRound];
             _tempDanceOrder.SetOrderDisplay(GameOrders[_curOrderIndex]);
             _tempDanceOrder.ParentGamePlay = this;
             _curOrderIndex++;
@@ -548,15 +624,21 @@ public class DanceGamePlay : MonoBehaviour
             {
                 case DanceOrder.Up: 
                     DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.Up);
+                    BCurRoundHaveHaveNormalInpt = true;
                     break;
                 case DanceOrder.Down:
                     DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.Down);
+                    BCurRoundHaveHaveNormalInpt = true;
                     break;
                 case DanceOrder.Left:
                     DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.Left);
+                    BCurRoundHaveHaveNormalInpt = true;
                     break;
                 case DanceOrder.Right:
                     DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.Right);
+                    BCurRoundHaveHaveNormalInpt = true;
+                    break;
+                case DanceOrder.Space: 
                     break;
                 default: 
                     DancerCtr.SetDancerAnimatorStauts(DancerController.DancerStatus.Idle);
@@ -625,6 +707,11 @@ public class DanceGamePlay : MonoBehaviour
                 JoystickCtr.SetAnimatorStatus(JoystickController.JoystickStatus.Down);
                 GetDanceOrderInput(AlreadyAppearedOrderDisplays[_curInputIndex].GetInteractOrder(DanceOrder.Down, BAllowInverseInput, BMustInverseInput), DanceOrder.Down);
             }
+            else if(Input.GetKeyDown(endOrderkey))
+            {
+                JoystickCtr.SetAnimatorStatus(JoystickController.JoystickStatus.Middle);
+                GetDanceOrderInput(AlreadyAppearedOrderDisplays[_curInputIndex].GetInteractOrder(DanceOrder.Space, BAllowInverseInput, BMustInverseInput), DanceOrder.Space);
+            }
         }
     }
 
@@ -632,6 +719,8 @@ public class DanceGamePlay : MonoBehaviour
     public IntroductionCtr IntroCtr;
     public bool BHaveIntro_1;
     public bool BHaveIntro_2;
+
+    public bool BHaveIntro_3;
 
     public DanceGamePlayInfo failCountUI;
 
@@ -698,5 +787,52 @@ public class DanceGamePlay : MonoBehaviour
     public TextAsset dialogue_LevleFourEnd;
 
 
+    [Header("RepairProgress")]
+    public GameObject RepairProgressUIObj;
+    public BarDisplay repairBar;
+
+    public void ShowRepairProgress()
+    {
+        RepairProgressUIObj.SetActive(true);
+    }
+    private int _curRepairValue;
+    public void SetValueRepairProgress(int v)
+    {
+        switch (v)
+        {
+            case 1:
+                repairBar.SetBarValue(0.25f);
+                break;
+            case 2:
+                repairBar.SetBarValue(0.5f);
+                break;
+            case 3:
+                repairBar.SetBarValue(0.75f);
+                break;
+            case 4:
+                repairBar.SetBarValue(1f);
+                break;
+            default:
+                break;
+        }
+
+    }
+    public void HideRepairProgress()
+    {
+        RepairProgressUIObj.SetActive(false);
+
+    }
+
+    public GameObject healthObj;  
+
+    public void ShowPlayerHealth()
+    {
+        healthObj.SetActive(true);
+    }
+
+    public void HidePlayerHealth()
+    { 
+        healthObj.SetActive(false);
+    }
       
 }

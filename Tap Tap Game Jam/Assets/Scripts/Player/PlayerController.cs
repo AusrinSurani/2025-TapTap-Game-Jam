@@ -1,5 +1,7 @@
 using Cinemachine;
 using System;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -39,13 +41,16 @@ public class PlayerController : MonoBehaviour
 
     public bool BInvertInput;
     public bool BRemoveWrongActionTip;
+    public bool BNoGetInput;
     void Update()
     {
-        if (BInvertInput)
-            horizontalInput = Input.GetAxisRaw("Horizontal") * -1f;
-        else
-            horizontalInput = Input.GetAxisRaw("Horizontal");
-
+        if (!BNoGetInput)
+        {
+            if (BInvertInput)
+                horizontalInput = Input.GetAxisRaw("Horizontal") * -1f;
+            else
+                horizontalInput = Input.GetAxisRaw("Horizontal");
+        }
         //检测状态是否要更换
         UpdateState();
 
@@ -170,4 +175,46 @@ public class PlayerController : MonoBehaviour
             framing.m_DeadZoneWidth = 0;
         }
     }
+
+    //
+
+    #region PlayerAutoMove
+
+    public void AutoMoveToTargetVector2(Vector2 v)
+    {
+        if (autoMove_IE != null)
+            StopCoroutine(autoMove_IE);
+        autoMove_IE = AutoMove(v);
+        StartCoroutine(autoMove_IE);
+    }
+    //记录移动方向，避免走过
+    private float _directionX;
+    private IEnumerator autoMove_IE;
+    private IEnumerator AutoMove(Vector2 v)
+    {
+        _directionX = 0;
+        //禁止玩家输入
+        BNoGetInput = true;
+        //
+        while (Vector2.Distance(this.transform.position, v) > 0.1f)
+        {
+            if (_directionX * (this.transform.position.x - v.x) < 0)
+                break;
+            else
+                _directionX = this.transform.position.x - v.x;
+            //
+            if (this.transform.position.x - v.x > 0)
+                horizontalInput = 1f;
+            else
+                horizontalInput = -1f;
+            yield return null;
+        }
+        horizontalInput = 0f;
+        BNoGetInput = true;
+        this.transform.position = v; 
+        OnPlayerAutoMoveFinished?.Invoke();
+    }
+     
+    public UnityEvent OnPlayerAutoMoveFinished;
+    #endregion
 }

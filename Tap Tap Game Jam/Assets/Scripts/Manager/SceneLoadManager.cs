@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement; 
 
 public class SceneLoadManager : Singleton<SceneLoadManager>
@@ -164,6 +165,12 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         //协程空置等待中
         if (curLoadStatus==SceneLoadStatus.Wait)
         {
+            if (UIManager.Instance.coverFader.BFading)
+            {
+                Debug.Log("Cover Fading,one progress is running");
+                return false;
+            }
+
             if (_loadSceneAsync_ie != null)
                 StopCoroutine(_loadSceneAsync_ie);
             _loadSceneAsync_ie = LoadToTargetSceneAsync(scenePath, words,  needWords);
@@ -196,22 +203,32 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
 
     private IEnumerator _loadSceneAsync_ie;
     private AsyncOperation _loadAO;
-    private bool _bLoadingAORunning; 
+    private bool _bLoadingAORunning;
+     
     //异步加载协程处理
     private IEnumerator LoadToTargetSceneAsync(string sPath, string words, bool needWords)
     {
         if (sPath != "")
         {
-            //TODO: 加载过渡界面
 
             //黑屏过渡
             if (UIManager.Instance.coverFader != null)
-            { 
-                yield return UIManager.Instance.coverFader.FadeIn();
+            {
+                if (UIManager.Instance.coverFader.BFading)
+                {
+                    //已经在过渡中
+                }
+                else
+                {
+                    yield return UIManager.Instance.coverFader.FadeIn();
+                    if (needWords)
+                    {
+                        yield return UIManager.Instance.coverFader.TextType(words);
+                    }
+                }
                 //test
+
                 
-                if(needWords)
-                    yield return UIManager.Instance.coverFader.TextType(words);
                 //endtest
                 //UIManager.Instance.sceneFader.FadeIn(UIManager.Instance.sceneFader.currentFadeType);
             }
@@ -236,14 +253,15 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
             if (UIManager.Instance.coverFader != null)
             {
                 yield return UIManager.Instance.coverFader.FadeOut();
-                
+                 
                 //as:加载完把原来残留的Text删掉
                 UIManager.Instance.coverFader.DisplayTextPro.text = String.Empty;
                 //UIManager.Instance.sceneFader.FadeIn(UIManager.Instance.sceneFader.currentFadeType);
             }
             else
                 Debug.Log("UIManager.Instance.coverFader is NULL!");
-
+            //恢复交互
+            EventSystem.current.enabled = true;
             onSceneLoadEnd?.Invoke();
 
             Debug.Log("Load Scene Async Success");

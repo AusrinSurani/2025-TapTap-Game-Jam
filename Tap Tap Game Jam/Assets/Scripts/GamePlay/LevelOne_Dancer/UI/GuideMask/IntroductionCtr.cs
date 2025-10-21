@@ -11,7 +11,20 @@ public class IntroductionCtr : MonoBehaviour
     }
 
     public RectTransform introRect_1;
-    public RectTransform introRect_2; 
+    public RectTransform introRect_2;
+
+    public GameObject fixedTipObj;
+
+    public void HideFixedTip()
+    {
+        fixedTipObj.gameObject.SetActive(false);
+    }
+     
+
+    public void ShowFixedTip()
+    {
+        fixedTipObj.gameObject.SetActive(true); 
+    }
 
     public void DoIntroMask(int targetIndex)
     {
@@ -27,6 +40,11 @@ public class IntroductionCtr : MonoBehaviour
             //展示第二个引导
             guideMask.Play(introRect_2);
         }
+        else if(targetIndex==3)
+        {
+            fixedTipObj.gameObject.SetActive(true);
+            guideMask.Play(fixedTipObj.transform.GetComponent<RectTransform>());
+        }
     }
 
     public void HideIntro_1()
@@ -41,5 +59,10 @@ public class IntroductionCtr : MonoBehaviour
         //隐藏GuidMask，继续DanceGamePlay，同时不在冒引导提示
         guideMask.Close();
         introRect_2.gameObject.SetActive(false);
+    }
+
+    public void HideGuideMask()
+    {
+        guideMask.Close(); 
     }
 }

@@ -58,26 +58,62 @@ public class DacnerDirector : MonoBehaviour
 
     public void RaiseCurtain()
     {
-        gamePlayPart.JoystickCtr.SetAnimatorStatus(JoystickController.JoystickStatus.MiddleOff);
+        gamePlayPart.JoystickCtr.SetAnimatorStatus(JoystickController.JoystickStatus.Middle);
         StartCoroutine(CurtainMove());
     }
+
+    public void DownCurtain()
+    {
+        gamePlayPart.JoystickCtr.SetAnimatorStatus(JoystickController.JoystickStatus.MiddleOff);
+        StartCoroutine(CurtainMoveBack());
+
+    }
     private Vector3 _tempCurtainSizeScale;
+    public float UpOffsetSpeed;
+
+    [SerializeField]
+    private float _curtainMoveTimer;
+    public float CurtainMoveTotalTime=3f;
     private IEnumerator CurtainMove()
     {
-        while (leftCurtain.transform.localScale.x >0 || rightCurtain.transform.localScale.x >0)
+        while (_curtainMoveTimer<CurtainMoveTotalTime)
         {
+            _curtainMoveTimer += Time.deltaTime;
             _tempCurtainSizeScale = leftCurtain.transform.localScale;
             _tempCurtainSizeScale.x -= Time.deltaTime * curtainScaleChangeSpeed;
             leftCurtain.transform.localScale = _tempCurtainSizeScale;
             _tempCurtainSizeScale = rightCurtain.transform.localScale;
             _tempCurtainSizeScale.x -= Time.deltaTime * curtainScaleChangeSpeed;
             rightCurtain.transform.localScale = _tempCurtainSizeScale;
-            leftCurtain.transform.Translate(Vector2.left * Time.deltaTime * curtainMoveSpeed);
-            rightCurtain.transform.Translate(Vector2.right * Time.deltaTime * curtainMoveSpeed);
+            leftCurtain.transform.Translate(Vector2.left * Time.deltaTime * curtainMoveSpeed+Vector2.up*Time.deltaTime* UpOffsetSpeed);
+            rightCurtain.transform.Translate(Vector2.right * Time.deltaTime * curtainMoveSpeed + Vector2.up * Time.deltaTime* UpOffsetSpeed);
             yield return null;
         }
         leftCurtain.transform.parent.gameObject.SetActive(false);
+
+        //允许交互
+        ShowInteractItem();
     }
+
+    private IEnumerator CurtainMoveBack()
+    {
+        HideInteractItem();
+        leftCurtain.transform.parent.gameObject.SetActive(true);
+        while (_curtainMoveTimer>0f)
+        {
+            _curtainMoveTimer -= Time.deltaTime;
+            _tempCurtainSizeScale = leftCurtain.transform.localScale;
+            _tempCurtainSizeScale.x += Time.deltaTime * curtainScaleChangeSpeed;
+            leftCurtain.transform.localScale = _tempCurtainSizeScale;
+            _tempCurtainSizeScale = rightCurtain.transform.localScale;
+            _tempCurtainSizeScale.x += Time.deltaTime * curtainScaleChangeSpeed;
+            rightCurtain.transform.localScale = _tempCurtainSizeScale;
+            leftCurtain.transform.Translate(Vector2.right * Time.deltaTime * curtainMoveSpeed - Vector2.up * Time.deltaTime * UpOffsetSpeed);
+            rightCurtain.transform.Translate(Vector2.left * Time.deltaTime * curtainMoveSpeed - Vector2.up * Time.deltaTime * UpOffsetSpeed);
+            yield return null;
+        }
+    }
+
     //舞台大灯
     public void TurnOnSceneLight()
     {
@@ -169,5 +205,25 @@ public class DacnerDirector : MonoBehaviour
     {
         InteractPart.gameObject.SetActive(true); 
 
+    }
+
+    public PlayerController PlayerCtr;
+    public Transform PlayerTransformRef;
+    public void MovePlayer()
+    {
+        PlayerCtr.AutoMoveToTargetVector2(PlayerTransformRef.position);
+        //添加监听
+        PlayerCtr.OnPlayerAutoMoveFinished.AddListener(ResumeDirector);
+    } 
+
+    private void ResumeDirector()
+    {
+        DirectResume();
+        //移除监听
+        PlayerCtr.OnPlayerAutoMoveFinished.RemoveListener(ResumeDirector);
+    }
+    public void BackToConsoleRoom()
+    {
+        SceneLoadManager.Instance.TryLoadToTargetSceneAsync(SceneLoadManager.SceneDisplayID.ConsultationRoom, null, false);
     }
 }

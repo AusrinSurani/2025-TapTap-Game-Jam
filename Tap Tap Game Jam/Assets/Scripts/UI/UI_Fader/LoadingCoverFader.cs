@@ -33,6 +33,8 @@ public class LoadingCoverFader : MonoBehaviour
          }
      }*/
 
+    public bool BFading;
+
     public bool BTextTyping;
 
     public void ShowText(string text)
@@ -107,6 +109,7 @@ public class LoadingCoverFader : MonoBehaviour
     {
         this.gameObject.SetActive(true);
         _coverGroup.alpha = 0f;
+        BFading = true;
         while (_coverGroup.alpha<1f)
         {
             _coverGroup.alpha += Time.deltaTime * fadeSpeed; 
@@ -135,6 +138,7 @@ public class LoadingCoverFader : MonoBehaviour
                 break;
             }
         }
+        BFading = false;
         this.gameObject.SetActive(false);
     }
      

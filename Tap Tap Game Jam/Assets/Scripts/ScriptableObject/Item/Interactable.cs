@@ -25,10 +25,18 @@ public class Interactable:MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
     public virtual void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log(itemData.itemName);
+        Debug.Log(itemData?.descriptions.Length == 0);
         
-        if(itemData?.description != "")
+        if(itemData?.descriptions.Length == 0)
+        {
+            //显示一句
             DialogManager.Instance.ShowMessage(itemData?.description);
+        }
+        else
+        {
+            //显示多句
+            DialogManager.Instance.ShowMessage(itemData?.descriptions);
+        }
     }
 
     public void OnValidate()

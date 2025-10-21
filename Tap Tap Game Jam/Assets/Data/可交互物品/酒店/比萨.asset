@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3ea681a7e70d2f4c860bdc778e8b467, type: 3}
+  m_Name: "\u6BD4\u8428"
+  m_EditorClassIdentifier: 
+  itemName: "\u6BD4\u8428"
+  icon: {fileID: 21300000, guid: 6fa12e7d04ddb8848b12fe5721c1424c, type: 3}
+  outline: {fileID: 21300000, guid: e56145fd2134c1d46b882e75b9932084, type: 3}
+  closeUp: {fileID: 0}
+  description: "\u62AB\u8428"
+  descriptions: []

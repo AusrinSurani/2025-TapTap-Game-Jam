@@ -12,8 +12,9 @@ public class InteractableInDream : Interactable
     public GameObject imageForItem;
     private CanvasGroup canvasGroup;
     private bool isShowing = false;
-    
-    [Header("切换色调的背景")]
+
+    [Header("切换色调的背景")] 
+    public bool needSwitch = true;
     public GameObject background;
     private Animator animator;
     public bool BNoAnimator;
@@ -31,8 +32,13 @@ public class InteractableInDream : Interactable
         base.Start();
         canvasGroup = imageForItem.GetComponent<CanvasGroup>();
         canvasGroup.alpha = 0;
-        if (!BNoAnimator)
-            animator = background.GetComponent<Animator>();
+
+        if (needSwitch)
+        {
+            if (!BNoAnimator)
+                animator = background?.GetComponent<Animator>();
+        }
+        
         
             //background.gameObject.SetActive(true);
     }
@@ -49,10 +55,15 @@ public class InteractableInDream : Interactable
                 //配合文本一起消失
                 canvasGroup.blocksRaycasts = false;
                 StartCoroutine(FadeCoroutine(1, 0, backDuration));
-                if (!BNoAnimator)
-                    animator.SetBool("Darker",false);
-                else
-                    background.gameObject.SetActive(false);
+
+                if (needSwitch)
+                {
+                    if (!BNoAnimator)
+                        animator.SetBool("Darker",false);
+                    else
+                        background?.gameObject.SetActive(false);
+                }
+                
                 isShowing = false;
                 OnInteractFinished?.Invoke();
             }
@@ -63,7 +74,9 @@ public class InteractableInDream : Interactable
     public override void OnPointerClick(PointerEventData eventData)
     {
         base.OnPointerClick(eventData);
-
+    
+        
+        Debug.Log( itemData.closeUp != null);
         //显示特写图
         if (itemData.closeUp != null)
         {
@@ -74,10 +87,14 @@ public class InteractableInDream : Interactable
             imageForItem.GetComponent<Image>().gameObject.SetActive(false);
         StartCoroutine(FadeCoroutine(0, 1, raiseDuration));
 
-        if (!BNoAnimator)
-            animator.SetBool("Darker",true);
-        else 
-            background.gameObject.SetActive(true);
+        if (needSwitch)
+        {
+            if (!BNoAnimator)
+                animator.SetBool("Darker",true);
+            else 
+                background?.gameObject.SetActive(true);
+        }
+        
         isShowing = true;
     }
 

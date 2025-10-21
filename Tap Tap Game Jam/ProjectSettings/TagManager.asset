@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Wall
   - ChangeScene
+  - InventoryBackGround
+  - InventoryItem
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
+  - LightTrigger
   - 
   - 
   - 
@@ -61,6 +63,15 @@ TagManager:
   - name: Player
     uniqueID: 438222921
     locked: 0
+  - name: Forward
+    uniqueID: 4221517409
+    locked: 0
   - name: Item
     uniqueID: 1520078233
+    locked: 0
+  - name: OutlineOverPlayer
+    uniqueID: 173061729
+    locked: 0
+  - name: Inventory
+    uniqueID: 3547991261
     locked: 0

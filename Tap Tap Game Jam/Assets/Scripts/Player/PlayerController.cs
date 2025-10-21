@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
@@ -21,6 +22,8 @@ public class PlayerController : MonoBehaviour
 
     private int countOfWrongAction = 0;
     private bool haveTip = false;
+    
+    public CinemachineVirtualCamera virtualCamera;
 
     void Awake()
     {
@@ -135,9 +138,19 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Wall"))
+        if (other.CompareTag("Wall") && 
+            SceneLoadManager.Instance.currentScene == SceneLoadManager.SceneDisplayID.DressingRoom)
         {
             DialogManager.Instance.ShowMessage("十分昏暗的房间，我最好不要在他人的梦境中走得太深");
+        }
+
+        if (other.CompareTag("Wall") &&
+            SceneLoadManager.Instance.currentScene == SceneLoadManager.SceneDisplayID.WaiterDream)
+        {
+            Debug.Log("Change Dead zone");
+            
+            var framing = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+            framing.m_DeadZoneWidth = 1;
         }
 
         if (other.CompareTag("ChangeScene"))
@@ -145,6 +158,16 @@ public class PlayerController : MonoBehaviour
             SceneLoadManager.Instance.ResetSceneLoadStatus();
             SceneLoadManager.Instance.TryLoadToTargetSceneAsync
                 (other.GetComponent<SceneLoadTrigger>().sceneToLoadID, "", false);
+        }
+    }
+    
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Wall") &&
+            SceneLoadManager.Instance.currentScene == SceneLoadManager.SceneDisplayID.WaiterDream)
+        {
+            var framing = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+            framing.m_DeadZoneWidth = 0;
         }
     }
 }

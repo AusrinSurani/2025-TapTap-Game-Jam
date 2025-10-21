@@ -69,7 +69,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         EnterDreamLoad,
         DressingRoom,
         DanceDream,
-
+        WaiterDream
     }
 
 

@@ -26,6 +26,11 @@ public class DacnerDirector : MonoBehaviour
         {
             DirectResume();
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            BackToConsoleRoom();
+        }
         //endtest
     }
 
@@ -223,7 +228,9 @@ public class DacnerDirector : MonoBehaviour
         PlayerCtr.OnPlayerAutoMoveFinished.RemoveListener(ResumeDirector);
     }
     public void BackToConsoleRoom()
-    {
+    {           
+        //标记完成诊断
+        GameFlowManager.Instance.ChangeChapter(GameFlowManager.Instance.currentChapter, true, GameFlowManager.Instance.currentDay);
         SceneLoadManager.Instance.TryLoadToTargetSceneAsync(SceneLoadManager.SceneDisplayID.ConsultationRoom, null, false);
     }
 }

@@ -126,8 +126,17 @@ public class DreamButton : BounceButton
 
     public void LoadNextLevel()
     {
-        if(GameFlowManager.Instance.currentChapter == ChapterOfGame.NoOne)
+        //如果没有患者，或者说患者治疗结束了，都不能再入梦了
+        if (GameFlowManager.Instance.currentChapter == ChapterOfGame.NoOne)
+        {
+            DialogManager.Instance.ShowMessage("现在还没有患者呢");
             return;
+        }
+        else if(GameFlowManager.Instance.currentIsOver&& GameFlowManager.Instance.currentChapter != ChapterOfGame.NoOne)
+        {
+            DialogManager.Instance.ShowMessage("治疗已经结束了，不需要再入梦了");
+            return;
+        }
         
         StartCoroutine(BeforeLoadCoroutine());
     }

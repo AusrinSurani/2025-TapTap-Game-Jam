@@ -147,7 +147,6 @@ public class DialogManager : Singleton<DialogManager>
                 }
                 else if(!hasChoices)
                 {
-                    Debug.Log("begin");
                     ShowDialog();
                 }
             }

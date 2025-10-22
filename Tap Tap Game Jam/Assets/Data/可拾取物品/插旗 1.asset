@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c275faa33f277ed4a9f7a89f5bda4924, type: 3}
   m_Name: "\u63D2\u65D7 1"
   m_EditorClassIdentifier: 
-  id: 1
   sprite: {fileID: 21300000, guid: ea30c49c286a07f4daa5ff9d877f3809, type: 3}
   closeUp: {fileID: 21300000, guid: 8845cd973fd07d6499a093f2cda2353e, type: 3}
+  descriptions:
+  - 1

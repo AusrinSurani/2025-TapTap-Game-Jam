@@ -148,12 +148,11 @@ public class PlayerController : MonoBehaviour
         {
             DialogManager.Instance.ShowMessage("十分昏暗的房间，我最好不要在他人的梦境中走得太深");
         }
-
+        
+        //服务员梦境相机控制
         if (other.CompareTag("Wall") &&
             SceneLoadManager.Instance.currentScene == SceneLoadManager.SceneDisplayID.WaiterDream)
         {
-            Debug.Log("Change Dead zone");
-            
             var framing = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
             framing.m_DeadZoneWidth = 1;
         }
@@ -168,6 +167,7 @@ public class PlayerController : MonoBehaviour
     
     private void OnTriggerExit2D(Collider2D other)
     {
+        //服务员梦境相机控制
         if (other.CompareTag("Wall") &&
             SceneLoadManager.Instance.currentScene == SceneLoadManager.SceneDisplayID.WaiterDream)
         {
@@ -175,8 +175,6 @@ public class PlayerController : MonoBehaviour
             framing.m_DeadZoneWidth = 0;
         }
     }
-
-    //
 
     #region PlayerAutoMove
 

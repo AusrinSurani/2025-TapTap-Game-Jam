@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1642e1d931add1945b1d9ccb0c2f649d, type: 3}
   m_Name: 3
   m_EditorClassIdentifier: 
-  information: 
+  information: 3333
   options:
   - "\u65E0\uFF08\u8BF7\u9009\u62E9\uFF09"
-  - 
-  - 
+  - 3
+  - 3

@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoadManager : Singleton<SceneLoadManager>
 {
+    [Header("事件广播")]
+    public VoidEventSO changeChapterEvent;
+    
     public SceneDisplayID currentScene = SceneDisplayID.StartMenu;
     
     //test
@@ -105,6 +108,11 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
             SceneManager.LoadScene(SceneUtility.GetBuildIndexByScenePath(scenePath));
              
             onSceneLoadEnd?.Invoke();
+            
+            if (changeChapterEvent != null)
+            {
+                changeChapterEvent.RaiseEvent();
+            }
 
             return true;
         }
@@ -175,6 +183,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
                 StopCoroutine(_loadSceneAsync_ie);
             _loadSceneAsync_ie = LoadToTargetSceneAsync(scenePath, words,  needWords);
             StartCoroutine(_loadSceneAsync_ie); 
+            
             return true;
         }
         else if (curLoadStatus == SceneLoadStatus.Running)
@@ -189,7 +198,9 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
                 StopCoroutine(_loadSceneAsync_ie);
             _loadSceneAsync_ie = LoadToTargetSceneAsync(scenePath, words, needWords);
             Debug.Log("Last LoadProgress success,Not Reset but current order still Load."); 
+            
             StartCoroutine(_loadSceneAsync_ie);
+
             return true;
         }
         else
@@ -235,11 +246,11 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
             else
                 Debug.Log("UIManager.Instance.sceneFader is NULL!");
 
+            onSceneLoadBegin?.Invoke();
+            
             //调用GC
             System.GC.Collect();
-
-            onSceneLoadBegin?.Invoke();
-
+            
             curLoadStatus = SceneLoadStatus.Running;
             //Debug.Log("sPath" + sPath);
             _loadAO = SceneManager.LoadSceneAsync(SceneUtility.GetBuildIndexByScenePath(sPath));
@@ -263,7 +274,12 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
             //恢复交互
             EventSystem.current.enabled = true;
             onSceneLoadEnd?.Invoke();
-
+            
+            if (changeChapterEvent != null)
+            {
+                changeChapterEvent.RaiseEvent();
+            }
+            
             Debug.Log("Load Scene Async Success");
         }
         else
@@ -298,7 +314,6 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
 
     public UnityEvent onSceneLoadBegin; 
     public UnityEvent onSceneLoadEnd;
-     
-
+    
     #endregion
 }

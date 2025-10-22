@@ -556,9 +556,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 1857176701}
-  itemData: {fileID: 11400000, guid: 04c13320da60db54091c9e290a5b8a9f, type: 2}
+  imageForItem: {fileID: 1602947331}
+  inventoryItemData: {fileID: 11400000, guid: 04c13320da60db54091c9e290a5b8a9f, type: 2}
   inventoryItemPrefab: {fileID: 2352745321712702293, guid: d1e03fe9ec2a1ab4b897f03ccf7a21eb, type: 3}
   container: {fileID: 1767909404}
+  raiseDuration: 0.7
+  backDuration: 0.5
 --- !u!1 &36857913
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,9 +1363,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 169517358}
-  itemData: {fileID: 11400000, guid: 809aada08127dcc46b5c9bf6d374075f, type: 2}
+  imageForItem: {fileID: 1602947331}
+  inventoryItemData: {fileID: 11400000, guid: 809aada08127dcc46b5c9bf6d374075f, type: 2}
   inventoryItemPrefab: {fileID: 2352745321712702293, guid: d1e03fe9ec2a1ab4b897f03ccf7a21eb, type: 3}
   container: {fileID: 1767909404}
+  raiseDuration: 0.7
+  backDuration: 0.5
 --- !u!1 &276454181
 GameObject:
   m_ObjectHideFlags: 3
@@ -2771,9 +2777,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 199590150}
-  itemData: {fileID: 11400000, guid: fc3f157baa1767c4f979804632719860, type: 2}
+  imageForItem: {fileID: 1602947331}
+  inventoryItemData: {fileID: 11400000, guid: fc3f157baa1767c4f979804632719860, type: 2}
   inventoryItemPrefab: {fileID: 2352745321712702293, guid: d1e03fe9ec2a1ab4b897f03ccf7a21eb, type: 3}
   container: {fileID: 1767909404}
+  raiseDuration: 0.7
+  backDuration: 0.5
 --- !u!1 &582572617
 GameObject:
   m_ObjectHideFlags: 0
@@ -3436,9 +3445,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 1817182127}
-  itemData: {fileID: 11400000, guid: 442c6fa57e0bd00408867cededc4b475, type: 2}
+  imageForItem: {fileID: 1602947331}
+  inventoryItemData: {fileID: 11400000, guid: 442c6fa57e0bd00408867cededc4b475, type: 2}
   inventoryItemPrefab: {fileID: 2352745321712702293, guid: d1e03fe9ec2a1ab4b897f03ccf7a21eb, type: 3}
   container: {fileID: 1767909404}
+  raiseDuration: 0.7
+  backDuration: 0.5
 --- !u!1 &615167180
 GameObject:
   m_ObjectHideFlags: 0
@@ -4211,9 +4223,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 502331989}
-  itemData: {fileID: 11400000, guid: b0d5c490c2bb43c42adc60e16cd5e6ec, type: 2}
+  imageForItem: {fileID: 1602947331}
+  inventoryItemData: {fileID: 11400000, guid: b0d5c490c2bb43c42adc60e16cd5e6ec, type: 2}
   inventoryItemPrefab: {fileID: 2352745321712702293, guid: d1e03fe9ec2a1ab4b897f03ccf7a21eb, type: 3}
   container: {fileID: 1767909404}
+  raiseDuration: 0.7
+  backDuration: 0.5
 --- !u!1 &909037244
 GameObject:
   m_ObjectHideFlags: 0
@@ -5518,9 +5533,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 365070221}
-  itemData: {fileID: 11400000, guid: 9bbd0b4a80b84b24991473465ed7c94d, type: 2}
+  imageForItem: {fileID: 1602947331}
+  inventoryItemData: {fileID: 11400000, guid: 9bbd0b4a80b84b24991473465ed7c94d, type: 2}
   inventoryItemPrefab: {fileID: 2352745321712702293, guid: d1e03fe9ec2a1ab4b897f03ccf7a21eb, type: 3}
   container: {fileID: 1767909404}
+  raiseDuration: 0.7
+  backDuration: 0.5
 --- !u!1001 &1197234616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7548,9 +7566,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 279109728}
-  itemData: {fileID: 11400000, guid: b717b4d1631f789458b15c361a6bb540, type: 2}
+  imageForItem: {fileID: 1602947331}
+  inventoryItemData: {fileID: 11400000, guid: b717b4d1631f789458b15c361a6bb540, type: 2}
   inventoryItemPrefab: {fileID: 2352745321712702293, guid: d1e03fe9ec2a1ab4b897f03ccf7a21eb, type: 3}
   container: {fileID: 1767909404}
+  raiseDuration: 0.7
+  backDuration: 0.5
 --- !u!1 &1671362341
 GameObject:
   m_ObjectHideFlags: 0
@@ -10603,6 +10624,10 @@ MonoBehaviour:
   virtualCamera: {fileID: 2043794686}
   BInvertInput: 1
   BRemoveWrongActionTip: 1
+  BNoGetInput: 0
+  OnPlayerAutoMoveFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!199 &208889867718952529
 ParticleSystemRenderer:
   serializedVersion: 6

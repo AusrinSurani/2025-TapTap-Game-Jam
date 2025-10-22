@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroy: 1
+  changeChapterEvent: {fileID: 11400000, guid: 5abe17569c7681241975513f192e1c9c, type: 2}
   currentScene: 0
   scenesDisplayID: 0000000001000000030000000400000005000000
   scenesPath:

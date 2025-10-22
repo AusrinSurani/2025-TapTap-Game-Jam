@@ -35,16 +35,20 @@ public class EmailController : MonoBehaviour
 
     private void OnChapterChange()
     {
-        ChapterOfGame currentChapter = GameFlowManager.Instance.currentChapter;
-        if (currentChapter == ChapterOfGame.ChapterWaiter || currentChapter == ChapterOfGame.NoOne)
+        int currentDay = GameFlowManager.Instance.currentDay;
+        
+        //邮件随着天数增加
+        if (currentDay == 2)
         {
             email4.SetActive(true);
         }
-        else if (currentChapter == ChapterOfGame.ChapterProgrammer)
+        else if (currentDay == 3)
         {
             email4.SetActive(true);
             email5.SetActive(true);
         }
+        
+        Debug.Log(currentDay+"day,邮件设置完毕");
         
         SaveEmailsData();
         LoadEmailsData();

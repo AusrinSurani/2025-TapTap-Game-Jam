@@ -63,7 +63,10 @@ public class UIManager : Singleton<UIManager>
     {
         for (int i = 0; i < _panelPoolQueue.Count; i++)
         {
-            Destroy(_panelPoolQueue.Peek().gameObject);
+            if (_panelPoolQueue.Peek() != null)
+            {
+                Destroy(_panelPoolQueue.Dequeue().gameObject);
+            }
         }
         //Destroy(panelPoolList[i]);
     }

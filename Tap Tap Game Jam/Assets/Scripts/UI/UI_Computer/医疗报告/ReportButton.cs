@@ -49,7 +49,8 @@ public class ReportButton : BounceButton
 
     private void RefreshInformation()
     {
-        if(!GameFlowManager.Instance.currentSceneIsOver)
+        //只有治疗结束了，才有医疗报告
+        if(!GameFlowManager.Instance.currentIsOver)
         { 
             currentInformation = 0;
             
@@ -133,5 +134,31 @@ public class ReportButton : BounceButton
                 isDark ? Mathf.Lerp(0, 0.93f,timer/0.35f): Mathf.Lerp(0.93f,0, timer / 0.35f);
         }
         yield return null;
+    }
+    
+    //按下提交患者诊断报告进入下一天
+    public void Submit()
+    {
+        //如果没有治疗结束或者没有选择最终诊断，则无法提交
+        if (!GameFlowManager.Instance.currentIsOver || dropdown.value == 0)
+        {
+            DialogManager.Instance.ShowMessage("治疗还未开始，或者没有选择最终诊断");
+            return;
+        }
+        
+        GameFlowManager gameFlowManager = GameFlowManager.Instance;
+
+        gameFlowManager.ChangeChapter(ChapterOfGame.NoOne, false, gameFlowManager.currentDay + 1);
+        StartCoroutine(AfterSubmit());
+    }
+
+    private IEnumerator AfterSubmit()
+    {
+        UIManager.Instance.coverFader.gameObject.SetActive(true);
+        CloseWindows();
+        GetComponentInParent<UI_Computer>().MoveBack(false);
+        yield return UIManager.Instance.coverFader.FadeIn();
+        yield return UIManager.Instance.coverFader.FadeOut();
+        UIManager.Instance.coverFader.gameObject.SetActive(false);
     }
 }

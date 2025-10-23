@@ -247,10 +247,10 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
                 Debug.Log("UIManager.Instance.sceneFader is NULL!");
 
             onSceneLoadBegin?.Invoke();
-            
             //调用GC
             System.GC.Collect();
-            
+
+
             curLoadStatus = SceneLoadStatus.Running;
             //Debug.Log("sPath" + sPath);
             _loadAO = SceneManager.LoadSceneAsync(SceneUtility.GetBuildIndexByScenePath(sPath));

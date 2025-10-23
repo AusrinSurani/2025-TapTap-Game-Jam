@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DanceDream.unity
     guid: 9491c4307a6d094439cb1ab3c1eed744
+  - enabled: 1
+    path: Assets/Scenes/ComputeRoom.unity
+    guid: b1957b428ddf9a345997b757c61cff61
+  - enabled: 1
+    path: Assets/Scenes/CodeAndBugGame.unity
+    guid: 5a3cf2d9e2ded054b9dffc898878be4e
   m_configObjects: {}

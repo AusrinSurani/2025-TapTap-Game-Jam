@@ -9855,6 +9855,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7820436270839838163, guid: 6468b2fa1bc0ae243954287660d754d3, type: 3}
+      propertyPath: dancerBGMAudioPiece.sourceClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6c7bd14469895a54bbe620474b531565, type: 3}
     - target: {fileID: 8729994136563897445, guid: 6468b2fa1bc0ae243954287660d754d3, type: 3}
       propertyPath: m_Name
       value: AudioManager

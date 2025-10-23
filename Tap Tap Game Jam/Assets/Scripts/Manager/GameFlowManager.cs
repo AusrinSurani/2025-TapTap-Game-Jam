@@ -46,9 +46,9 @@ public class GameFlowManager : Singleton<GameFlowManager>
 
     private void Update()
     {
-        
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
+            LoadChapterData();
             chapterChangeEvent.RaiseEvent();
         }
     }

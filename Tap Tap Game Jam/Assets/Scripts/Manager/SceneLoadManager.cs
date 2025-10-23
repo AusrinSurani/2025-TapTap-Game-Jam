@@ -35,7 +35,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
 
     #region ScenePath输入
 
-    //与scensPath保持对应
+    //与scenesPath保持对应
     public List<SceneDisplayID> scenesDisplayID = new List<SceneDisplayID>();
     public List<string> scenesPath = new List<string>();
      
@@ -62,18 +62,15 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
     }
 
     #endregion
-    /// <summary>
-    ///datatype: sceneName,scenePath
-    /// </summary>
-    private Dictionary<SceneDisplayID, string> _sceneFile_DisplayIDAndPath = new Dictionary<SceneDisplayID, string>();
+
+    [SerializeField]private Dictionary<SceneDisplayID, string> _sceneFile_DisplayIDAndPath = new Dictionary<SceneDisplayID, string>();
     public enum SceneDisplayID
     {
         StartMenu,
         ConsultationRoom,
-        EnterDreamLoad,
         DressingRoom,
         DanceDream,
-        WaiterDream
+        WaiterDream,
     }
 
 
@@ -252,7 +249,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
             System.GC.Collect();
             
             curLoadStatus = SceneLoadStatus.Running;
-            //Debug.Log("sPath" + sPath);
+            Debug.Log("sPath:" + sPath);
             _loadAO = SceneManager.LoadSceneAsync(SceneUtility.GetBuildIndexByScenePath(sPath));
             _bLoadingAORunning = true;
             //等待异步加载完成

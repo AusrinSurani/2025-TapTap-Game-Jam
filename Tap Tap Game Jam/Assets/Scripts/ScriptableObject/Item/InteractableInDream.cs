@@ -38,9 +38,6 @@ public class InteractableInDream : Interactable
             if (!BNoAnimator)
                 animator = background?.GetComponent<Animator>();
         }
-        
-        
-            //background.gameObject.SetActive(true);
     }
 
     private void Update()
@@ -52,10 +49,13 @@ public class InteractableInDream : Interactable
             
             if (isShowing)
             {
-                //配合文本一起消失
-                canvasGroup.blocksRaycasts = false;
-                StartCoroutine(FadeCoroutine(1, 0, backDuration));
-
+                if (itemData.closeUp != null)
+                {
+                    //配合文本一起消失
+                    canvasGroup.blocksRaycasts = false;
+                    StartCoroutine(FadeCoroutine(1, 0, backDuration));
+                }
+                
                 if (needSwitch)
                 {
                     if (!BNoAnimator)
@@ -82,11 +82,9 @@ public class InteractableInDream : Interactable
         {
             imageForItem.GetComponent<Image>().gameObject.SetActive(true);
             imageForItem.GetComponent<Image>().sprite = itemData.closeUp;
+            StartCoroutine(FadeCoroutine(0, 1, raiseDuration));
         }
-        else
-            imageForItem.GetComponent<Image>().gameObject.SetActive(false);
-        StartCoroutine(FadeCoroutine(0, 1, raiseDuration));
-
+        
         if (needSwitch)
         {
             if (!BNoAnimator)

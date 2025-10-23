@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -21,22 +22,29 @@ public class AudioManager : Singleton<AudioManager>
         sfVolumn = 1f;
     }
 
+    private void Start()
+    {
+        
+    }
+
     private void Update()
     { 
         //test
-        if(Input.GetKeyDown(KeyCode.T))
+        /*if(Input.GetKeyDown(KeyCode.T))
         {
             /*AudioLoopPlay(bgmAudioPiece); 
             AudioLoopPlay(bgm2TestAudioPiece);
             AudioLoopPlay(bgm3TestAudioPiece);
-            AudioLoopPlay(bgm3TestAudioPiece); */
+            AudioLoopPlay(bgm3TestAudioPiece); #1#
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
             //AudioOncePlay(testAudioPiece);
-        }
+        }*/
 
         //endtest
+
+        
 
     }
 
@@ -476,6 +484,9 @@ public class AudioManager : Singleton<AudioManager>
     public AudioPiece mainMenuBtnAudioPiece;
 
     public AudioPiece bgmAudioPiece; 
+    
+    [Header("BGM")]
+    public AudioPiece consultingBGM;
 
     [Header("DancerDreamAudioPieces")]
     public AudioPiece sceneLightSwitchAudioPiece;

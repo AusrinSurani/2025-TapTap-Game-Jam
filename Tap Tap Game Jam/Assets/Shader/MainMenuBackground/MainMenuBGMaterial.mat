@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: MainMenuBGMaterial
+  m_Shader: {fileID: 4800000, guid: 0483677eb00fcec4193b461634977ff3, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _Brightness: 1
+    - _CurlScale: 0.8
+    - _Darkness: 0
+    - _NoiseFactor: 0.2
+    - _PatternScale: 0.1
+    - _Speed: 2
+    m_Colors:
+    - _Color0: {r: 0.28627452, g: 0.4117647, b: 0.43137255, a: 1}
+    - _Color1: {r: 0.11764706, g: 0.34509805, b: 0.5019608, a: 1}
+    - _Color2: {r: 0.0627451, g: 0.24313726, b: 0.38431373, a: 1}
+    - _Color3: {r: 0, g: 0.15686275, b: 0.28235295, a: 1}
+    - _Color4: {r: 0.003921569, g: 0.007843138, b: 0.015686275, a: 1}
+    - _Color5: {r: 0.12941177, g: 0.4627451, b: 0.5254902, a: 1}
+  m_BuildTextureStacks: []

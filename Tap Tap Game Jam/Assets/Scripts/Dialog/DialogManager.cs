@@ -98,8 +98,10 @@ public class DialogManager : Singleton<DialogManager>
         animDict["来问诊的女人"] = "Dancer";
         animDict["妮娜"] = "Dancer";
 
-        animDict["德尔塔·布莱梅"] = "Programmer";
-        animDict["桥田缪"] = "Waiter";
+        animDict["桥田缪"] = "Programmer";
+        
+        animDict["德尔塔·布莱梅"] = "Waiter";
+        animDict["布莱梅"] =  "Waiter";
     }
 
     private void Start()

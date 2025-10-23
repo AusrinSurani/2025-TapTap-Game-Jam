@@ -16,7 +16,8 @@ public class DreamButton : BounceButton
     public Animator machineAnimator;
     
     [Header("表格")]
-    private int currentConfig = 0;
+    public int currentConfig = 0;
+    public SceneLoadManager.SceneDisplayID sceneToLoad;
     public DreamSystemConfig[] dreamSystemConfig;
     public TextMeshProUGUI nameOfPatient;
     public TextMeshProUGUI keyWords;
@@ -62,6 +63,9 @@ public class DreamButton : BounceButton
                 currentConfig = 0;
                 break;
         }
+        
+        Debug.Log("Config更新：" + currentConfig);
+        sceneToLoad = dreamSystemConfig[currentConfig].idOfSceneToLoad;
         
         nameOfPatient.text = dreamSystemConfig[currentConfig].nameOfPatient;
         keyWords.text = dreamSystemConfig[currentConfig].keyWords;
@@ -156,6 +160,6 @@ public class DreamButton : BounceButton
         yield return new WaitForSeconds(2.6f);
         SceneLoadManager.Instance.ResetSceneLoadStatus();
         SceneLoadManager.Instance.TryLoadToTargetSceneAsync
-            (dreamSystemConfig[currentConfig].idOfSceneToLoad, "入梦", true);
+            (sceneToLoad, "入梦", true);
     }
 }   

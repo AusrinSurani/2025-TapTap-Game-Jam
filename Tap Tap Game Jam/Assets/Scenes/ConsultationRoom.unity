@@ -759,7 +759,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2138142169}
   m_Direction: 2
   m_Value: 1
-  m_Size: 1
+  m_Size: 0.99998593
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6565,6 +6565,8 @@ MonoBehaviour:
   windows: {fileID: 1684473856}
   darkMask: {fileID: 546505326}
   machineAnimator: {fileID: 1104597927}
+  currentConfig: 0
+  sceneToLoad: 0
   dreamSystemConfig:
   - {fileID: 11400000, guid: 91037779accd71c4a9570c98f172cb07, type: 2}
   - {fileID: 11400000, guid: 356c9423b5f9b7042ae63c68e1fb700e, type: 2}
@@ -10701,6 +10703,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 997921746290297723, guid: 4ecd56e339ad3d04b8b4a5039ec129a6, type: 3}
+      propertyPath: scenesDisplayID.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 997921746290297723, guid: 4ecd56e339ad3d04b8b4a5039ec129a6, type: 3}
+      propertyPath: scenesDisplayID.Array.data[3]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 997921746290297723, guid: 4ecd56e339ad3d04b8b4a5039ec129a6, type: 3}
+      propertyPath: scenesDisplayID.Array.data[4]
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1197494861553681273, guid: 4ecd56e339ad3d04b8b4a5039ec129a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -11458,7 +11472,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -161.49944, y: 379.99985}
+  m_AnchoredPosition: {x: -161.49944, y: 379.99988}
   m_SizeDelta: {x: 324, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1434075878
@@ -15219,6 +15233,22 @@ PrefabInstance:
     - target: {fileID: 3579438005212663767, guid: 6468b2fa1bc0ae243954287660d754d3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820436270839838163, guid: 6468b2fa1bc0ae243954287660d754d3, type: 3}
+      propertyPath: consultingBGM.audioID
+      value: 101
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820436270839838163, guid: 6468b2fa1bc0ae243954287660d754d3, type: 3}
+      propertyPath: consultingBGM.sourceClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b986a84db9d21b44295fdf3576bac46b, type: 3}
+    - target: {fileID: 7820436270839838163, guid: 6468b2fa1bc0ae243954287660d754d3, type: 3}
+      propertyPath: consultingBGM.volumnValue
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820436270839838163, guid: 6468b2fa1bc0ae243954287660d754d3, type: 3}
+      propertyPath: consultingBGM.audioClipDescription
+      value: "\u95EE\u8BCABGM"
       objectReference: {fileID: 0}
     - target: {fileID: 8729994136563897445, guid: 6468b2fa1bc0ae243954287660d754d3, type: 3}
       propertyPath: m_Name
@@ -22150,6 +22180,10 @@ MonoBehaviour:
   programmer: {fileID: 1635458138}
   dialogWithDancer0: {fileID: 4900000, guid: 556b6c8b23521a946bf2febda40a11e0, type: 3}
   dialogWithDancer1: {fileID: 4900000, guid: 72b1bf8346cec894784c66a0fdc273b8, type: 3}
+  dialogWithWaiter0: {fileID: 4900000, guid: 9dbe9c2185594984390dfbff4078bfc6, type: 3}
+  dialogWithWaiter1: {fileID: 4900000, guid: 95cf260f4eaaf724b93c28c7f38aa332, type: 3}
+  dialogWithProgrammer0: {fileID: 0}
+  dialogWithProgrammer1: {fileID: 0}
 --- !u!222 &6909881948002570413
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ using UnityEngine.Events;
 
 public class DialogManager : Singleton<DialogManager>
 {
+    public GameObject mask;
+    
     public GameObject dialogBox;
 
     private Vector2 originalSize;
@@ -388,8 +390,10 @@ public class DialogManager : Singleton<DialogManager>
     
     private void StartExample()
     {
-        string[] example = {"一句话中的<link=关键词><color=red>关键词</color></link>",
-            "第二句话里的<link=另一个关键词><color=green>另一个关键词</color></link>"};
+        string[] example = {"一句话中的<link=咖啡豆><color=red>咖啡豆</color></link>",
+            "第二句话里的<link=粉蔷><color=green>粉蔷</color></link>,第二句话里的<link=披萨><color=green>披萨</color></link>",
+            "第三：<link=大衣><color=green>大衣</color></link>,第三句话里的<link=英格里><color=green>英格里</color></link>",
+        };
         
         ShowMessage(example);
     }

@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WaiterDream.unity
     guid: f4ec8a112aa38374ba375e64c4fa5c0e
+  - enabled: 1
+    path: Assets/Scenes/ComputeRoom.unity
+    guid: b1957b428ddf9a345997b757c61cff61
   m_configObjects: {}

@@ -1,5 +1,6 @@
+using System;
 using UnityEngine;
-using System.Collections; // --- 新增 ---：为了使用协程（Coroutines）
+using System.Collections;
 
 public class DraggableItem : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class DraggableItem : MonoBehaviour
 
     public bool isSuit = false; 
     public InventoryItemData inventoryItemData;
+    public InventoryWordsData inventoryWordsData;
     public SpriteRenderer icon;
 
     void Awake()
@@ -23,6 +25,12 @@ public class DraggableItem : MonoBehaviour
     {
         inventoryItemData = _inventoryItemData;
         icon.sprite = inventoryItemData.closeUp;
+    }
+
+    public void SetUpWords(InventoryWordsData _inventoryWordsData)
+    {
+        inventoryWordsData = _inventoryWordsData;
+        icon.sprite = inventoryWordsData.closeUp;
     }
 
     void OnMouseDown()
@@ -128,5 +136,15 @@ public class DraggableItem : MonoBehaviour
         mousePoint.z = 10f;
         
         return mainCamera.ScreenToWorldPoint(mousePoint);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("LostWords") && other.GetComponent<BlankForWords>().lostWord == inventoryWordsData.word)
+        {
+            other.GetComponent<BlankForWords>().haveWord = true;
+            other.GetComponent<BlankForWords>().CheckAllComplete();
+            gameObject.SetActive(false);
+        }
     }
 }

@@ -15,6 +15,8 @@ MonoBehaviour:
   itemName: "\u9999\u69DF"
   icon: {fileID: 21300000, guid: fc28c2957504d494394492d29a0d9e09, type: 3}
   outline: {fileID: 21300000, guid: 66fb0096ad23d58458696bec997dfc86, type: 3}
-  closeUp: {fileID: 0}
-  description: "\u9999\u69DF"
-  descriptions: []
+  closeUp: {fileID: 21300000, guid: 77d924e9c49d60f419b829a4e63ba196, type: 3}
+  description: "\u6211\u53EF\u4EE5\u770B\u770B\u9999\u69DF\u4E0A\u7684\u6807\u7B7E"
+  descriptions:
+  - "\u6211\u53EF\u4EE5\u770B\u770B\u9999\u69DF\u4E0A\u7684\u6807\u7B7E"
+  - "\u76EE\u524D\u8FD8\u662F\u7F3A\u4E86\u5B57"

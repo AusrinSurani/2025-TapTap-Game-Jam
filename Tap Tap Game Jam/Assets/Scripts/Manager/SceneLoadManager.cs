@@ -71,6 +71,7 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
         DressingRoom,
         DanceDream,
         WaiterDream,
+        ComputeRoom
     }
 
 

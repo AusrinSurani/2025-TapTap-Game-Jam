@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class InteractableInDream : Interactable
 {
+    public GameObject dialogMask;
+    
     [Header("显示物品特写的UI")]
     public GameObject imageForItem;
     private CanvasGroup canvasGroup;
@@ -19,17 +21,14 @@ public class InteractableInDream : Interactable
     private Animator animator;
     public bool BNoAnimator;
     
-    [SerializeField]private float raiseDuration;
-    [SerializeField]private float backDuration;
-
-    private void Awake()
-    {
-        
-    }
+    public float raiseDuration;
+    public float backDuration;
 
     public override void Start()
     {
         base.Start();
+        dialogMask = DialogManager.Instance.mask;
+        
         canvasGroup = imageForItem.GetComponent<CanvasGroup>();
         canvasGroup.alpha = 0;
 
@@ -40,7 +39,7 @@ public class InteractableInDream : Interactable
         }
     }
 
-    private void Update()
+    public virtual void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -70,17 +69,28 @@ public class InteractableInDream : Interactable
         }
     }
 
+    public override void OnPointerEnter(PointerEventData eventData)
+    {
+        if(dialogMask.activeSelf == false)
+            return;
+        
+        base.OnPointerEnter(eventData);
+    }
+
     public UnityEvent OnInteractFinished;
     public override void OnPointerClick(PointerEventData eventData)
     {
-        base.OnPointerClick(eventData);
-    
+        if (dialogMask.activeSelf == false)
+        {
+            return;
+        }
         
-        Debug.Log( itemData.closeUp != null);
+        base.OnPointerClick(eventData);
+        
         //显示特写图
         if (itemData.closeUp != null)
         {
-            imageForItem.GetComponent<Image>().gameObject.SetActive(true);
+            imageForItem.SetActive(true);
             imageForItem.GetComponent<Image>().sprite = itemData.closeUp;
             StartCoroutine(FadeCoroutine(0, 1, raiseDuration));
         }

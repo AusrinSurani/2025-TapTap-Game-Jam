@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroy: 1
+  mask: {fileID: 5602017638644867105}
   dialogBox: {fileID: 137334163481128867}
   charsPerSecond: 30
   dialogTextAsset: {fileID: 0}
@@ -421,6 +422,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acccdf68b1059924aabed3f4ff161f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wordsData:
+  - {fileID: 11400000, guid: de114d47b7006584fbf7aa21da9a2da0, type: 2}
+  - {fileID: 11400000, guid: e2404ab22e8b71a45997447b33ea8055, type: 2}
+  - {fileID: 11400000, guid: 72e11e73cbec00545b82ac1a5bfa29eb, type: 2}
+  - {fileID: 11400000, guid: 7f81ea861b60ee84a961a1dc67113504, type: 2}
+  - {fileID: 11400000, guid: 318a96cbe44b80740b4ccff0b3d0eb2a, type: 2}
+  - {fileID: 11400000, guid: a4a296ddc81670b4a99a6a9c41b8c427, type: 2}
+  - {fileID: 11400000, guid: 60e5be3ba2d009343a3e2cee1f0c4959, type: 2}
+  - {fileID: 11400000, guid: 00b2870d6564dc443841d4a84733ce37, type: 2}
+  - {fileID: 11400000, guid: 4486b2d25dd91ec4d83c5092c1544083, type: 2}
+  - {fileID: 11400000, guid: 944a9f8e6c41b4b49a39e0a72dee6f14, type: 2}
+  inventoryItemPrefab: {fileID: 2352745321712702293, guid: d1e03fe9ec2a1ab4b897f03ccf7a21eb, type: 3}
+  container: {fileID: 0}
   floatingWordPrefab: {fileID: 3070468660175013467, guid: 7eacf6f62c8b2884b8417e2a15346b99, type: 3}
 --- !u!1 &5695730063237836963 stripped
 GameObject:

@@ -5,6 +5,12 @@ using System.Text;
 
 public class ClickableTextController : MonoBehaviour, IPointerClickHandler
 {
+    [Header("可收集字词表")] 
+    public InventoryWordsData[] wordsData;
+    public GameObject inventoryItemPrefab;
+    public GameObject container;
+    
+    
     [Header("浮动文字的预制体")]
     public GameObject floatingWordPrefab; 
 
@@ -30,6 +36,15 @@ public class ClickableTextController : MonoBehaviour, IPointerClickHandler
             //获取被点击的单词
             string clickedWord = linkInfo.GetLinkText();
             Debug.Log($"点击了单词: {clickedWord}, 链接ID为: {linkInfo.GetLinkID()}");
+            
+            //选择收集的文字信息
+            foreach (InventoryWordsData word in wordsData)
+            {
+                if (clickedWord == word.word)
+                {
+                    GenerateItem(word);
+                }
+            }
 
             //计算单词在屏幕上的位置
             Vector3 wordPosition = GetWordPosition(linkInfo);
@@ -98,5 +113,18 @@ public class ClickableTextController : MonoBehaviour, IPointerClickHandler
         textMeshPro.text = sb.ToString();
 
         textMeshPro.ForceMeshUpdate();
+    }
+    
+    private void GenerateItem(InventoryWordsData itemData)
+    {
+        int numOfItems = container.transform.childCount;
+        
+        float yPosition = -1.5f * numOfItems + 4 + container.transform.position.y;
+
+        GameObject newItem = Instantiate(inventoryItemPrefab, new Vector3(
+            container.transform.position.x, yPosition, 9.938788f), Quaternion.identity );
+        
+        newItem.GetComponent<DraggableItem>().SetUpWords(itemData);
+        newItem.transform.SetParent(container.transform);
     }
 }

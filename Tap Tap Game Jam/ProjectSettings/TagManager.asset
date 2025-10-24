@@ -8,6 +8,7 @@ TagManager:
   - ChangeScene
   - InventoryBackGround
   - InventoryItem
+  - LostWords
   layers:
   - Default
   - TransparentFX

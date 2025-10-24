@@ -827,7 +827,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 52334aa5cfff65143bc9af0213ce0f6e, type: 2}
   outLine: {fileID: 766509930}
+  dialogMask: {fileID: 0}
   imageForItem: {fileID: 1236068292}
+  needSwitch: 1
   background: {fileID: 1205767554}
   BNoAnimator: 1
   raiseDuration: 0.7
@@ -945,7 +947,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1520078233
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2877,7 +2879,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: dcd448b76be979049b9282f844559c05, type: 2}
   outLine: {fileID: 1103189641}
+  dialogMask: {fileID: 0}
   imageForItem: {fileID: 1236068292}
+  needSwitch: 1
   background: {fileID: 1205767554}
   BNoAnimator: 1
   raiseDuration: 0.7
@@ -2990,7 +2994,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1520078233
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9782,6 +9786,7 @@ MonoBehaviour:
   moveSpeed: 5
   torchKey: 105
   sleepKey: 111
+  virtualCamera: {fileID: 0}
   BInvertInput: 0
   BRemoveWrongActionTip: 1
   BNoGetInput: 0

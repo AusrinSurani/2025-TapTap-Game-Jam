@@ -14,6 +14,8 @@ public class CollectableItem : MonoBehaviour,IPointerClickHandler,IPointerEnterH
     public GameObject inventoryItemPrefab;
     public GameObject container;
 
+    public GameObject dialogMask;
+
     [Header("特写过渡参数")] 
     public float raiseDuration;
     public float backDuration;
@@ -45,6 +47,9 @@ public class CollectableItem : MonoBehaviour,IPointerClickHandler,IPointerEnterH
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if(dialogMask.activeSelf == false)
+            return;
+        
         //TODO:消失，生成一个物体在container那里,然后触发对话,显示特写
         isShowing = true;
         DialogManager.Instance.ShowMessage(inventoryItemData.descriptions);
@@ -55,6 +60,8 @@ public class CollectableItem : MonoBehaviour,IPointerClickHandler,IPointerEnterH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if(dialogMask.activeSelf == false)
+            return;
         outline.enabled = true;
     }
 

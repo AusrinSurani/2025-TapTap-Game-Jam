@@ -16,11 +16,21 @@ public class EmailController : MonoBehaviour
     const string HAVE_RAED_EMAIL_DATA_FILE = "HaveReadEmailData.txt";
 
     private EmailNameButton[] emailNameButtons;
-    private bool haveAllRead = false;
+    public bool haveAllRead = false;
 
     private void Awake()
     {
         emailNameButtons = GetComponentsInChildren<EmailNameButton>();
+        
+        if(File.Exists(Path.Combine(Application.persistentDataPath,HAVE_RAED_EMAIL_DATA_FILE)))
+        {
+            LoadEmailsData();
+        }
+        else
+        {
+            //第一次玩没有数据，准备默认的数据
+            SetDefaultAudioSettingData();
+        }
     }
 
     private void OnEnable()
@@ -56,18 +66,6 @@ public class EmailController : MonoBehaviour
 
     private void Start()
     {
-        /*Debug.Log(emailNameButtons.Length);
-        Debug.Log(File.Exists(Path.Combine(Application.persistentDataPath,HAVE_RAED_EMAIL_DATA_FILE)));*/
-        
-        if(File.Exists(Path.Combine(Application.persistentDataPath,HAVE_RAED_EMAIL_DATA_FILE)))
-        {
-            LoadEmailsData();
-        }
-        else
-        {
-            //第一次玩没有数据，准备默认的数据
-            SetDefaultAudioSettingData();
-        }
     }
 
     private void Update()

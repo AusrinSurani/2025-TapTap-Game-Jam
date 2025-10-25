@@ -11,4 +11,5 @@ public class ItemData : ScriptableObject
     public Sprite closeUp;
     public string description;
     public string[] descriptions;
+    public string[] nextDescriptions;
 }

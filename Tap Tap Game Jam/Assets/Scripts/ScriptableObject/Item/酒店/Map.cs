@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,45 @@ using UnityEngine.EventSystems;
 
 public class Map : Interactable
 {
+    [Header("事件监听")] 
+    public VoidEventSO getFirstMapEvent;
+    
     public GameObject map;
+    public PlayerController  player;
+
+    [Header("流程")] 
+    public string[] firstMessage;
+    public string[] secondMessage;
+    public bool haveFirstMap = false;
+    private bool isFirstlyInteract = true;
+
+    private void OnEnable()
+    {
+        getFirstMapEvent.OnEventRaise += () => {haveFirstMap = true;};
+    }
+
+    private void OnDisable()
+    {
+        getFirstMapEvent.OnEventRaise -= () => {haveFirstMap = true;};
+    }
 
     public override void OnPointerClick(PointerEventData eventData)
     {
+        if (!haveFirstMap && isFirstlyInteract)
+        {
+            DialogManager.Instance.ShowMessage(firstMessage);
+            
+            isFirstlyInteract = false;
+            return;
+        }
+
+        if (!haveFirstMap)
+        {
+            DialogManager.Instance.ShowMessage(secondMessage);
+            return;
+        }
         
+        player.BNoGetInput = true;
+        map.GetComponent<UI_Map>().StartMove();
     }
 }

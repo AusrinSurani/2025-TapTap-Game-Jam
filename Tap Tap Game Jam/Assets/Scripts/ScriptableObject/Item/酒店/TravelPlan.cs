@@ -22,30 +22,29 @@ public class TravelPlan : Interactable
 
     public virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!Input.GetKeyDown(KeyCode.Space) || DialogManager.Instance.IsTyping() || !DialogManager.Instance.IsOnLastMessage())
         {
-            if(DialogManager.Instance.IsTyping())
-                return;
+            return;
+        }
             
-            if (isShowing)
+        if (isShowing)
+        {
+            if (specialImage != null && specialImage.activeSelf == true)
             {
-                if (specialImage != null && specialImage.activeSelf == true)
+                if (specialImage.GetComponent<BlankController>().haveGetMap && 
+                    specialImage.GetComponent<BlankController>().mapSprite != null)
                 {
-                    if (specialImage.GetComponent<BlankController>().haveGetMap && 
-                        specialImage.GetComponent<BlankController>().mapSprite != null)
-                    {
-                        //地图特写也一起消失
-                        StartCoroutine(MapFadeCoroutine());
-                    }
-                    else
-                    {
-                        //特写配合文本一起消失
-                        StartCoroutine(FadeCoroutine(specialImage,backDuration));
-                    }
+                    //地图特写也一起消失
+                    StartCoroutine(MapFadeCoroutine());
                 }
-                
-                isShowing = false;
+                else
+                {
+                    //特写配合文本一起消失
+                    StartCoroutine(FadeCoroutine(specialImage,backDuration));
+                }
             }
+                
+            isShowing = false;
         }
     }
 
@@ -56,6 +55,12 @@ public class TravelPlan : Interactable
         if (specialImage != null)
         {
             specialImage.SetActive(true);
+            
+            foreach (var t in specialImage.GetComponent<BlankController>().blankForWords)
+            {
+                t.GetComponent<BoxCollider2D>().enabled = true;
+            }
+            
             specialImage.GetComponent<SpriteRenderer>().sprite = itemData.closeUp;
             StartCoroutine(RaiseCoroutine(specialImage,raiseDuration));
             isShowing = true;

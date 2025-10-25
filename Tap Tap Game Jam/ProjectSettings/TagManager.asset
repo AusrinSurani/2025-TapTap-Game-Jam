@@ -18,8 +18,8 @@ TagManager:
   - UI
   - Player
   - LightTrigger
-  - 
-  - 
+  - Slot
+  - LostWords
   - 
   - 
   - 
@@ -73,9 +73,9 @@ TagManager:
   - name: OutlineOverPlayer
     uniqueID: 173061729
     locked: 0
-  - name: Inventory
-    uniqueID: 3547991261
-    locked: 0
   - name: Map
     uniqueID: 1727175809
+    locked: 0
+  - name: Inventory
+    uniqueID: 3547991261
     locked: 0

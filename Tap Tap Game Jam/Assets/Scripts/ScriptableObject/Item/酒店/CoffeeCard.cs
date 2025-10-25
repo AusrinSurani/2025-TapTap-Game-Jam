@@ -11,13 +11,15 @@ public class CoffeeCard : TravelPlan
 
     public override void Update()
     {
-        if (!Input.GetKeyDown(KeyCode.Space) ||DialogManager.Instance.IsTyping())
+        if (!Input.GetKeyDown(KeyCode.Space) ||DialogManager.Instance.IsTyping() || !DialogManager.Instance.IsOnLastMessage())
         {
             return;
         }
 
         if (hasNextCloseUp && !isInNextCloseUp && specialImage.activeSelf == true)
         {
+            DialogManager.Instance.ShowMessage(itemData.nextDescriptions);
+            
             //切换背面图
             specialImage.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
             specialImage.GetComponent<SpriteRenderer>().sprite = coffeeSprite;

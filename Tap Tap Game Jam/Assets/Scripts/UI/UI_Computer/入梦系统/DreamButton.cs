@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 public class DreamButton : BounceButton
 {
     [Header("事件监听")] public VoidEventSO chapterChangeEvent;
+
+    [Header("要关闭的指引")] public GameObject guide;
     
     private Animator animator;
     private bool isOpenWindows = false;
@@ -133,7 +135,7 @@ public class DreamButton : BounceButton
         //如果没有患者，或者说患者治疗结束了，都不能再入梦了
         if (GameFlowManager.Instance.currentChapter == ChapterOfGame.NoOne)
         {
-            DialogManager.Instance.ShowMessage("现在还没有患者呢");
+            DialogManager.Instance.ShowMessage("问诊结束后才能进行入梦治疗，现在还不是时候");
             return;
         }
         else if(GameFlowManager.Instance.currentIsOver&& GameFlowManager.Instance.currentChapter != ChapterOfGame.NoOne)
@@ -142,6 +144,7 @@ public class DreamButton : BounceButton
             return;
         }
         
+        guide.SetActive(false);
         StartCoroutine(BeforeLoadCoroutine());
     }
 

@@ -4,6 +4,8 @@ using System.Collections;
 
 public class DraggableItem : MonoBehaviour
 {
+    public GameObject destroyContainer;
+    
     private Vector3 offset;
     private Camera mainCamera;
 
@@ -144,7 +146,12 @@ public class DraggableItem : MonoBehaviour
         {
             other.GetComponent<BlankForWords>().haveWord = true;
             other.GetComponent<BlankForWords>().CheckAllComplete();
+            
+            transform.SetParent(DestoryContainer.Instance.transform);
             gameObject.SetActive(false);
+            
+            Debug.Log(ItemSlotController.Instance == null);
+            ItemSlotController.Instance.ResetSlotsPosition(this);
         }
     }
 }

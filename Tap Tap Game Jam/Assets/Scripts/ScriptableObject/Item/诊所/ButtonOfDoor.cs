@@ -6,9 +6,17 @@ using UnityEngine.EventSystems;
 
 public class ButtonOfDoor : Interactable
 {
+    [Header("指引")] public GameObject guide;
+    
+    [Header("邮件与资讯")] 
+    public EmailController emailController;
+    public UIPhone phone;
+    
+    [Header("角色")]
     public GameObject dancer;
     public GameObject waiter;
     public GameObject programmer;
+    [Header("剧本")]
     public TextAsset dialogWithDancer0;
     public TextAsset dialogWithDancer1;
     public TextAsset dialogWithWaiter0;
@@ -74,6 +82,12 @@ public class ButtonOfDoor : Interactable
             return;
         }
         
+        if (!CheckPhoneAndEmail())
+        {
+            DialogManager.Instance.ShowMessage("传唤患者的按键。我现在还不想开始工作，再看看邮件刷刷手机吧");
+            return;
+        }
+        
         //触发事件，黑屏，然后患者出现，对话
         StartCoroutine(OnDancerComeIn());
         
@@ -102,12 +116,27 @@ public class ButtonOfDoor : Interactable
     private IEnumerator OnDancerComeIn()
     {
         yield return DancerComeIn();
-        
-        if(beginTextAssets[GameFlowManager.Instance.currentChapter] != null)
+
+        if (beginTextAssets[GameFlowManager.Instance.currentChapter] != null)
+        {
             DialogManager.Instance.StartDialog( beginTextAssets[GameFlowManager.Instance.currentChapter]);
+            //等到对话结束，显示指引
+            StartCoroutine(RaiseGuide());
+        }
         else
         {
             DialogManager.Instance.ShowMessage("暂无剧情");
         }
+    }
+
+    private IEnumerator RaiseGuide()
+    {
+        yield return new WaitUntil(() => !DialogManager.Instance.IsDialogOpen());
+        guide.SetActive(true);
+    }
+
+    private bool CheckPhoneAndEmail()
+    {
+        return phone.GetHaveAllRead() & emailController.haveAllRead;
     }
 }

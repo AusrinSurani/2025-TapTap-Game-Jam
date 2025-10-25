@@ -323,9 +323,13 @@ public class DialogManager : Singleton<DialogManager>
         {
             return;
         }
-    
-        dialogBox.GetComponent<UI_Dialog>().StartMove();
-        dialogBox.SetActive(true);
+        
+        //也可以在之前的基础上继续传递信息
+        if (!dialogBox.activeSelf)
+        {
+            dialogBox.GetComponent<UI_Dialog>().StartMove();
+            dialogBox.SetActive(true);
+        }
 
         isShowingSimpleMessage = true;
         hasChoices = false; 
@@ -390,7 +394,7 @@ public class DialogManager : Singleton<DialogManager>
     
     private void StartExample()
     {
-        string[] example = {"一句话中的<link=咖啡豆><color=red>咖啡豆</color></link>",
+        string[] example = {"<i>一句话中的<link=咖啡豆><color=red>咖啡豆</color></link></i>",
             "第二句话里的<link=粉蔷><color=green>粉蔷</color></link>,第二句话里的<link=披萨><color=green>披萨</color></link>",
             "第三：<link=大衣><color=green>大衣</color></link>,第三句话里的<link=英格里><color=green>英格里</color></link>",
         };

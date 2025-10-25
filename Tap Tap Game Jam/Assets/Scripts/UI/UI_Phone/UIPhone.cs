@@ -1,30 +1,42 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UIPhone : BaseUI
 {
     [Header("事件监听")]
     public VoidEventSO openPhone;
+    public VoidEventSO chapterChangeEvent;
 
+    [Header("资讯")] 
+    public News[] news1;
+    public News[] news2;
+    public News[] news3;
+    
     public GameObject mask;
 
+    private News[] currentNews = null;
+    
     private void Start()
     {
         mask.SetActive(false);
+        RefreshInformation();
     }
 
     private void OnEnable()
     {
         openPhone.OnEventRaise += StartMove;
         openPhone.OnEventRaise += UseMask;
+        chapterChangeEvent.OnEventRaise += RefreshInformation;
     }
 
     private void OnDisable()
     {
         openPhone.OnEventRaise -= StartMove;
         openPhone.OnEventRaise -= UseMask;
+        chapterChangeEvent.OnEventRaise -= RefreshInformation;
     }
     
     public void Update()
@@ -32,8 +44,14 @@ public class UIPhone : BaseUI
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             mask.SetActive(false);
-            MoveBack();
+            MoveBack(false);
         }
+    }
+
+    public void OnExitButtonClick()
+    {
+        mask.SetActive(false);
+        MoveBack(false);
     }
 
     private void UseMask()
@@ -41,28 +59,58 @@ public class UIPhone : BaseUI
         mask.SetActive(true);
     }
 
-    public void ShowInformationOf_Beta()
+    private void RefreshInformation()
     {
-        DialogManager.Instance.ShowMessage("默尔索·贝塔……这是报复社会吗？\n话说好像之前也有叫贝塔的客人来着……");
+        int currentDay = GameFlowManager.Instance.currentDay;
+
+        switch (currentDay)
+        {
+            //资讯随着天数刷新
+            case 1:
+                Refresh(true,false,false);
+                currentNews = news1;
+                break;
+            case 2:
+                Refresh(false,true,false);
+                currentNews = news2;
+                break;
+            case 3:
+                Refresh(false,false,true);
+                currentNews = news3;
+                break;
+        }
+        
+        Debug.Log(currentDay+"day,资讯设置完毕");
+        return;
+
+        void Refresh(bool n1, bool n2, bool n3)
+        {
+            foreach (var t in news1)
+            {
+                t.gameObject.SetActive(n1);
+            }
+
+            foreach (var t in news2)
+            {
+                t.gameObject.SetActive(n2);
+            }
+
+            foreach (var t in news3)
+            {
+                t.gameObject.SetActive(n3);
+            }
+        };
     }
 
-    public void ShowInformationOf_Nina()
+    public bool GetHaveAllRead()
     {
-        DialogManager.Instance.ShowMessage("是很有名的舞蹈家吧。\n之前有客人答谢时送了她的演出门票，她的舞蹈只能说是麻雀啄了牛屁股——确实牛逼。");
-    }
-    
-    public void ShowInformationOf_GoldenString()
-    {
-        DialogManager.Instance.ShowMessage("看起来像是新的作品？\n国庆日那两天客人太多，都没怎么关注新闻。算起来……好久没休假了。");
-    }
-    
-    public void ShowInformationOf_Restaurant()
-    {
-        DialogManager.Instance.ShowMessage("威尔逊大饭店是曼庚生意最好的饭馆，他们家的出品都很赞，居然开了一百年了啊。\n靠，是咖啡喝多了吗，怎么又饿了？");
-    }
-    
-    public void ShowInformationOf_Narina()
-    {
-        DialogManager.Instance.ShowMessage("这几年不知道从哪杀出来的天后，经常在电视上看到她。\n听说她来自一个很冷的国度，音译的话是叫“莫思鸽”？奇怪的名字。");
+        foreach (var t in currentNews)
+        {
+            if (t.GetIsRead() == false)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

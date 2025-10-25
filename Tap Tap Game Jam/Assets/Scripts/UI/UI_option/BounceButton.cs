@@ -12,7 +12,7 @@ public class BounceButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     
     [Header("悬浮变化")]
     public Sprite hoverSprite;
-    private Sprite defaultSprite;
+    public Sprite defaultSprite;
 
     [Tooltip("Q弹曲线")]
     //默认参数

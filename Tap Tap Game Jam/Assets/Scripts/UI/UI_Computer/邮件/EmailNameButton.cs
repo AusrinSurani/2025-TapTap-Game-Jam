@@ -47,6 +47,7 @@ public class EmailNameButton : BounceButton
     public void ReFresh()
     {
         GetComponent<Image>().sprite = haveRead ? spriteOfHaveRead : spriteOfNotRead;
+        defaultSprite = haveRead ? spriteOfHaveRead : spriteOfNotRead;
     }
 
     public override Sprite GetDefaultSprite()

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
@@ -10,6 +11,10 @@ public class ClickableTextController : MonoBehaviour, IPointerClickHandler
     public GameObject inventoryItemPrefab;
     public GameObject container;
     
+    [Header("提示")]
+    public GameObject warning;
+    private float timer;
+    private bool linksWerePresent = false;
     
     [Header("浮动文字的预制体")]
     public GameObject floatingWordPrefab; 
@@ -23,7 +28,38 @@ public class ClickableTextController : MonoBehaviour, IPointerClickHandler
         // 获取UI所在的Canvas，用于坐标转换
         mainCanvas = GetComponentInParent<Canvas>();
     }
-    
+
+    private void Update()
+    {
+        bool linksArePresent = textMeshPro.textInfo.linkCount > 0;
+
+        //如果当前帧有链接，而上一帧没有
+        if (linksArePresent && !linksWerePresent)
+        {
+            /*Debug.Log("检测到链接文字出现！");*/
+            StartCoroutine(Warning());
+        }
+
+        //如果当前帧没有链接，而上一帧有
+        if (!linksArePresent && linksWerePresent)
+        {
+            /*Debug.Log("文本中的链接已消失。");*/
+        }
+
+        //更新状态
+        linksWerePresent = linksArePresent;
+        
+        timer += Time.deltaTime;
+    }
+
+    private IEnumerator Warning()
+    {
+        warning.SetActive(true);
+        timer = 0;
+        yield return new WaitUntil(() => timer > 3.0f);
+        warning.SetActive(false);
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         //检测在鼠标点击位置是否有链接

@@ -24,6 +24,8 @@ public class InteractableInDream : Interactable
     public float raiseDuration;
     public float backDuration;
 
+    public bool needDialog;
+
     public override void Start()
     {
         base.Start();
@@ -41,31 +43,31 @@ public class InteractableInDream : Interactable
 
     public virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!Input.GetKeyDown(KeyCode.Space) ||DialogManager.Instance.IsTyping() || !DialogManager.Instance.IsOnLastMessage()
+            || !DialogManager.Instance.IsDialogEnded())
         {
-            if(DialogManager.Instance.IsTyping())
-                return;
+            return;
+        }
             
-            if (isShowing)
+        if (isShowing)
+        {
+            if (itemData.closeUp != null)
             {
-                if (itemData.closeUp != null)
-                {
-                    //配合文本一起消失
-                    canvasGroup.blocksRaycasts = false;
-                    StartCoroutine(FadeCoroutine(1, 0, backDuration));
-                }
-                
-                if (needSwitch)
-                {
-                    if (!BNoAnimator)
-                        animator.SetBool("Darker",false);
-                    else
-                        background?.gameObject.SetActive(false);
-                }
-                
-                isShowing = false;
-                OnInteractFinished?.Invoke();
+                //配合文本一起消失
+                canvasGroup.blocksRaycasts = false;
+                StartCoroutine(FadeCoroutine(1, 0, backDuration));
             }
+                
+            if (needSwitch)
+            {
+                if (!BNoAnimator)
+                    animator.SetBool("Darker",false);
+                else
+                    background?.gameObject.SetActive(false);
+            }
+                
+            isShowing = false;
+            OnInteractFinished?.Invoke();
         }
     }
 
@@ -85,7 +87,12 @@ public class InteractableInDream : Interactable
             return;
         }
         
-        base.OnPointerClick(eventData);
+        if(!needDialog)
+            base.OnPointerClick(eventData);
+        else
+        {
+            DialogManager.Instance.StartDialog(itemData.dialog);
+        }
         
         //显示特写图
         if (itemData.closeUp != null)

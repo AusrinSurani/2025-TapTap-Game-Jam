@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
@@ -10,23 +12,32 @@ public class ClickableTextController : MonoBehaviour, IPointerClickHandler
     public InventoryWordsData[] wordsData;
     public GameObject inventoryItemPrefab;
     public GameObject container;
-    
-    [Header("提示")]
-    public GameObject warning;
+
     private float timer;
     private bool linksWerePresent = false;
+    private bool linksWereTrace = false;
     
     [Header("浮动文字的预制体")]
     public GameObject floatingWordPrefab; 
 
     private TextMeshProUGUI textMeshPro;
     private Canvas mainCanvas;
+    
+    private Dictionary<InventoryWordsData, bool> wordsDict = new Dictionary<InventoryWordsData, bool>();
 
     void Awake()
     {
         textMeshPro = GetComponent<TextMeshProUGUI>();
         // 获取UI所在的Canvas，用于坐标转换
         mainCanvas = GetComponentInParent<Canvas>();
+    }
+
+    private void Start()
+    {
+        foreach (InventoryWordsData word in wordsData)
+        {
+            wordsDict.Add(word, false);
+        }
     }
 
     private void Update()
@@ -37,29 +48,48 @@ public class ClickableTextController : MonoBehaviour, IPointerClickHandler
         if (linksArePresent && !linksWerePresent)
         {
             /*Debug.Log("检测到链接文字出现！");*/
-            StartCoroutine(Warning());
+            if(!GetTrace())
+                StartCoroutine(GenerateTip(DestoryContainer.Instance.warning));
         }
 
         //如果当前帧没有链接，而上一帧有
         if (!linksArePresent && linksWerePresent)
         {
             /*Debug.Log("文本中的链接已消失。");*/
+            DestoryContainer.Instance.warning.SetActive(false);
         }
 
         //更新状态
         linksWerePresent = linksArePresent;
         
+        bool linksAreTrace = GetTrace();
+
+        if (linksAreTrace && !linksWereTrace)
+        {
+            StartCoroutine(GenerateTip(DestoryContainer.Instance.trace));
+        }
+
+        if (!linksAreTrace && linksWereTrace)
+        {
+            DestoryContainer.Instance.trace.SetActive(false);
+        }
+        
         timer += Time.deltaTime;
     }
 
-    private IEnumerator Warning()
+    private IEnumerator GenerateTip(GameObject prefab)
     {
-        warning.SetActive(true);
+        prefab.SetActive(true);
         timer = 0;
-        yield return new WaitUntil(() => timer > 3.0f);
-        warning.SetActive(false);
+        yield return new WaitUntil(() => timer > 1);
+        prefab.SetActive(false);
     }
-
+    
+    private bool GetTrace()
+    {
+        return textMeshPro.text.Contains("<link=痕迹");
+    }
+    
     public void OnPointerClick(PointerEventData eventData)
     {
         //检测在鼠标点击位置是否有链接
@@ -76,8 +106,9 @@ public class ClickableTextController : MonoBehaviour, IPointerClickHandler
             //选择收集的文字信息
             foreach (InventoryWordsData word in wordsData)
             {
-                if (clickedWord == word.word)
+                if (clickedWord == word.word && wordsDict[word] == false)
                 {
+                    wordsDict[word] = true;
                     GenerateItem(word);
                 }
             }
@@ -153,6 +184,8 @@ public class ClickableTextController : MonoBehaviour, IPointerClickHandler
     
     private void GenerateItem(InventoryWordsData itemData)
     {
+        container = DestoryContainer.Instance.container;
+        
         int numOfItems = container.transform.childCount;
         
         float yPosition = -1.5f * numOfItems + 4 + container.transform.position.y;

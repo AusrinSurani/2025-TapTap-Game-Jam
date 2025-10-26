@@ -12,7 +12,8 @@ public class Champagne : TravelPlan
 
     public override void Update()
     {
-        if (!Input.GetKeyDown(KeyCode.Space) ||DialogManager.Instance.IsTyping() || !DialogManager.Instance.IsOnLastMessage())
+        if (!Input.GetKeyDown(KeyCode.Space) ||DialogManager.Instance.IsTyping() || !DialogManager.Instance.IsOnLastMessage()
+            || !DialogManager.Instance.IsDialogEnded())
         {
             return;
         }
@@ -55,6 +56,25 @@ public class Champagne : TravelPlan
             }
                 
             isShowing = false;
+        }
+    }
+
+    public override void OnPointerClick(PointerEventData eventData)
+    {
+        DialogManager.Instance.StartDialog(itemData.dialog);
+        
+        if (specialImage != null && specialImage.GetComponent<SpriteRenderer>() != null)
+        {
+            specialImage.SetActive(true);
+            
+            foreach (var t in specialImage.GetComponent<BlankController>().blankForWords)
+            {
+                t.GetComponent<BoxCollider2D>().enabled = true;
+            }
+            
+            specialImage.GetComponent<SpriteRenderer>().sprite = itemData.closeUp;
+            StartCoroutine(RaiseCoroutine(specialImage,raiseDuration));
+            isShowing = true;
         }
     }
 }

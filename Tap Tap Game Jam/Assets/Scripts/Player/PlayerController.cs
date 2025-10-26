@@ -7,6 +7,10 @@ using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("酒店剧情")]
+    public TextAsset initialDialog;
+    public bool initialDialogHaveDone = true;
+    
     [Header("移动参数")]
     public float moveSpeed = 5f;
 
@@ -51,6 +55,14 @@ public class PlayerController : MonoBehaviour
             else
                 horizontalInput = Input.GetAxisRaw("Horizontal");
         }
+
+        //酒店剧情
+        if (!initialDialogHaveDone)
+        {
+            DialogManager.Instance.StartDialog(initialDialog);
+            initialDialogHaveDone = true;
+        }
+        
         //检测状态是否要更换
         UpdateState();
 
@@ -149,12 +161,9 @@ public class PlayerController : MonoBehaviour
             DialogManager.Instance.ShowMessage("十分昏暗的房间，我最好不要在他人的梦境中走得太深");
         }
         
-        //服务员梦境相机控制
-        if (other.CompareTag("Wall") &&
-            SceneLoadManager.Instance.currentScene == SceneLoadManager.SceneDisplayID.WaiterDream)
+        if (other.CompareTag("Edge"))
         {
-            var framing = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
-            framing.m_DeadZoneWidth = 1;
+            DialogManager.Instance.ShowMessage("这是梦境的边缘，还是回去吧");
         }
 
         if (other.CompareTag("ChangeScene"))
@@ -162,17 +171,6 @@ public class PlayerController : MonoBehaviour
             SceneLoadManager.Instance.ResetSceneLoadStatus();
             SceneLoadManager.Instance.TryLoadToTargetSceneAsync
                 (other.GetComponent<SceneLoadTrigger>().sceneToLoadID, "", false);
-        }
-    }
-    
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        //服务员梦境相机控制
-        if (other.CompareTag("Wall") &&
-            SceneLoadManager.Instance.currentScene == SceneLoadManager.SceneDisplayID.WaiterDream)
-        {
-            var framing = virtualCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
-            framing.m_DeadZoneWidth = 0;
         }
     }
 
@@ -215,4 +213,5 @@ public class PlayerController : MonoBehaviour
      
     public UnityEvent OnPlayerAutoMoveFinished;
     #endregion
+    
 }

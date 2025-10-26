@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class DestoryContainer : Singleton<DestoryContainer>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject warning;
+    public GameObject trace;
+    public GameObject container;
 }

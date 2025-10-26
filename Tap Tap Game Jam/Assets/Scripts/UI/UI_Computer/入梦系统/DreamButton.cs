@@ -26,6 +26,9 @@ public class DreamButton : BounceButton
     public TextMeshProUGUI initialDiagnosis;
     public TextMeshProUGUI advice;
     
+    [Header("第二章的初始剧情")]
+    public TextAsset chapter2;
+    
     private void OnEnable()
     {
         chapterChangeEvent.OnEventRaise += RefreshData;
@@ -145,10 +148,10 @@ public class DreamButton : BounceButton
         }
         
         guide.SetActive(false);
-        StartCoroutine(BeforeLoadCoroutine());
+        StartCoroutine(LoadCoroutine());
     }
 
-    private IEnumerator BeforeLoadCoroutine()
+    private IEnumerator LoadCoroutine()
     {
         yield return DarkMaskCoroutine(false);
         animator.SetBool("Open", false);
@@ -162,7 +165,22 @@ public class DreamButton : BounceButton
 
         yield return new WaitForSeconds(2.6f);
         SceneLoadManager.Instance.ResetSceneLoadStatus();
-        SceneLoadManager.Instance.TryLoadToTargetSceneAsync
-            (sceneToLoad, "入梦", true);
+
+        if (sceneToLoad == SceneLoadManager.SceneDisplayID.WaiterDream)
+        {
+            StartCoroutine(LoadToChapter2());
+        }
+        else
+        {
+            SceneLoadManager.Instance.TryLoadToTargetSceneAsync(sceneToLoad, "入梦", true);
+        }
+    }
+
+    private IEnumerator LoadToChapter2()
+    {
+        SceneLoadManager.Instance.TryLoadToTargetSceneAsync(sceneToLoad, "入梦", true);
+
+        yield return new WaitForSeconds(0.5F);
+        DialogManager.Instance.StartDialog(chapter2);
     }
 }   

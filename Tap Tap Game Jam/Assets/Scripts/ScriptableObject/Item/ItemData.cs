@@ -9,6 +9,9 @@ public class ItemData : ScriptableObject
     public Sprite icon;
     public Sprite outline;
     public Sprite closeUp;
+
+    public TextAsset dialog;
+    
     public string description;
     public string[] descriptions;
     public string[] nextDescriptions;

@@ -149,8 +149,7 @@ public class DraggableItem : MonoBehaviour
             
             transform.SetParent(DestoryContainer.Instance.transform);
             gameObject.SetActive(false);
-            
-            Debug.Log(ItemSlotController.Instance == null);
+ 
             ItemSlotController.Instance.ResetSlotsPosition(this);
         }
     }

@@ -8,6 +8,8 @@ using UnityEngine.Events;
 
 public class DialogManager : Singleton<DialogManager>
 {
+    public bool isDialogEnded = true;
+    
     public GameObject mask;
     
     public GameObject dialogBox;
@@ -104,6 +106,11 @@ public class DialogManager : Singleton<DialogManager>
         
         animDict["德尔塔·布莱梅"] = "Waiter";
         animDict["布莱梅"] =  "Waiter";
+
+        animDict["酒店客人"] = "NoOne";
+        animDict["阿拉比"] =  "NoOne";
+        animDict["男人的幻影"] = "NoOne";
+        animDict["女人的幻影"] =  "NoOne";
     }
 
     private void Start()
@@ -235,9 +242,6 @@ public class DialogManager : Singleton<DialogManager>
         {
             string[] cells = dialogRows[i].Split(',');
             
-            //Debug.Log(int.Parse(cells[1]));
-            //Debug.Log(int.Parse(cells[1]) == dialogIndex);
-            
             if(int.Parse(cells[1]) == dialogIndex)
             {
                 if (cells[0] == "#")
@@ -260,6 +264,7 @@ public class DialogManager : Singleton<DialogManager>
                 if (cells[0] == "END")
                 {
                     Debug.Log("对话结束");
+                    isDialogEnded = true;
                     dialogBox.GetComponent<UI_Dialog>().MoveBack();
                     OnDialogueClose?.Invoke();
                     break;
@@ -296,6 +301,8 @@ public class DialogManager : Singleton<DialogManager>
     //外部接口
     public void StartDialog(TextAsset dialogAsset)
     {
+        isDialogEnded = false;
+        
         dialogBox.SetActive(true);
         /*leftCharacter.gameObject.SetActive(true);*/
         leftCharaAnim.gameObject.SetActive(true);
@@ -369,6 +376,9 @@ public class DialogManager : Singleton<DialogManager>
     
     public bool IsOnLastMessage()
     {
+        if (!isShowingSimpleMessage)
+            return true;
+        
         // 必须是在显示简单消息模式下，且消息数组不为空
         if (!isShowingSimpleMessage || currentMessages == null || currentMessages.Length == 0)
         {
@@ -387,6 +397,11 @@ public class DialogManager : Singleton<DialogManager>
     public bool IsTyping()
     {
         return typingCoroutine != null;
+    }
+
+    public bool IsDialogEnded()
+    {
+        return dialogIndex ==  dialogRows.Length - 3;
     }
     
     [Header("Events")]

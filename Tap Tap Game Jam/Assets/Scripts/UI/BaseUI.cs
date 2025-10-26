@@ -16,6 +16,8 @@ public class BaseUI : MonoBehaviour
     private RectTransform rectTransform;
     private Coroutine moveCoroutine;
 
+    private int clickNum = 0;
+
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -73,5 +75,18 @@ public class BaseUI : MonoBehaviour
         rectTransform.anchoredPosition = end;
         moveCoroutine = null;
         gameObject.SetActive(!disable);
+    }
+
+    public void MoveWithOneButton()
+    {
+        if (clickNum % 2 == 0)
+        {
+            StartMove();
+        }
+        else
+        {
+            MoveBack(false);
+        }
+        clickNum++;
     }
 }

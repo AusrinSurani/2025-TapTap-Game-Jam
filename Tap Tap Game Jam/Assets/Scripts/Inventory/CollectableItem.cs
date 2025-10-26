@@ -25,23 +25,23 @@ public class CollectableItem : MonoBehaviour,IPointerClickHandler,IPointerEnterH
     private void Start()
     {
         outline.enabled = false;
+        dialogMask = DialogManager.Instance.mask;
     }
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!Input.GetKeyDown(KeyCode.Space) ||DialogManager.Instance.IsTyping() || !DialogManager.Instance.IsOnLastMessage())
         {
-            if(DialogManager.Instance.IsTyping())
-                return;
+            return;
+        }
             
-            if (isShowing)
-            {
-                //配合文本一起消失
-                imageForItem.blocksRaycasts = false;
-                StartCoroutine(FadeCoroutine(1, 0, backDuration));
+        if (isShowing)
+        {
+            //配合文本一起消失
+            imageForItem.blocksRaycasts = false;
+            StartCoroutine(FadeCoroutine(1, 0, backDuration));
 
-                isShowing = false;
-            }
+            isShowing = false;
         }
     }
 
@@ -103,6 +103,7 @@ public class CollectableItem : MonoBehaviour,IPointerClickHandler,IPointerEnterH
         GameObject newItem = Instantiate(inventoryItemPrefab, new Vector3(
             container.transform.position.x, yPosition, 9.938788f), Quaternion.identity );
         
+        newItem.tag = "ItemFlag";
         newItem.GetComponent<DraggableItem>().SetUp(itemData);
         newItem.transform.SetParent(container.transform);
     }

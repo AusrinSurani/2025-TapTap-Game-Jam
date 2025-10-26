@@ -38,7 +38,7 @@ public class BlankController : MonoBehaviour
     private void Update()
     {
     }
-
+        
     public void CheckComplete()
     {
         //有一个不全就为false
@@ -66,7 +66,7 @@ public class BlankController : MonoBehaviour
         }
     }
     
-    private void GenerateItem(InventoryItemData itemData)
+    public void GenerateItem(InventoryItemData itemData)
     {
         int numOfItems = container.transform.childCount;
         

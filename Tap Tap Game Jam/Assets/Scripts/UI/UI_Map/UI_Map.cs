@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class UI_Map : MonoBehaviour
 {
+    [Header("事件广播")]
+    public VoidEventSO get7MapsEvent;
+    
     [Header("移动设置")]
     [SerializeField] public Vector2 startPosition;
     [SerializeField] public Vector2 targetPosition;
@@ -11,14 +15,66 @@ public class UI_Map : MonoBehaviour
     [SerializeField] public float delay = 0.0f;
     [SerializeField] public bool useEasing = true;
 
-    private Transform playerTrans;
+    [Header("进展")] 
+    public GameObject mapItem;
+    public GameObject bird;
+    public int numOfMap = 0;
+    public int numOfFlag = 0;
+    private bool haveShowMessage = false;
+    private bool haveShowBird = false;
+    private bool haveGone = false;
+    
+    public Transform playerTrans;
     private Coroutine moveCoroutine;
+
+    public GameObject button;
 
     void Awake()
     {
-        playerTrans = GetComponentInParent<PlayerController>().transform;
+        
     }
-    
+
+    private void Update()
+    {
+        if (numOfMap == 7 && !haveShowMessage)
+        {
+            get7MapsEvent.RaiseEvent();
+            haveShowMessage = true;
+            string[] message = {"好像还缺了点啥","七个地方，只有六个旅行计划？但是基本能找的地方都找过了。","去问问布莱梅看看吧"};
+            DialogManager.Instance.ShowMessage(message);
+        }
+
+        if (numOfFlag == 7 && !haveShowBird)
+        {
+            bird.SetActive(true);
+            haveShowBird = true;
+        }
+
+        if (numOfFlag == 7 && numOfMap == 7 && !haveGone)
+        {
+            haveGone = true;
+            StartCoroutine(BeforeVanish());
+        }
+    }
+
+    private IEnumerator BeforeVanish()
+    {
+        button.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        
+        Exit();
+        mapItem.SetActive(false);
+
+        string[] message = new []{"下雨了","回去的时候，去威尔逊大饭店喝一杯吧。"};
+        DialogManager.Instance.ShowMessage(message);
+        
+        yield return new WaitUntil(() => DialogManager.Instance.dialogBox.activeSelf == false);
+        
+        SceneLoadManager.Instance.ResetSceneLoadStatus();
+        GameFlowManager.Instance.ChangeChapter(GameFlowManager.Instance.currentChapter, true, GameFlowManager.Instance.currentDay);
+        SceneLoadManager.Instance.TryLoadToTargetSceneAsync(SceneLoadManager.SceneDisplayID.ConsultationRoom, "", false);
+    }
+
     public void StartMove()
     {
         gameObject.SetActive(true);
@@ -72,5 +128,11 @@ public class UI_Map : MonoBehaviour
         transform.position = end;
         moveCoroutine = null;
         gameObject.SetActive(!disable);
+    }
+
+    public void Exit()
+    {
+        playerTrans.GetComponent<PlayerController>().BNoGetInput = false;
+        MoveBack(false);
     }
 }

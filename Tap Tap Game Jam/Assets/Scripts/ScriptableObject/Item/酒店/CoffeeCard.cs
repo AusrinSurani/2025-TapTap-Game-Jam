@@ -29,6 +29,8 @@ public class CoffeeCard : TravelPlan
             foreach (var blankForWord in specialImage.GetComponent<BlankController>().blankForWords)
             {
                 blankForWord.GetComponent<BoxCollider2D>().enabled = true;
+                //顺便更新图像
+                blankForWord.RefreshImage();
             }
             
             isInNextCloseUp = true;

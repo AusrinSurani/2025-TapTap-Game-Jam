@@ -21,9 +21,12 @@ public class ItemSlotController : Singleton<ItemSlotController>
         slots.Clear();
         slots.AddRange(GetComponentsInChildren<DraggableItem>());
         slots.Remove(itemToDelete);
+        Destroy(itemToDelete.gameObject);
 
         for (int i = 0; i < slots.Count; i++)
         {
+            string currentTag = slots[i].tag;
+            
             float yPosition = -1.5f * i + 4 + container.transform.position.y;
             Vector3 targetPosition = new Vector3(container.transform.position.x, yPosition, 9.938788f);
             
@@ -36,6 +39,7 @@ public class ItemSlotController : Singleton<ItemSlotController>
                 newItem.GetComponent<DraggableItem>().SetUpWords(slots[i].inventoryWordsData);
             
             newItem.transform.SetParent(container.transform);
+            newItem.tag = currentTag;
             
             Destroy(slots[i].gameObject);
         }

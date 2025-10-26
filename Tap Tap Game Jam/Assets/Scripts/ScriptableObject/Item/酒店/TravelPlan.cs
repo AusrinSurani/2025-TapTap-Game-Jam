@@ -50,9 +50,15 @@ public class TravelPlan : Interactable
 
     public override void OnPointerClick(PointerEventData eventData)
     {
+        if (specialImage.GetComponent<BlankController>().haveGetMap)
+        {
+            DialogManager.Instance.ShowMessage("我已经拿到了这里的地图碎片了");
+            return;
+        }
+        
         base.OnPointerClick(eventData);
 
-        if (specialImage != null)
+        if (specialImage != null && specialImage.GetComponent<SpriteRenderer>() != null)
         {
             specialImage.SetActive(true);
             

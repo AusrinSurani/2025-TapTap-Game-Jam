@@ -9,6 +9,8 @@ TagManager:
   - InventoryBackGround
   - InventoryItem
   - LostWords
+  - ItemFlag
+  - Edge
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - LightTrigger
   - Slot
   - LostWords
-  - 
+  - Edge
   - 
   - 
   - 

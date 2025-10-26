@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Inventory Item Data", menuName = "Data/Inventory Item")]
 public class InventoryItemData : ScriptableObject
 {
+    public int ID;
     public Sprite  sprite;
     public Sprite closeUp;
     [TextArea(3, 10)]

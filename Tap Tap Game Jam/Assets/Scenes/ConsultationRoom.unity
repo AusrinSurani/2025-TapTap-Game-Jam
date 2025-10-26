@@ -986,7 +986,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2138142170}
   m_HandleRect: {fileID: 2138142169}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7118,6 +7118,7 @@ MonoBehaviour:
   keyWords: {fileID: 1500994760}
   initialDiagnosis: {fileID: 1712018343}
   advice: {fileID: 1584481466}
+  chapter2: {fileID: 4900000, guid: 72c895746def6204d8d012411dfa612f, type: 3}
 --- !u!1 &880833638
 GameObject:
   m_ObjectHideFlags: 0
@@ -12332,7 +12333,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -161.49944, y: 379.99994}
+  m_AnchoredPosition: {x: -161.49944, y: 379.99954}
   m_SizeDelta: {x: 324, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1434075878

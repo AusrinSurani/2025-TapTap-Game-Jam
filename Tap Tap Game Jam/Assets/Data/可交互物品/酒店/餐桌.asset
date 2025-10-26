@@ -16,5 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 57b56b6c31fe4834c9f83b5340b55d68, type: 3}
   outline: {fileID: 21300000, guid: b7f921909d355954c914a9e07792825e, type: 3}
   closeUp: {fileID: 0}
+  dialog: {fileID: 4900000, guid: 51f264037ba534248b9609cb7eafa2b7, type: 3}
   description: "\u9910\u684C"
   descriptions: []
+  nextDescriptions: []

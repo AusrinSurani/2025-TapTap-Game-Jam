@@ -15,12 +15,13 @@ MonoBehaviour:
   itemName: "\u6BD4\u8428"
   icon: {fileID: 21300000, guid: 6fa12e7d04ddb8848b12fe5721c1424c, type: 3}
   outline: {fileID: 21300000, guid: e56145fd2134c1d46b882e75b9932084, type: 3}
-  closeUp: {fileID: 0}
+  closeUp: {fileID: 21300000, guid: 90d5d5e4db581cb48acd315fe37267d4, type: 3}
+  dialog: {fileID: 0}
   description: "\u62AB\u8428"
   descriptions:
   - "\u4E00\u4E2A\u62AB\u8428\uFF0C\u4E0A\u9762\u6709\u756A\u8304\u3001\u5976\u916A\u3001\u7F57\u52D2\u53F6\uFF0C\u662F\u5177\u6709\u739B\u683C\u4E3D\u7279\u98CE\u60C5\u7684\u98DF\u7269\u3002"
   - "\u4E0B\u9762\u57AB\u7684\u7EB8\u597D\u50CF\u6709\u4EC0\u4E48\u4E1C\u897F\u3002"
-  nextDescriptions:
   - "\u662F\u4E00\u5F20\u7528\u9910\u53CD\u9988\uFF0C\u5C45\u7136\u57AB\u5728\u62AB\u8428\u4E0B\u9762\u2026\u2026\u7B97\u4E86\uFF0C\u6BD5\u7ADF\u662F\u5728\u68A6\u91CC\uFF0C\u4E5F\u8BF4\u5F97\u8FC7\u53BB\u3002"
   - "\u770B\u770B\u8FD8\u6709\u6CA1\u6709\u5176\u4ED6\u7684\u7EBF\u7D22\u5427\u3002"
   - "\u4E0D\u8FC7\uFF0C\u4E0A\u9762\u7684\u5185\u5BB9\u662F\u4E00\u5F20\u65C5\u884C\u8BA1\u5212\u3002"
+  nextDescriptions: []

@@ -15,6 +15,7 @@ public class Interactable:MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
         //显示边沿
+        PlayHoverSfx();
         outLine.SetActive(true);
     }
 
@@ -25,6 +26,8 @@ public class Interactable:MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
     public virtual void OnPointerClick(PointerEventData eventData)
     {
+        PlayClickSfx();
+        
         if(itemData.descriptions == null|| itemData.descriptions.Length == 0)
         {
             //显示一句
@@ -64,5 +67,15 @@ public class Interactable:MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         gameObject.GetComponent<SpriteRenderer>().sprite = itemData.icon;
         gameObject.name = "Interactable-" + itemData.itemName;
         outLine.GetComponent<SpriteRenderer>().sprite = itemData.outline;
+    }
+
+    public virtual void PlayHoverSfx()
+    {
+        AudioManager.Instance.AudioOncePlay(AudioManager.Instance.hoverSfx);
+    }
+
+    public virtual void PlayClickSfx()
+    {
+        AudioManager.Instance.AudioOncePlay(AudioManager.Instance.clickSfx);
     }
 }

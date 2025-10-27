@@ -58,6 +58,7 @@ public class BounceButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     
     public virtual void OnPointerClick(PointerEventData eventData)
     {
+        AudioManager.Instance.AudioOncePlay(AudioManager.Instance.mainMenuBtnSfx);
         if (currentAnimation != null)
         {
             StopCoroutine(currentAnimation);

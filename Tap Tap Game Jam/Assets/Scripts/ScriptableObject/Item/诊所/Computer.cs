@@ -11,6 +11,7 @@ public class Computer : Interactable
     
     public override void OnPointerClick(PointerEventData eventData)
     {
+        PlayClickSfx();
         UI_Computer.SetActive(true);
         openComputer.OnEventRaise();
     }

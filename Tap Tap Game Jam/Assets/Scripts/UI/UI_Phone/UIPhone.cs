@@ -11,6 +11,7 @@ public class UIPhone : BaseUI
     public VoidEventSO chapterChangeEvent;
 
     [Header("资讯")] 
+    public int numOfHaveRead = 0;
     public News[] news1;
     public News[] news2;
     public News[] news3;
@@ -104,6 +105,13 @@ public class UIPhone : BaseUI
 
     public bool GetHaveAllRead()
     {
+        if (numOfHaveRead >= 2)
+        {
+            //看了两个就行
+            return true;
+        }
+        
+        //全部看了才行
         foreach (var t in currentNews)
         {
             if (t.GetIsRead() == false)
@@ -111,6 +119,7 @@ public class UIPhone : BaseUI
                 return false;
             }
         }
+        
         return true;
     }
 }

@@ -367,7 +367,7 @@ PrefabInstance:
     - target: {fileID: 6785276570918766186, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 351296939, guid: fe2efcb7632a5de4c8c7a7b24df6e447, type: 3}
     - target: {fileID: 7867743058079156044, guid: f38c864bd8a42be4693c162f03a38d43, type: 3}
       propertyPath: m_Name
       value: UI_Dialog
@@ -440,8 +440,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 944a9f8e6c41b4b49a39e0a72dee6f14, type: 2}
   inventoryItemPrefab: {fileID: 2352745321712702293, guid: d1e03fe9ec2a1ab4b897f03ccf7a21eb, type: 3}
   container: {fileID: 0}
-  warning: {fileID: 0}
-  trace: {fileID: 0}
   floatingWordPrefab: {fileID: 3070468660175013467, guid: 7eacf6f62c8b2884b8417e2a15346b99, type: 3}
 --- !u!1 &5695730063237836963 stripped
 GameObject:

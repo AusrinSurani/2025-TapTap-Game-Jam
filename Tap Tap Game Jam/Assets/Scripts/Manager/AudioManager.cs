@@ -480,19 +480,29 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-    [Header("AudioClipPieces")]
-    public AudioPiece mainMenuBtnAudioPiece;
-
-    public AudioPiece bgmAudioPiece; 
+    [Header("开始界面")]
+    public AudioPiece mainMenuBtnSfx;
+    public AudioPiece mainMenuBGM; 
     
-    [Header("BGM")]
+    [Header("问诊室")]
     public AudioPiece consultingBGM;
+    public AudioPiece hoverSfx;
+    public AudioPiece computerHoverSfx;
+    public AudioPiece clickSfx;
+    public AudioPiece buttonSfx;
+    public AudioPiece windowsTransSfx;
+    
+    [Header("化妆间")]
+    public AudioPiece dressingRoomBGM;
+    
+    [Header("酒店")]
+    public AudioPiece hotelBGM;
 
     [Header("DancerDreamAudioPieces")]
     public AudioPiece sceneLightSwitchAudioPiece;
     public AudioPiece spotLightSwitchAudioPiece;
-
     public AudioPiece dancerBGMAudioPiece;
+    
     [Header("DanceGamePlay")]
     public AudioPiece correctInteractAudioPiece;
     public AudioPiece specialInteractAudioPiece;

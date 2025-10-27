@@ -103,6 +103,7 @@ public class DialogManager : Singleton<DialogManager>
         animDict["妮娜"] = "Dancer";
 
         animDict["桥田缪"] = "Programmer";
+        animDict["来问诊的男人"] = "Programmer";
         
         animDict["德尔塔·布莱梅"] = "Waiter";
         animDict["布莱梅"] =  "Waiter";

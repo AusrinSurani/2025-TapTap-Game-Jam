@@ -82,13 +82,17 @@ public class InteractableInDream : Interactable
     public UnityEvent OnInteractFinished;
     public override void OnPointerClick(PointerEventData eventData)
     {
+        PlayClickSfx();
+        
         if (dialogMask.activeSelf == false)
         {
             return;
         }
-        
-        if(!needDialog)
+
+        if (!needDialog)
+        {
             base.OnPointerClick(eventData);
+        }
         else
         {
             DialogManager.Instance.StartDialog(itemData.dialog);

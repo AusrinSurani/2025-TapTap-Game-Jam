@@ -188,16 +188,64 @@ MonoBehaviour:
   audioSourcePrefab: {fileID: 7165851412132255220, guid: a2beab2a586657540956729fbd9cbf0f, type: 3}
   bgmAudioSourceTransform: {fileID: 7770895839974489816}
   soundEffectAudioSourceTransform: {fileID: 1661200968770761469}
-  mainMenuBtnAudioPiece:
-    audioID: 1
-    audioClipDescription: "\u6309\u94AE\u97F3\u6548"
+  mainMenuBtnSfx:
+    audioID: 0
+    audioClipDescription: "\u5F00\u59CB\u754C\u9762\u7684\u6309\u94AE\u97F3\u6548"
     sourceClip: {fileID: 8300000, guid: 24acd23b2414c3f4482d2b813a92cb8e, type: 3}
+    volumnValue: 0
+    bCanMutPlay: 0
+  mainMenuBGM:
+    audioID: 1
+    audioClipDescription: "\u5F00\u59CB\u754C\u9762BGM"
+    sourceClip: {fileID: 8300000, guid: b986a84db9d21b44295fdf3576bac46b, type: 3}
+    volumnValue: 0
+    bCanMutPlay: 0
+  consultingBGM:
+    audioID: 100
+    audioClipDescription: "\u95EE\u8BCABGM"
+    sourceClip: {fileID: 8300000, guid: b986a84db9d21b44295fdf3576bac46b, type: 3}
+    volumnValue: 0.8
+    bCanMutPlay: 0
+  hoverSfx:
+    audioID: 101
+    audioClipDescription: 
+    sourceClip: {fileID: 8300000, guid: cbf9c6237a18a0b4fb834738d8cca1db, type: 3}
+    volumnValue: 0.8
+    bCanMutPlay: 0
+  computerHoverSfx:
+    audioID: 102
+    audioClipDescription: 
+    sourceClip: {fileID: 8300000, guid: 74cc5f128cafc97408afc673829339a3, type: 3}
+    volumnValue: 0.8
+    bCanMutPlay: 0
+  clickSfx:
+    audioID: 103
+    audioClipDescription: 
+    sourceClip: {fileID: 8300000, guid: 5add742b502c62245aadc32c024a1f10, type: 3}
+    volumnValue: 0.8
+    bCanMutPlay: 0
+  buttonSfx:
+    audioID: 104
+    audioClipDescription: 
+    sourceClip: {fileID: 8300000, guid: b42e34ad764d26741876153d1d58f2fd, type: 3}
+    volumnValue: 0.8
+    bCanMutPlay: 0
+  windowsTransSfx:
+    audioID: 105
+    audioClipDescription: 
+    sourceClip: {fileID: 8300000, guid: 088fa1f48c9cdd2419c79f45fb655db0, type: 3}
+    volumnValue: 0.5
+    bCanMutPlay: 0
+  dressingRoomBGM:
+    audioID: 0
+    audioClipDescription: 
+    sourceClip: {fileID: 8300000, guid: f5f34f2fc99a50f4f9fdc314d0cc677d, type: 3}
     volumnValue: 1
     bCanMutPlay: 0
-  bgmAudioPiece:
-    audioID: 2
-    audioClipDescription: test_bgm
-    sourceClip: {fileID: 8300000, guid: 8ee985bf3666a5a46b8f3d18a418f23a, type: 3}
+  hotelBGM:
+    audioID: 0
+    audioClipDescription: 
+    sourceClip: {fileID: 0}
     volumnValue: 1
     bCanMutPlay: 0
   sceneLightSwitchAudioPiece:

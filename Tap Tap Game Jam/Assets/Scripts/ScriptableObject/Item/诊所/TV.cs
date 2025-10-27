@@ -17,6 +17,7 @@ public class TV : Interactable
 
     public override void OnPointerClick(PointerEventData eventData)
     {
+        PlayClickSfx();
         isOpen = !isOpen;
         animator.SetBool("Open", isOpen);
     }

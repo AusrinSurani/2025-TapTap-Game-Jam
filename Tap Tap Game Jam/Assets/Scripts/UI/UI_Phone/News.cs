@@ -5,12 +5,8 @@ public class News : MonoBehaviour
     public bool[] isRead;
     public string[] selfTalk;
 
-    public bool isAllWordsRead = false;
-
     public bool GetIsRead()
     {
-        isAllWordsRead = true;
-        
         foreach (var t in isRead)
         {
             if (t == false) return false;
@@ -22,7 +18,7 @@ public class News : MonoBehaviour
     public void ShowSelfTalk(int i)
     {
         DialogManager.Instance.ShowMessage(selfTalk[i]);
+        GetComponentInParent<UIPhone>().numOfHaveRead++;
         isRead[i] = true;
-        isAllWordsRead = GetIsRead();
     }
 }

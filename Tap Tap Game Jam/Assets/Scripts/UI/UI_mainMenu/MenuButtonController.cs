@@ -9,6 +9,7 @@ public class MenuButtonController : BaseUI
 
 	void Start () 
 	{
+        AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.mainMenuBGM);
 	}
 
 	void Update () 

@@ -48,28 +48,20 @@ public class EmailController : MonoBehaviour
         int currentDay = GameFlowManager.Instance.currentDay;
         
         //邮件随着天数增加
-        if (currentDay == 2)
+        switch (currentDay)
         {
-            email4.SetActive(true);
-        }
-        else if (currentDay == 3)
-        {
-            email4.SetActive(true);
-            email5.SetActive(true);
+            case 1:
+                email4.SetActive(false);
+                email5.SetActive(false);
+                break;
+            case 2:
+                email5.SetActive(false);
+                break;
         }
         
         Debug.Log(currentDay+"day,邮件设置完毕");
         
-        SaveEmailsData();
         LoadEmailsData();
-    }
-
-    private void Start()
-    {
-    }
-
-    private void Update()
-    {
     }
 
     [Serializable]public class HaveReadEmailData
@@ -82,7 +74,7 @@ public class EmailController : MonoBehaviour
     {
         var data = new HaveReadEmailData();
 
-        for (int i = 0; i < numOfEmails; i++)
+        for (int i = 0; i < 5; i++)
         {
             data.haveReadEmailData.Add(false);
         }
@@ -109,12 +101,22 @@ public class EmailController : MonoBehaviour
             }
         }
         
+        //补足所有的邮件状态
+        if (emailNameButtons.Length < numOfEmails)
+        {
+            for (int i = 0; i < numOfEmails - emailNameButtons.Length; i++)
+            {
+                data.haveReadEmailData.Add(false);
+            }
+        }
+        
         data.haveAllRead = haveAllRead;
         SaveSystem.SaveByJson(HAVE_RAED_EMAIL_DATA_FILE, data);
     }
     
     public void LoadEmailsData()
     {
+        emailNameButtons = GetComponentsInChildren<EmailNameButton>();
         var savedData = SaveSystem.LoadFromJson<HaveReadEmailData>(HAVE_RAED_EMAIL_DATA_FILE);
 
         for (int i = 0; i < emailNameButtons.Length; i++)
@@ -129,12 +131,12 @@ public class EmailController : MonoBehaviour
     private void ApplyData()
     {
         //刷新贴图，刷新有无新消息的动画
-        
-        for (int i = 0; i < emailNameButtons.Length; i++)
+
+        foreach (var t in emailNameButtons)
         {
-            emailNameButtons[i].ReFresh();
+            t.ReFresh();
         }
-        
+
         GetComponentInParent<EmailButton>().newEmail.SetBool("New", !haveAllRead);
     }
 

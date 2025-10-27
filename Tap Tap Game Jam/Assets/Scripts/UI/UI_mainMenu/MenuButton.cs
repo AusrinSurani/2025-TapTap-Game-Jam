@@ -87,15 +87,36 @@ public class MenuButton : MonoBehaviour,
         {
             case 0:
                 //TODO:切换场景开始游戏
-
+                isLoadingScene = true;
+                
+                //数据选择
+                SaveSystem.DeleteSavedFile("HaveReadEmailData.txt");
+                GameFlowManager.Instance.SetDefaultChapterData();
+                
+                //场景切换
                 sceneLoadManager.TryLoadToTargetSceneAsync
                     (SceneLoadManager.SceneDisplayID.ConsultationRoom, "开场白",true);
-                isLoadingScene = true;
-                Debug.Log("开始游戏");
+                
+                //音乐切换
+                AudioManager.Instance.ClearTargetAudioPiece(AudioManager.Instance.mainMenuBGM);
+                AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.consultingBGM);
                 break;
             case 1:
-                //TODO:切换场景继续游戏
-                Debug.Log("继续游戏");
+                //TODO:切换场景继续游戏(从某一章开头开始)
+                isLoadingScene = true;
+                
+                //数据选择
+                GameFlowManager.Instance.currentIsOver = false;
+                GameFlowManager.Instance.currentChapter = ChapterOfGame.NoOne;
+                GameFlowManager.Instance.SaveChapterData();
+                
+                //场景切换
+                sceneLoadManager.TryLoadToTargetSceneAsync
+                    (SceneLoadManager.SceneDisplayID.ConsultationRoom, "继续",true);
+                
+                //音乐切换
+                AudioManager.Instance.ClearTargetAudioPiece(AudioManager.Instance.mainMenuBGM);
+                AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.consultingBGM);
                 break;
             case 2:
                 //唤出optionsUI

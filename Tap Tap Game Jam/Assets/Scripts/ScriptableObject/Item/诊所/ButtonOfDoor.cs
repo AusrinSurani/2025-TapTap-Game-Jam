@@ -76,6 +76,8 @@ public class ButtonOfDoor : Interactable
     
     public override void OnPointerClick(PointerEventData eventData)
     {
+        AudioManager.Instance.AudioOncePlay(AudioManager.Instance.buttonSfx);
+        
         if (isPatientCome)
         {
             DialogManager.Instance.ShowMessage("我最好等处理完现在的患者再接待下一位");

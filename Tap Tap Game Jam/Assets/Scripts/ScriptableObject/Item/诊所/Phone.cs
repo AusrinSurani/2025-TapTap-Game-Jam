@@ -12,6 +12,7 @@ public class Phone : Interactable
 
     public override void OnPointerClick(PointerEventData eventData)
     {
+        PlayClickSfx();
         UI_Phone.SetActive(true);
         openPhone.OnEventRaise();
     }

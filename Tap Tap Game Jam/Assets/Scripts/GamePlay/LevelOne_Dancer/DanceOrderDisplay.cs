@@ -23,27 +23,34 @@ public class DanceOrderDisplay : MonoBehaviour
         {
             this.transform.GetChild(1).gameObject.SetActive(true);
             SpriteRenderer =this.transform.GetChild(1).GetComponent<SpriteRenderer>();
+            _curSprite = upSprite;
+
         }
         else if(ShowOrder == DanceGamePlay.DanceOrder.Down)
         { 
             this.transform.GetChild(2).gameObject.SetActive(true);
             SpriteRenderer = this.transform.GetChild(2).GetComponent<SpriteRenderer>();
+            _curSprite = downSprite;
         }
         else if (ShowOrder == DanceGamePlay.DanceOrder.Left)
         {
             this.transform.GetChild(3).gameObject.SetActive(true);
             SpriteRenderer = this.transform.GetChild(3).GetComponent<SpriteRenderer>();
+            _curSprite = leftSprite;
         }
         else if (ShowOrder == DanceGamePlay.DanceOrder.Right)
         {
             this.transform.GetChild(4).gameObject.SetActive(true);
             SpriteRenderer = this.transform.GetChild(4).GetComponent<SpriteRenderer>();
+            _curSprite = rightSprite;
         }
         else if (ShowOrder == DanceGamePlay.DanceOrder.Space)
         {
             this.transform.GetChild(5).gameObject.SetActive(true);
             SpriteRenderer = this.transform.GetChild(5).GetComponent<SpriteRenderer>();
+            _curSprite = spaceSprite;
         }
+        SpriteRenderer.sprite = _curSprite[0];
 
     }
     public int GetInteractOrder(DanceGamePlay.DanceOrder getOrder,bool allowInverse,bool mustInverse)
@@ -56,7 +63,8 @@ public class DanceOrderDisplay : MonoBehaviour
         if (getOrder == ShowOrder&&(!mustInverse||getOrder==DanceGamePlay.DanceOrder.Space))
         {
             //Color.Green
-            SpriteRenderer.color = Color.green;
+            //SpriteRenderer.color = Color.green;
+            SpriteRenderer.sprite = _curSprite[1];
             //ParentGamePlay.SuccessCurOrderInput(true);
             return 1;
         }
@@ -64,14 +72,17 @@ public class DanceOrderDisplay : MonoBehaviour
         else if (allowInverse&&(((int)getOrder * 2) == (int)ShowOrder || ((int)ShowOrder) * 2 == (int)getOrder))
         {
             //Color.Blue 
-            SpriteRenderer.color = Color.blue;
+            //SpriteRenderer.color = Color.blue;
+
+            SpriteRenderer.sprite = _curSprite[2];
             //ParentGamePlay.SuccessCurOrderInput(false);
             return 2; 
         }
         else
         {
             //ParentGamePlay.FailCurOrderInput();
-            this.transform.GetChild(6).gameObject.SetActive(true);
+            SpriteRenderer.sprite = _curSprite[3];
+            //this.transform.GetChild(6).gameObject.SetActive(true);
             return 0;
         }
     }
@@ -93,12 +104,12 @@ public class DanceOrderDisplay : MonoBehaviour
     {
         //没收到交互则计时
         if (!_bGetInteract)
-        { 
+        {
             _disappearTimer += Time.deltaTime;
             TimerImage.fillAmount = (1f - _disappearTimer / DisappearTime);
 
             //TODO：闪烁效果
-            if(_curAlpha_FlashEffect<minAlpha_FlashEffect)
+            /*if(_curAlpha_FlashEffect<minAlpha_FlashEffect)
             {
                 //开始递增
                 _bAlphaRiseUp = true;
@@ -111,11 +122,8 @@ public class DanceOrderDisplay : MonoBehaviour
             if (_bAlphaRiseUp)
                 _curAlpha_FlashEffect += Time.deltaTime* AlphaSpeed;
             else
-                _curAlpha_FlashEffect -= Time.deltaTime * AlphaSpeed;
+                _curAlpha_FlashEffect -= Time.deltaTime * AlphaSpeed;*/
 
-            _spriteColor = SpriteRenderer.color;
-            _spriteColor.a = _curAlpha_FlashEffect;
-            SpriteRenderer.color = _spriteColor;
         }
         else
         {
@@ -130,15 +138,22 @@ public class DanceOrderDisplay : MonoBehaviour
                 _imageColor = TimerImage.color;
                 _imageColor.a -= Time.deltaTime;
                 TimerImage.color = _imageColor;
-            } 
+            }
+            _spriteColor = SpriteRenderer.color;
+            if (_spriteColor.a > 0)
+            {
+                _spriteColor.a -= Time.deltaTime;
+                SpriteRenderer.color = _spriteColor;
+            }
         }
         if(DisappearTime<_disappearTimer)
         {
             _disappearTimer = 0;
             TimerImage.fillAmount = 0f;
             //通知 DanceGamePlay Error
-            _bGetInteract = true; 
-            this.transform.GetChild(6).gameObject.SetActive(true);
+            _bGetInteract = true;
+            SpriteRenderer.sprite = _curSprite[3];
+            //this.transform.GetChild(6).gameObject.SetActive(true);
             ParentGamePlay.FailCurOrderInput();
             Invoke(nameof(DestroySelf), 0.5f);
         }
@@ -163,4 +178,11 @@ public class DanceOrderDisplay : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
+    private List<Sprite> _curSprite = new List<Sprite>();
+
+    public List<Sprite> leftSprite = new List<Sprite>();
+    public List<Sprite> rightSprite = new List<Sprite>();
+    public List<Sprite> upSprite = new List<Sprite>();
+    public List<Sprite> downSprite = new List<Sprite>();
+    public List<Sprite> spaceSprite = new List<Sprite>(); 
 }

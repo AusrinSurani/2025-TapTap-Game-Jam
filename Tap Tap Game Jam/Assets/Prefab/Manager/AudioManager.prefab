@@ -264,7 +264,7 @@ MonoBehaviour:
     audioID: 10003
     audioClipDescription: "\u821E\u53F0\u6E38\u620F\u6D41\u7A0B\u80CC\u666F\u97F3\u4E50"
     sourceClip: {fileID: 8300000, guid: 6c7bd14469895a54bbe620474b531565, type: 3}
-    volumnValue: 1
+    volumnValue: 0.8
     bCanMutPlay: 0
   curtainRiseAudioPiece:
     audioID: 10004
@@ -282,7 +282,7 @@ MonoBehaviour:
     audioID: 10102
     audioClipDescription: "\u53CD\u5411\u97F3\u6548"
     sourceClip: {fileID: 8300000, guid: 308bbd21d6f92eb4d8432d3ad44753ac, type: 3}
-    volumnValue: 0.5
+    volumnValue: 0.8
     bCanMutPlay: 0
   wrongInteractAudioPiece:
     audioID: 10103

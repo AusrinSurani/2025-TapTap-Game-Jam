@@ -225,5 +225,6 @@ public class DacnerDirector : MonoBehaviour
         //标记完成诊断
         GameFlowManager.Instance.ChangeChapter(GameFlowManager.Instance.currentChapter, true, GameFlowManager.Instance.currentDay);
         SceneLoadManager.Instance.TryLoadToTargetSceneAsync(SceneLoadManager.SceneDisplayID.ConsultationRoom, null, false);
+        AudioManager.Instance.ResumeTargetAudioPiece(AudioManager.Instance.consultingBGM);
     }
 }

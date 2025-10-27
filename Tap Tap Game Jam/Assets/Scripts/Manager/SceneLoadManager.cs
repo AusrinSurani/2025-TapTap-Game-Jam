@@ -482,6 +482,8 @@ public class SceneLoadManager : Singleton<SceneLoadManager>
 
     public UnityEvent onSceneLoadBegin; 
     public UnityEvent onSceneLoadEnd;
-    
-#endregion
+
+    #endregion
+
+    public bool bGameEnd_FindTruth;
 }

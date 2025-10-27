@@ -231,6 +231,31 @@ MonoBehaviour:
   AlphaSpeed: 5
   minAlpha_FlashEffect: 0.2
   intervalTime_FlashEffect: 0.3
+  leftSprite:
+  - {fileID: 21300000, guid: 0fb972bf18a6d9c46a13706f91b0f459, type: 3}
+  - {fileID: 21300000, guid: d833ba23d9dcd264d8f248adbe68566c, type: 3}
+  - {fileID: 21300000, guid: b6422871ce1c75049b93906f7ad45f43, type: 3}
+  - {fileID: 21300000, guid: 358119f2dd710a0439219a808e1d51d6, type: 3}
+  rightSprite:
+  - {fileID: 21300000, guid: d32c89020541f284c9cca412fe8b1448, type: 3}
+  - {fileID: 21300000, guid: 51537dd6c3cbe564c8336c890b50b01b, type: 3}
+  - {fileID: 21300000, guid: 35707f20ac688134ca5919e3416367ac, type: 3}
+  - {fileID: 21300000, guid: 59457938ae5fa6a49b42a8f1df07557f, type: 3}
+  upSprite:
+  - {fileID: 21300000, guid: d5c32c524daa8c2468af846fe771b16d, type: 3}
+  - {fileID: 21300000, guid: 801c279ae9f0cef43b9fec033260d9fb, type: 3}
+  - {fileID: 21300000, guid: 56e58c8d669464247a699210ab358254, type: 3}
+  - {fileID: 21300000, guid: 281595f186257b34abd37f0869c76057, type: 3}
+  downSprite:
+  - {fileID: 21300000, guid: d7f513292f8cd2e49a7387e554764957, type: 3}
+  - {fileID: 21300000, guid: 3fabeeb9d7ec0164581c4faf696c9c5b, type: 3}
+  - {fileID: 21300000, guid: 67b1900bcec95d643a4a3f2741cdaf33, type: 3}
+  - {fileID: 21300000, guid: 122fa88bd577a21449c017f0d2d29de5, type: 3}
+  spaceSprite:
+  - {fileID: 21300000, guid: 1a949a3694622f04c9f98a8a60cde570, type: 3}
+  - {fileID: 21300000, guid: f95e98055f4665440abd8f0e3880ed1b, type: 3}
+  - {fileID: 21300000, guid: 5a9384a3f49d1574cbde53c0c1f29177, type: 3}
+  - {fileID: 21300000, guid: d5cfddde769e6104db7ab490e30514fa, type: 3}
 --- !u!1 &3165611292697395370
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.90196085, g: 0.427451, b: 0.427451, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -379,7 +404,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: d969f2af41aca744487eb791d98adcbe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d5c32c524daa8c2468af846fe771b16d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -452,7 +477,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 9
   m_TargetDisplay: 0
 --- !u!114 &8487914161621477501
 MonoBehaviour:
@@ -732,7 +757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.4413116, a: 1}
+  m_Color: {r: 0.49803925, g: 0.79215693, b: 0.49411768, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -775,7 +800,7 @@ Transform:
   m_GameObject: {fileID: 7102079083682104419}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.059, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -822,7 +847,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 34a4b8a322e140f48a70b84f69b14a32, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1a949a3694622f04c9f98a8a60cde570, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

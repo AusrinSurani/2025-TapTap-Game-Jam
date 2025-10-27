@@ -101,11 +101,22 @@ public class LoadingCoverFader : MonoBehaviour
             BTextTyping = true;
             parasShowText.text = string.Empty;
 
+            yield return new WaitForSeconds(1.5f);
             for (int i = 0; i < paras.Length; i++)
             {
                 parasShowText.text += paras[i]+"\n";
-
-                yield return new WaitForSeconds(1f);
+                //Debug.Log(paras[i] + "  : " + paras[i].Length);
+                if (paras[i].Length<3)
+                {
+                    //空符号过短不等待
+                }
+                //太长少等待
+                else if (paras[i].Length>50)
+                {
+                    yield return new WaitForSeconds(0.1f * (float)paras[i].Length);
+                }
+                else
+                    yield return new WaitForSeconds(0.15f*(float)paras[i].Length);
             }
 
             resumeTip.gameObject.SetActive(true);
@@ -115,6 +126,7 @@ public class LoadingCoverFader : MonoBehaviour
                 yield return null;
             }
             pageCurIndex++;
+            yield return new WaitForSeconds(0.5f);
         }
           
         BTextTyping = false;

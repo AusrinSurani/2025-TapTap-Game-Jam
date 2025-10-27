@@ -549,9 +549,9 @@ public class CodeGamePlay : MonoBehaviour
             terminalSystem.AddNewCodeContent("即将运行退出程序", false);
             terminalSystem.WaitUntilAllPiecesShow();
             //TODO:关机效果
-
+            SceneLoadManager.Instance.bGameEnd_FindTruth = true;
             SceneLoadManager.Instance.TryLoadToTargetSceneAsync(SceneLoadManager.SceneDisplayID.ConsultationRoom, null, false);
-
+            AudioManager.Instance.ResumeTargetAudioPiece(AudioManager.Instance.consultingBGM);
         }
 
         //修复结局
@@ -569,7 +569,9 @@ public class CodeGamePlay : MonoBehaviour
             terminalSystem.AddNewCodeContent("检测到所有漏洞已完成修复，即将运行退出程序", false);
 
             //黑幕退场，加载到主场景
+            SceneLoadManager.Instance.bGameEnd_FindTruth = false;
             SceneLoadManager.Instance.TryLoadToTargetSceneAsync(SceneLoadManager.SceneDisplayID.ConsultationRoom,null,false);
+            AudioManager.Instance.ResumeTargetAudioPiece(AudioManager.Instance.consultingBGM);
         }
 
 

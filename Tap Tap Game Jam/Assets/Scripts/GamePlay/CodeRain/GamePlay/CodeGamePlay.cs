@@ -570,6 +570,8 @@ public class CodeGamePlay : MonoBehaviour
 
             //黑幕退场，加载到主场景
             SceneLoadManager.Instance.bGameEnd_FindTruth = false;
+            //改变游戏流程
+            GameFlowManager.Instance.ChangeChapter(GameFlowManager.Instance.currentChapter, true, GameFlowManager.Instance.currentDay);
             SceneLoadManager.Instance.TryLoadToTargetSceneAsync(SceneLoadManager.SceneDisplayID.ConsultationRoom,null,false);
             AudioManager.Instance.ResumeTargetAudioPiece(AudioManager.Instance.consultingBGM);
         }

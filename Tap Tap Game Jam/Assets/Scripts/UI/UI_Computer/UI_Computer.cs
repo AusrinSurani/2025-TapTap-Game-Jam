@@ -10,6 +10,8 @@ public class UI_Computer : BaseUI
 
     public GameObject dreamSystem;
     
+    public GameObject errorWindow;
+    
     private void OnEnable()
     {
         openComputer.OnEventRaise += StartMove;
@@ -19,7 +21,15 @@ public class UI_Computer : BaseUI
     {
         openComputer.OnEventRaise -= StartMove;
     }
-    
+
+    private void Start()
+    {
+        if (GameFlowManager.Instance.currentIsOver == true && GameFlowManager.Instance.currentDay == 3)
+        {
+            errorWindow.SetActive(true);
+        }
+    }
+
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

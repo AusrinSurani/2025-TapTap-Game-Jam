@@ -16,13 +16,18 @@ public class ButtonOfDoor : Interactable
     public GameObject dancer;
     public GameObject waiter;
     public GameObject programmer;
+    
     [Header("剧本")]
     public TextAsset dialogWithDancer0;
     public TextAsset dialogWithDancer1;
     public TextAsset dialogWithWaiter0;
     public TextAsset dialogWithWaiter1;
     public TextAsset dialogWithProgrammer0;
-    public TextAsset dialogWithProgrammer1;
+    
+    [Header("结局")]
+    public TextAsset end1;
+    public TextAsset end2;
+    private bool haveReachEnd = false;
 
     private bool isPatientCome = false;
     private bool isStartEndDialog =  false;
@@ -47,7 +52,6 @@ public class ButtonOfDoor : Interactable
         beginTextAssets.Add(ChapterOfGame.ChapterWaiter, dialogWithWaiter0);
         endTextAssets.Add(ChapterOfGame.ChapterWaiter, dialogWithWaiter1);
         beginTextAssets.Add(ChapterOfGame.ChapterProgrammer, dialogWithProgrammer0);
-        endTextAssets.Add(ChapterOfGame.ChapterProgrammer, dialogWithProgrammer1);
     }
     
     private void Update()
@@ -60,8 +64,27 @@ public class ButtonOfDoor : Interactable
         }
         
         //每次从梦中回到现实，isStartEmdDialog会重置，故不用调整
+        //结局对话在此实现
         if (GameFlowManager.Instance.currentIsOver && isStartEndDialog == false) 
         {
+            if (haveReachEnd)
+                return;
+            
+            if (GameFlowManager.Instance.currentDay == 3 && !haveReachEnd)
+            {
+                haveReachEnd = true;
+                if (SceneLoadManager.Instance.bGameEnd_FindTruth == false)
+                {
+                    DialogManager.Instance.StartDialog(end1);
+                }
+                else
+                {
+                    DialogManager.Instance.StartDialog(end2);
+                }
+                
+                return;
+            }
+            
             characters[GameFlowManager.Instance.currentChapter].SetActive(true);
             
             if(beginTextAssets[GameFlowManager.Instance.currentChapter] != null)

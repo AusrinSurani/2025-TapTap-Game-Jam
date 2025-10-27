@@ -108,6 +108,7 @@ public class ClickableTextController : MonoBehaviour, IPointerClickHandler
             {
                 if (clickedWord == word.word && wordsDict[word] == false)
                 {
+                    AudioManager.Instance.AudioOncePlay(AudioManager.Instance.raisePaper);
                     wordsDict[word] = true;
                     GenerateItem(word);
                 }

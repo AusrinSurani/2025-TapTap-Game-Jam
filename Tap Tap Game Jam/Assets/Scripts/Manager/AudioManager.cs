@@ -476,13 +476,22 @@ public class AudioManager : Singleton<AudioManager>
     public AudioPiece computerHoverSfx;
     public AudioPiece clickSfx;
     public AudioPiece buttonSfx;
-    public AudioPiece windowsTransSfx;
+    public AudioPiece windowsRaiseSfx;
     
     [Header("化妆间")]
     public AudioPiece dressingRoomBGM;
     
     [Header("酒店")]
     public AudioPiece hotelBGM;
+    public AudioPiece raiseMap;
+    public AudioPiece exitMap;
+    public AudioPiece raisePaper;
+    public AudioPiece raiseBook;
+    public AudioPiece raiseWine;
+    public AudioPiece getMap;
+    public AudioPiece hotelStep;
+    public AudioPiece fit;
+    
 
     [Header("DancerDreamAudioPieces")]
     public AudioPiece sceneLightSwitchAudioPiece;

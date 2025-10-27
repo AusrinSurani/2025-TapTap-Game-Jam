@@ -29,15 +29,6 @@ public class BlankController : MonoBehaviour
             word.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
-
-    private void Start()
-    {
-        
-    }
-
-    private void Update()
-    {
-    }
         
     public void CheckComplete()
     {
@@ -60,6 +51,7 @@ public class BlankController : MonoBehaviour
             
             haveGetMap  = true;
             //TODO:获取地图碎片
+            AudioManager.Instance.AudioOncePlay(AudioManager.Instance.getMap);
             GenerateItem(inventoryItemData);
             GetComponent<SpriteRenderer>().color = new Color(1,1,1,0);
             StartCoroutine(RaiseCoroutine(1f));

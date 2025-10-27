@@ -16,6 +16,8 @@ public class MapClip : MonoBehaviour
         {
             if (other.GetComponent<DraggableItem>().inventoryItemData == mapData)
             {
+                AudioManager.Instance.AudioOncePlay(AudioManager.Instance.fit);
+                
                 GetComponent<SpriteRenderer>().color = Color.clear;
                 haveMap  = true;
                 GetComponentInParent<UI_Map>().numOfMap++;
@@ -36,6 +38,8 @@ public class MapClip : MonoBehaviour
 
             if (other.GetComponent<DraggableItem>().inventoryItemData.ID == mapData.ID)
             {
+                AudioManager.Instance.AudioOncePlay(AudioManager.Instance.fit);
+                
                 flag.color = new Color(1,1,1,1);
                 haveFlag = true;
                 

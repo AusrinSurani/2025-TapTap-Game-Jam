@@ -122,10 +122,11 @@ public class DialogManager : Singleton<DialogManager>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
+        //test
+        /*if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             StartExample();
-        }
+        }*/
         
         if(!dialogBox.activeSelf)
             return;

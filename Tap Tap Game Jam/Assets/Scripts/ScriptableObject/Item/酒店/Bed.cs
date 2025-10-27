@@ -7,6 +7,8 @@ public class Bed : TravelPlan
 {
     [Header("事件广播")] public VoidEventSO getFirstMapEvent;
     
+    private bool haveGetMap = false;
+    
     public override void Update()
     {
         if (!Input.GetKeyDown(KeyCode.Space) || DialogManager.Instance.IsTyping() || !DialogManager.Instance.IsOnLastMessage())
@@ -32,6 +34,18 @@ public class Bed : TravelPlan
     
     public override void OnPointerClick(PointerEventData eventData)
     {
+        if (haveGetMap)
+        {
+            DialogManager.Instance.ShowMessage("我已经拿到这里的地图了");
+            return;
+        }
+        
+        if (!haveGetMap)
+        {
+            haveGetMap = true;
+            AudioManager.Instance.AudioOncePlay(AudioManager.Instance.getMap);
+        }
+        
         if(itemData.descriptions == null|| itemData.descriptions.Length == 0)
         {
             //显示一句

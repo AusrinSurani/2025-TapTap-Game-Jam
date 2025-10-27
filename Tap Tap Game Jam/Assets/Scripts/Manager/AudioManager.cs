@@ -28,21 +28,7 @@ public class AudioManager : Singleton<AudioManager>
     }
 
     private void Update()
-    { 
-        //test
-        /*if(Input.GetKeyDown(KeyCode.T))
-        {
-            /*AudioLoopPlay(bgmAudioPiece); 
-            AudioLoopPlay(bgm2TestAudioPiece);
-            AudioLoopPlay(bgm3TestAudioPiece);
-            AudioLoopPlay(bgm3TestAudioPiece); #1#
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            //AudioOncePlay(testAudioPiece);
-        }*/
-
-        //endtest
+    {  
 
         
 
@@ -507,4 +493,11 @@ public class AudioManager : Singleton<AudioManager>
     public AudioPiece correctInteractAudioPiece;
     public AudioPiece specialInteractAudioPiece;
     public AudioPiece wrongInteractAudioPiece;
+
+
+    [Header("CodeGamePlay")]
+    public AudioPiece codeGameBGM;
+    public AudioPiece redErrorInteractAudioPiece;
+    public AudioPiece blueSpecialInteractAudioPiece;
+
 }

@@ -20,13 +20,7 @@ public class CodeGame_InroductionUI : MonoBehaviour
         
     }
     private void Update()
-    {
-        if(Input.GetKeyUp(KeyCode.T))
-        {
-//test
-        StartCoroutine(IntroShow_LevelTwo());
-        //endtest
-        }
+    { 
     }
 
     public RectTransform intro_levelOne;
@@ -39,23 +33,27 @@ public class CodeGame_InroductionUI : MonoBehaviour
     #region IntroTextType
     public bool BTextTyping; 
     
-    private IEnumerator IntroShow_LevelOne()
+    public IEnumerator IntroShow_LevelOne()
     {
         BIntroShowEnd = false;
         _finishWaitTime = new WaitForSeconds(0);
+        _haveShowTextContent = string.Empty;
+        _preShowTextContent = string.Empty;
         yield return TextTypeWithEndText("请用鼠标点击以捕获", "<color=red>红</color>", "<color=red>色</color>");
         yield return TextType("错误代码，清除【bug】", false); 
         BIntroShowEnd = true;
     }
 
-    private IEnumerator IntroShow_LevelTwo()
+    public IEnumerator IntroShow_LevelTwo()
     {
         BIntroShowEnd = false;
         _finishWaitTime = new WaitForSeconds(0);
+        _haveShowTextContent = string.Empty;
+        _preShowTextContent = string.Empty;
         yield return TextTypeWithEndText("请用鼠标点击以捕获", "<color=red>红</color>", "<color=red>色</color>");
         yield return TextType("错误代码，清除【bug】",false);
         yield return RebackTextType("请用鼠标点击以捕获");
-        yield return TextType("错误代码，获取【真相】", "<color=blue>蓝</color>", " <color=blue>色</color>");
+        yield return TextType("错误代码，获取【真相】", "<color=#00CEFF>蓝</color>", " <color=#00CEFF>色</color>");
         BIntroShowEnd = true;
     }
 
@@ -70,7 +68,10 @@ public class CodeGame_InroductionUI : MonoBehaviour
         StartCoroutine(_textTypingIE);
     }
     private IEnumerator _textTypingIE;
+    [SerializeField]
     private string _preShowTextContent;
+    [SerializeField]
+    [TextArea]
     private string _haveShowTextContent; 
     //打字间隔
     private WaitForSeconds _typeWaitTime = new WaitForSeconds(0.1f);
@@ -167,8 +168,9 @@ public class CodeGame_InroductionUI : MonoBehaviour
         BTextTyping = true;
         _tempString = string.Empty;
         _tempEndAddString = string.Empty;
-        _haveShowTextContent = showingText.text;
-        _tempTextCount = showingText.text.Length-targetContent.Length;
+        //_haveShowTextContent = showingText.text;
+        _tempTextCount = _haveShowTextContent.Length-targetContent.Length;
+        //Debug.Log("Rebakc Count:"+ _tempTextCount);
         for (int i=0;i< _tempTextCount;i++)
         {
             if (_haveShowTextContent[_haveShowTextContent.Length - i - 1] =='>')

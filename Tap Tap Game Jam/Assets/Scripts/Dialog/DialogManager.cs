@@ -97,7 +97,8 @@ public class DialogManager : Singleton<DialogManager>
         animDict["尼安德"] = "Doctor";
 
         animDict["机器人"] = "Robot";
-        
+        animDict["尼安德_"] = "Robot";
+
         animDict["妮娜·奥蜜可"] = "Dancer";
         animDict["来问诊的女人"] = "Dancer";
         animDict["妮娜"] = "Dancer";

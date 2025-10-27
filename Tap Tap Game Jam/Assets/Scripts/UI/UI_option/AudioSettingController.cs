@@ -41,7 +41,9 @@ public class AudioSettingsController : MonoBehaviour
         
         if (AudioManager.Instance == null)
         {
+#if UNITY_EDITOR
             Debug.LogError("无AudioManager单例");
+#endif
             return;
         }
 

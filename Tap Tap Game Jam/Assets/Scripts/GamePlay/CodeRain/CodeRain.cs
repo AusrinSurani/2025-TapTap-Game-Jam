@@ -15,10 +15,9 @@ public class CodeRain : MonoBehaviour
     private CodePiece _tempCodePiece;
     private void Start()
     {
-        _randomInstantiateDelay = Random.Range(0.1f, 1f);
-        _randomInteractableInstantiateDelay = Random.Range(0.5f, 1f);
-        _lastRandomValue = -1;
-        //test
+        _randomInstantiateDelay = 1f;
+        _randomInteractableInstantiateDelay = 2f;
+        _lastRandomValue = -1; 
         if (codePieces.Count<100)
         {
             for(int i=0;i<100;i++)
@@ -29,9 +28,7 @@ public class CodeRain : MonoBehaviour
                 codePieces.Add(_tempCodePiece);
                 _tempObj.gameObject.SetActive(false);
             }
-        }
-
-        //endtest
+        } 
 
     }
     private void Update()
@@ -98,19 +95,19 @@ public class CodeRain : MonoBehaviour
         {
             return false;
         }
-        //记录生成数
+        /*//记录生成数
         if (interactType == InteractableCodePiece.InteractableCodePieceType.Error_Red)
         {
-            if (CurInteractableCount_RedError > MaxInteractableCount_RedError)
+            if (!BInstantiateUntilEnough_RedError && CurInteractableCount_RedError > MaxInteractableCount_RedError)
                 return false;
             CurInteractableCount_RedError++;
         }
         else
         {
-            if (CurInteractableCount_BlueSpecial > MaxInteractableCount_BlueSpecial)
+            if (!BInstantiateUntilEnough_BlueSpecial&&CurInteractableCount_BlueSpecial > MaxInteractableCount_BlueSpecial)
                 return false;
             CurInteractableCount_BlueSpecial++;
-        }
+        }*/
         //重置计时
         _delayTimer_interactable = 0;
 
@@ -127,13 +124,43 @@ public class CodeRain : MonoBehaviour
         _tempInteractObj.transform.SetParent(this.transform.GetChild(0));
         _tempInteractObj.GetComponent<InteractableCodePiece>().SetInteractType(interactType);
         _tempInteractObj.GetComponent<InteractableCodePiece>().parentGamePlay = ParentGamePlay;
-
+        ipiecesList.Add(_tempInteractObj.GetComponent<InteractableCodePiece>());
         _randomInteractableInstantiateDelay = Random.Range(0.5f, 1.5f);
         return true;
+    }
+
+    private List<InteractableCodePiece> ipiecesList = new List<InteractableCodePiece>();
+     
+    public void SetAllInteractablePieceNotInteract()
+    {
+        for (int i = ipiecesList.Count - 1; i >= 0; i--)
+            if (ipiecesList!= null)
+            {
+                if(ipiecesList[i]!=null&&!ipiecesList[i].BHaveInteract) 
+                {
+                    ipiecesList[i].BHaveInteract = true;
+                    if (ipiecesList[i].gameObject.activeSelf)
+                        ipiecesList[i].HideSelf();
+                }
+            }
+        Invoke(nameof(DestoryAllInteractPieceObj), 2f);
+    }
+
+    public void DestoryAllInteractPieceObj()
+    {
+        for (int i = ipiecesList.Count - 1; i >= 0; i--)
+        { 
+            Destroy(ipiecesList[i].gameObject); 
+        }
+        ipiecesList.Clear(); 
     }
 
     public int CurInteractableCount_RedError;
     public int CurInteractableCount_BlueSpecial;
     public int MaxInteractableCount_RedError;
     public int MaxInteractableCount_BlueSpecial;
+
+    //继续生成直至该值为false
+    public bool BInstantiateUntilEnough_BlueSpecial;
+    public bool BInstantiateUntilEnough_RedError;
 }

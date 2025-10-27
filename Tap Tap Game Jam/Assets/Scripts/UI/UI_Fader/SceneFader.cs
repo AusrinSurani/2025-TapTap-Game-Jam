@@ -51,7 +51,7 @@ public class SceneFader : MonoBehaviour
             
         }
         
-        //test
+        /*//test
        if (Input.GetKeyDown(KeyCode.Q))
         {  
             Debug.Log("FadeIn");
@@ -65,7 +65,7 @@ public class SceneFader : MonoBehaviour
         }
 
         Debug.Log("Apha" + image.color.a);
-        //endtest
+        //endtest*/
     }
 
     public void FadeOut(FadeType fadeType)

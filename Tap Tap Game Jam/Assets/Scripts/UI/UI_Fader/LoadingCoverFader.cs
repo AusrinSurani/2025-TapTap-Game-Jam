@@ -55,6 +55,8 @@ public class LoadingCoverFader : MonoBehaviour
     private WaitForSeconds _finishWaitTime = new WaitForSeconds(2f);
     private IEnumerator TextType()
     {
+        DisplayTextPro.gameObject.SetActive(true);
+        parasShowText.gameObject.SetActive(false);
         BTextTyping = true;
         DisplayTextPro.text = string.Empty;
         for(int i = 0; i < _preShowTextContent.Length; i++) 
@@ -67,6 +69,8 @@ public class LoadingCoverFader : MonoBehaviour
     //TODO:响应点击，快速展示所有内容
     public IEnumerator TextType(string content)
     {
+        DisplayTextPro.gameObject.SetActive(true);
+        parasShowText.gameObject.SetActive(false);
         _preShowTextContent = content;
         BTextTyping = true;
         DisplayTextPro.text = string.Empty;
@@ -82,6 +86,41 @@ public class LoadingCoverFader : MonoBehaviour
     {
         return BTextTyping;
     }
+
+    public TextMeshProUGUI parasShowText;
+    public TextMeshProUGUI resumeTip;
+    public IEnumerator TextTypeByParagraph(List<string> contentByPages)
+    {
+        DisplayTextPro.gameObject.SetActive(false);
+        parasShowText.gameObject.SetActive(true);
+        int pageCurIndex = 0;
+        while (pageCurIndex < contentByPages.Count)
+        {
+            resumeTip.gameObject.SetActive(false);
+            string[] paras = contentByPages[pageCurIndex].Split('\n');
+            BTextTyping = true;
+            parasShowText.text = string.Empty;
+
+            for (int i = 0; i < paras.Length; i++)
+            {
+                parasShowText.text += paras[i]+"\n";
+
+                yield return new WaitForSeconds(1f);
+            }
+
+            resumeTip.gameObject.SetActive(true);
+            //等待空格
+            while (!Input.GetKeyDown(KeyCode.Space))
+            {
+                yield return null;
+            }
+            pageCurIndex++;
+        }
+          
+        BTextTyping = false;
+        //结束
+    }
+     
 
 
     /*public void BeginFadeIn()

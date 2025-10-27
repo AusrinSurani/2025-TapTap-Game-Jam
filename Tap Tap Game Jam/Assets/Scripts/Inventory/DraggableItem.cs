@@ -144,13 +144,19 @@ public class DraggableItem : MonoBehaviour
     {
         if (other.CompareTag("LostWords") && other.GetComponent<BlankForWords>().lostWord == inventoryWordsData.word)
         {
+            
             other.GetComponent<BlankForWords>().haveWord = true;
             other.GetComponent<BlankForWords>().CheckAllComplete();
             
-            transform.SetParent(DestoryContainer.Instance.transform);
-            gameObject.SetActive(false);
- 
-            ItemSlotController.Instance.ResetSlotsPosition(this);
+            ResetPositions();
         }
+    }
+
+    public void ResetPositions()
+    {
+        AudioManager.Instance.AudioOncePlay(AudioManager.Instance.fit);
+        transform.SetParent(DestoryContainer.Instance.transform);
+        gameObject.SetActive(false);
+        ItemSlotController.Instance.ResetSlotsPosition(this);
     }
 }

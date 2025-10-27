@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0b9b6ded7558f4e871956fc8379f95, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
-  idOfSceneToLoad: 3
+  idOfSceneToLoad: 2
   nameOfPatient: "\u59AE\u5A1C\xB7\u5965\u871C\u53EF"
   keyWords: "\u81EA\u6211\u610F\u8BC6\u3001\u81EA\u4E3B\u521B\u4F5C\u3001\u56DB\u80A2\u5931\u63A7\u3001\u7126\u8651\u3001\u7CBE\u795E\u6253\u51FB"
   initialDiagnosis: "\u7591\u4F3C\u795E\u7ECF\u7CFB\u7EDF\u4F20\u5BFC\u5F02\u5E38"

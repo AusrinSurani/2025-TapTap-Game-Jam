@@ -29,11 +29,6 @@ public class UI_Map : MonoBehaviour
 
     public GameObject button;
 
-    void Awake()
-    {
-        
-    }
-
     private void Update()
     {
         if (numOfMap == 7 && !haveShowMessage)
@@ -48,6 +43,7 @@ public class UI_Map : MonoBehaviour
         {
             bird.SetActive(true);
             haveShowBird = true;
+            AudioManager.Instance.AudioOncePlay(AudioManager.Instance.getMap);
         }
 
         if (numOfFlag == 7 && numOfMap == 7 && !haveGone)
@@ -70,6 +66,9 @@ public class UI_Map : MonoBehaviour
         
         yield return new WaitUntil(() => DialogManager.Instance.dialogBox.activeSelf == false);
         
+        AudioManager.Instance.ClearTargetAudioPiece(AudioManager.Instance.hotelBGM);
+        AudioManager.Instance.ClearTargetAudioPiece(AudioManager.Instance.consultingBGM);
+        
         SceneLoadManager.Instance.ResetSceneLoadStatus();
         GameFlowManager.Instance.ChangeChapter(GameFlowManager.Instance.currentChapter, true, GameFlowManager.Instance.currentDay);
         SceneLoadManager.Instance.TryLoadToTargetSceneAsync(SceneLoadManager.SceneDisplayID.ConsultationRoom, "", false);
@@ -77,6 +76,7 @@ public class UI_Map : MonoBehaviour
 
     public void StartMove()
     {
+        AudioManager.Instance.AudioOncePlay(AudioManager.Instance.raiseMap);
         gameObject.SetActive(true);
         //终断当前的移动
         if (moveCoroutine != null)
@@ -92,6 +92,8 @@ public class UI_Map : MonoBehaviour
 
     public virtual void MoveBack(bool isVanish = false)
     {
+        AudioManager.Instance.AudioOncePlay(AudioManager.Instance.exitMap);
+        
         Vector2 currentPos = transform.position;
         Vector2 destination = startPosition + new Vector2(playerTrans.position.x, playerTrans.position.y);
 

@@ -44,6 +44,8 @@ public class BounceButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
+        AudioManager.Instance.AudioOncePlay(AudioManager.Instance.mainMenuBtnSfx);
+        
         AnimateScale(originalScale * hoverScaleMultiplier);
         if(hoverSprite != null)
             gameObject.GetComponent<Image>().sprite = hoverSprite;
@@ -59,6 +61,7 @@ public class BounceButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public virtual void OnPointerClick(PointerEventData eventData)
     {
         AudioManager.Instance.AudioOncePlay(AudioManager.Instance.mainMenuBtnSfx);
+        
         if (currentAnimation != null)
         {
             StopCoroutine(currentAnimation);

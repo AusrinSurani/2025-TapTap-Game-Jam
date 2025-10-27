@@ -15,4 +15,14 @@ public class Computer : Interactable
         UI_Computer.SetActive(true);
         openComputer.OnEventRaise();
     }
+
+    public override void PlayHoverSfx()
+    {
+        AudioManager.Instance.AudioOncePlay(AudioManager.Instance.computerHoverSfx);
+    }
+
+    public override void PlayClickSfx()
+    {
+        AudioManager.Instance.AudioOncePlay(AudioManager.Instance.windowsRaiseSfx);
+    }
 }

@@ -22,6 +22,7 @@ public class LightController : MonoBehaviour
                 {
                     haveTriggerDialog = true;
                     playerRb.GetComponent<PlayerController>().initialDialogHaveDone = false;
+                    AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.hotelBGM);
                 }
                 
                 foreach (Light2D light2D in lightsOfRoom)

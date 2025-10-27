@@ -14,14 +14,15 @@ public class PlayerController : MonoBehaviour
     [Header("移动参数")]
     public float moveSpeed = 5f;
 
+    [Header("酒店脚步声")] 
+    public float timeBetweenSteps;
+    private float stepTimer;
+
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer spriteRenderer;
-
-    public KeyCode torchKey = KeyCode.I;
-    public KeyCode sleepKey = KeyCode.O;
     
-    private enum State { Idle, Move, Touch, Sleep }
+    private enum State { Idle, Move}
     private State currentState;
 
     private float horizontalInput;
@@ -56,12 +57,39 @@ public class PlayerController : MonoBehaviour
                 horizontalInput = Input.GetAxisRaw("Horizontal");
         }
 
+        #region 酒店特殊功能
+
         //酒店剧情
         if (!initialDialogHaveDone)
         {
             DialogManager.Instance.StartDialog(initialDialog);
             initialDialogHaveDone = true;
         }
+        
+        //酒店脚步
+        if (SceneLoadManager.Instance.currentScene == SceneLoadManager.SceneDisplayID.WaiterDream)
+        {
+            if (rb.velocity.x != 0)
+            {
+                stepTimer -= Time.deltaTime;
+                if (stepTimer <= 0)
+                {
+                    // 计时结束，播放声音
+                    AudioManager.Instance.AudioOncePlay(AudioManager.Instance.hotelStep);
+                
+                    // 重置计时器
+                    stepTimer = timeBetweenSteps;
+                }
+            }
+            else
+            {
+                stepTimer = 0;
+                AudioManager.Instance.PauseTargetAudioPiece(AudioManager.Instance.hotelStep);
+            }
+        }
+        
+
+        #endregion
         
         //检测状态是否要更换
         UpdateState();
@@ -74,7 +102,6 @@ public class PlayerController : MonoBehaviour
 
         if (!BRemoveWrongActionTip&&countOfWrongAction > 5 && !haveTip)
         {
-            Debug.Log("Tip");
             DialogManager.Instance.ShowMessage("左右颠倒的动作……这就是妮娜说的“想出左手出了右手，想出左脚出了右脚”");
             haveTip = true;
         }
@@ -91,18 +118,6 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
-
-        if (Input.GetKeyDown(torchKey))
-        {
-            SwitchState(currentState == State.Touch ? State.Idle : State.Touch);
-            return;
-        }
-        
-        if (Input.GetKeyDown(sleepKey))
-        {
-            SwitchState(currentState == State.Sleep ? State.Idle : State.Sleep);
-            return;
-        }
         
         if(Mathf.Abs(horizontalInput) == 0)
             //没有任何输入直接转成Idle
@@ -115,8 +130,6 @@ public class PlayerController : MonoBehaviour
 
         anim.SetBool("Idle", currentState == State.Idle);
         anim.SetBool("Move", currentState == State.Move);
-        anim.SetBool("Touch", currentState == State.Touch);
-        anim.SetBool("Sleep", currentState == State.Sleep);
     }
     
     private void HandleStateActions()
@@ -124,10 +137,6 @@ public class PlayerController : MonoBehaviour
         switch (currentState)
         {
             case State.Idle:
-            case State.Touch:
-            case State.Sleep:
-                rb.velocity = new Vector2(0, rb.velocity.y);
-                break;
             case State.Move:
                 MovePlayer();
                 break;

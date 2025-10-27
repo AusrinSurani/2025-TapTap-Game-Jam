@@ -93,9 +93,11 @@ public class ButtonOfDoor : Interactable
         //触发事件，黑屏，然后患者出现，对话
         StartCoroutine(OnDancerComeIn());
         
-        //切换至舞女章节,但是治疗没结束,天数不变
+        //切换至下一个章节,但是治疗没结束,天数不变
         GameFlowManager gameFlowManager = GameFlowManager.Instance;
         gameFlowManager.ChangeChapter(gameFlowManager.listOfChapter[gameFlowManager.currentDay],false, gameFlowManager.currentDay);
+        
+        AudioManager.Instance.PauseTargetAudioPiece(AudioManager.Instance.consultingBGM);
     }
 
     private IEnumerator DancerComeIn()

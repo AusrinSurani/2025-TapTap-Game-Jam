@@ -57,8 +57,6 @@ public class InteractableWithDialog : Interactable
     
     public override void OnPointerClick(PointerEventData eventData)
     {
-        PlayClickSfx();
-        
         if (dialogMask.activeSelf == false)
         {
             return;

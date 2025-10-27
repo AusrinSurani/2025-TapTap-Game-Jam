@@ -192,13 +192,13 @@ MonoBehaviour:
     audioID: 0
     audioClipDescription: "\u5F00\u59CB\u754C\u9762\u7684\u6309\u94AE\u97F3\u6548"
     sourceClip: {fileID: 8300000, guid: 24acd23b2414c3f4482d2b813a92cb8e, type: 3}
-    volumnValue: 0
+    volumnValue: 0.33
     bCanMutPlay: 0
   mainMenuBGM:
     audioID: 1
     audioClipDescription: "\u5F00\u59CB\u754C\u9762BGM"
     sourceClip: {fileID: 8300000, guid: b986a84db9d21b44295fdf3576bac46b, type: 3}
-    volumnValue: 0
+    volumnValue: 0.8
     bCanMutPlay: 0
   consultingBGM:
     audioID: 100
@@ -210,7 +210,7 @@ MonoBehaviour:
     audioID: 101
     audioClipDescription: 
     sourceClip: {fileID: 8300000, guid: cbf9c6237a18a0b4fb834738d8cca1db, type: 3}
-    volumnValue: 0.8
+    volumnValue: 0.5
     bCanMutPlay: 0
   computerHoverSfx:
     audioID: 102
@@ -221,8 +221,8 @@ MonoBehaviour:
   clickSfx:
     audioID: 103
     audioClipDescription: 
-    sourceClip: {fileID: 8300000, guid: 5add742b502c62245aadc32c024a1f10, type: 3}
-    volumnValue: 0.8
+    sourceClip: {fileID: 8300000, guid: 659af95d18db5c043b30ec8cbbdf317e, type: 3}
+    volumnValue: 0.5
     bCanMutPlay: 0
   buttonSfx:
     audioID: 104
@@ -230,23 +230,73 @@ MonoBehaviour:
     sourceClip: {fileID: 8300000, guid: b42e34ad764d26741876153d1d58f2fd, type: 3}
     volumnValue: 0.8
     bCanMutPlay: 0
-  windowsTransSfx:
+  windowsRaiseSfx:
     audioID: 105
     audioClipDescription: 
     sourceClip: {fileID: 8300000, guid: 088fa1f48c9cdd2419c79f45fb655db0, type: 3}
     volumnValue: 0.5
     bCanMutPlay: 0
   dressingRoomBGM:
+    audioID: 201
+    audioClipDescription: 
     audioID: 11001
     audioClipDescription: "\u5316\u5986\u95F4"
     sourceClip: {fileID: 8300000, guid: f5f34f2fc99a50f4f9fdc314d0cc677d, type: 3}
     volumnValue: 0.8
     bCanMutPlay: 0
   hotelBGM:
-    audioID: 0
+    audioID: 301
     audioClipDescription: 
-    sourceClip: {fileID: 0}
+    sourceClip: {fileID: 8300000, guid: 90ac0c483e1392b47b0170b1191b396c, type: 3}
     volumnValue: 1
+    bCanMutPlay: 0
+  raiseMap:
+    audioID: 302
+    audioClipDescription: 
+    sourceClip: {fileID: 8300000, guid: 70cbe80bb36171e4e8538ba6fb5302b1, type: 3}
+    volumnValue: 0.5
+    bCanMutPlay: 0
+  exitMap:
+    audioID: 303
+    audioClipDescription: 
+    sourceClip: {fileID: 8300000, guid: 4f253f6f6e0144b40b75ae5ad26ba679, type: 3}
+    volumnValue: 0.5
+    bCanMutPlay: 0
+  raisePaper:
+    audioID: 304
+    audioClipDescription: 
+    sourceClip: {fileID: 8300000, guid: 945170657e8007640a22ae3d9aa13772, type: 3}
+    volumnValue: 0.5
+    bCanMutPlay: 0
+  raiseBook:
+    audioID: 305
+    audioClipDescription: 
+    sourceClip: {fileID: 8300000, guid: 235d7b710e83d894283e5589916d050b, type: 3}
+    volumnValue: 0.5
+    bCanMutPlay: 0
+  raiseWine:
+    audioID: 306
+    audioClipDescription: 
+    sourceClip: {fileID: 8300000, guid: d88b788c8d2cbc54bb51f7137f313aec, type: 3}
+    volumnValue: 0.5
+    bCanMutPlay: 0
+  getMap:
+    audioID: 307
+    audioClipDescription: 
+    sourceClip: {fileID: 8300000, guid: 0d7e7157aa6309b42a283b226209f8a4, type: 3}
+    volumnValue: 0.5
+    bCanMutPlay: 0
+  hotelStep:
+    audioID: 308
+    audioClipDescription: 
+    sourceClip: {fileID: 8300000, guid: 65025499286598a4783d060a2f48203a, type: 3}
+    volumnValue: 0.25
+    bCanMutPlay: 0
+  fit:
+    audioID: 309
+    audioClipDescription: 
+    sourceClip: {fileID: 8300000, guid: 6e6645bbcc52a17438e0af65bf5ec150, type: 3}
+    volumnValue: 0.64
     bCanMutPlay: 0
   sceneLightSwitchAudioPiece:
     audioID: 10001

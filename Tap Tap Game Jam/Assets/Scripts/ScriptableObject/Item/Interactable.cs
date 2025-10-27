@@ -26,7 +26,22 @@ public class Interactable:MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
     public virtual void OnPointerClick(PointerEventData eventData)
     {
-        PlayClickSfx();
+        //第二章：大部分物品有专属音效
+        switch (itemData.name)
+        {
+            case "书":
+                AudioManager.Instance.AudioOncePlay(AudioManager.Instance.raiseBook);
+                break;
+            case "旅行计划" or "文件" or "比萨" or "咖啡卡片":
+                AudioManager.Instance.AudioOncePlay(AudioManager.Instance.raisePaper);
+                break;
+            case "香槟":
+                AudioManager.Instance.AudioOncePlay(AudioManager.Instance.raiseWine);
+                break;
+            default:
+                PlayClickSfx();
+                break;
+        }
         
         if(itemData.descriptions == null|| itemData.descriptions.Length == 0)
         {

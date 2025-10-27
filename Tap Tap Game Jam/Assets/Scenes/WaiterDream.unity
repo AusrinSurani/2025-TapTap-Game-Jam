@@ -4241,22 +4241,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 440967458}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ebe847d8f67d874a986cbcffe2995e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 19d39d4af6d973d4aa5eb0cef61296a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 95e1a0207f5552e4693b18b4cc374380, type: 2}
   outLine: {fileID: 1215537285}
-  dialogMask: {fileID: 1790631545}
   imageForItem: {fileID: 1602947327}
-  needSwitch: 0
-  background: {fileID: 1603984418}
-  BNoAnimator: 1
   raiseDuration: 0.7
   backDuration: 0.5
   needDialog: 1
-  OnInteractFinished:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &452603701
 GameObject:
   m_ObjectHideFlags: 0
@@ -6782,7 +6775,6 @@ MonoBehaviour:
   BNoAnimator: 1
   raiseDuration: 0.7
   backDuration: 0.5
-  needDialog: 0
   OnInteractFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -8002,22 +7994,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 926093893}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ebe847d8f67d874a986cbcffe2995e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 19d39d4af6d973d4aa5eb0cef61296a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 2d5cb9daa94aab343810152b08db8835, type: 2}
   outLine: {fileID: 909037244}
-  dialogMask: {fileID: 1790631545}
   imageForItem: {fileID: 1602947327}
-  needSwitch: 0
-  background: {fileID: 1603984418}
-  BNoAnimator: 1
   raiseDuration: 0.7
   backDuration: 0.5
   needDialog: 1
-  OnInteractFinished:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &973739106
 GameObject:
   m_ObjectHideFlags: 0
@@ -8723,7 +8708,6 @@ MonoBehaviour:
   BNoAnimator: 1
   raiseDuration: 0.7
   backDuration: 0.5
-  needDialog: 0
   OnInteractFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -10410,7 +10394,6 @@ MonoBehaviour:
   BNoAnimator: 1
   raiseDuration: 0.7
   backDuration: 0.5
-  needDialog: 0
   OnInteractFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -11197,7 +11180,6 @@ MonoBehaviour:
   BNoAnimator: 1
   raiseDuration: 0.7
   backDuration: 0.5
-  needDialog: 0
   OnInteractFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -12816,7 +12798,6 @@ MonoBehaviour:
   BNoAnimator: 1
   raiseDuration: 0.7
   backDuration: 0.5
-  needDialog: 0
   OnInteractFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -13357,7 +13338,6 @@ MonoBehaviour:
   BNoAnimator: 1
   raiseDuration: 0.7
   backDuration: 0.5
-  needDialog: 0
   OnInteractFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -13933,7 +13913,6 @@ MonoBehaviour:
   BNoAnimator: 1
   raiseDuration: 0.7
   backDuration: 0.5
-  needDialog: 0
   OnInteractFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -23864,22 +23843,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2245818578496241914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ebe847d8f67d874a986cbcffe2995e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 19d39d4af6d973d4aa5eb0cef61296a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: c00634a2c97842d4384a5129189c8376, type: 2}
   outLine: {fileID: 4929557645526507137}
-  dialogMask: {fileID: 1790631545}
   imageForItem: {fileID: 1602947327}
-  needSwitch: 0
-  background: {fileID: 1603984418}
-  BNoAnimator: 1
   raiseDuration: 0.7
   backDuration: 0.5
   needDialog: 1
-  OnInteractFinished:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!60 &6744960387444546669
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -24018,22 +23990,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2245818578634784948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ebe847d8f67d874a986cbcffe2995e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 19d39d4af6d973d4aa5eb0cef61296a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: e9827d16704590942a82861ec2ba72ad, type: 2}
   outLine: {fileID: 4929557645656399567}
-  dialogMask: {fileID: 1790631545}
   imageForItem: {fileID: 1602947327}
-  needSwitch: 0
-  background: {fileID: 1603984418}
-  BNoAnimator: 1
   raiseDuration: 0.7
   backDuration: 0.5
   needDialog: 1
-  OnInteractFinished:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!4 &6771230732004410498
 Transform:
   m_ObjectHideFlags: 0

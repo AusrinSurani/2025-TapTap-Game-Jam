@@ -50,7 +50,13 @@ public class DacnerDirector : MonoBehaviour
     public void RaiseCurtain()
     {
         gamePlayPart.JoystickCtr.SetAnimatorStatus(JoystickController.JoystickStatus.Middle);
-        StartCoroutine(CurtainMove());
+        StartCoroutine(CurtainMove()); 
+    }
+
+    public void CurtainSoundEffect()
+    {
+        AudioManager.Instance?.AudioOncePlay(AudioManager.Instance.curtainRiseAudioPiece);
+
     }
 
     public void DownCurtain()
@@ -155,7 +161,8 @@ public class DacnerDirector : MonoBehaviour
     {
         if (AudioManager.Instance != null)
         {
-            AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.dancerBGMAudioPiece);
+            AudioManager.Instance.ClearTargetAudioPiece(AudioManager.Instance.dressingRoomBGM);
+            AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.dancerBGMAudioPiece,true,1f);
         }
     }
 

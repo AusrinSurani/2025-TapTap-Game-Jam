@@ -114,7 +114,9 @@ public class UIManager : Singleton<UIManager>
                 _panelPathDic.Add(path, i);
                 i.gameObject.SetActive(true);
                 i.OnEnter();
+#if UNITY_EDITOR
                 Debug.Log("Found old Panel in _panelPoolQueue");
+#endif
                 return i as T;
             }
         }
@@ -124,14 +126,19 @@ public class UIManager : Singleton<UIManager>
         GameObject panelObj = GameObject.Instantiate(Resources.Load<GameObject>(path));
         if (panelObj == null)
         {
+#if UNITY_EDITOR
             Debug.LogError("Error,not found UIPrefab [" + typeof(T).Name + "] at path:" + path);
+#endif
             return null;
         }
         panelObj.transform.SetParent(SelfPanelCanvasTransform, false);
         T uiPanel = panelObj.GetComponent<T>();
         if (uiPanel == null)
         {
+
+#if UNITY_EDITOR
             Debug.LogError("Error,not found Component [" + typeof(T).Name + "]  at path:" + path);
+#endif
             return null;
         }
 

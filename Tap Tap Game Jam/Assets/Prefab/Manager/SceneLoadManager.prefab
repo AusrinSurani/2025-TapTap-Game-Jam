@@ -47,13 +47,15 @@ MonoBehaviour:
   dontDestroy: 1
   changeChapterEvent: {fileID: 11400000, guid: 5abe17569c7681241975513f192e1c9c, type: 2}
   currentScene: 0
-  scenesDisplayID: 0000000001000000030000000400000005000000
+  scenesDisplayID: 00000000010000000200000003000000040000000500000006000000
   scenesPath:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/ConsultationRoom.unity
   - Assets/Scenes/DressingRoom.unity
   - Assets/Scenes/DanceDream.unity
   - Assets/Scenes/WaiterDream.unity
+  - Assets/Scenes/ComputeRoom.unity
+  - Assets/Scenes/CodeAndBugGame.unity
   curLoadStatus: 0
   onSceneLoadBegin:
     m_PersistentCalls:

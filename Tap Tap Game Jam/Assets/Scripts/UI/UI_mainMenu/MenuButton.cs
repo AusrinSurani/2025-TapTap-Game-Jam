@@ -1,6 +1,8 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static SceneLoadManager;
 
 public class MenuButton : MonoBehaviour,
     IPointerEnterHandler, 
@@ -88,8 +90,13 @@ public class MenuButton : MonoBehaviour,
             case 0:
                 //TODO:切换场景开始游戏
 
-                sceneLoadManager.TryLoadToTargetSceneAsync
-                    (SceneLoadManager.SceneDisplayID.ConsultationRoom, "开场白",true);
+                //开场白
+                List<string> slist = new List<string>();
+                slist.Add("“咔哒…”\r\n值得庆祝的是，你又一次准时推开了办公室的大门。\r\n\r\n曼庚城的清晨总在上演同样的滑稽剧情：\r\n街角的全息广告总因数据过载开始抽搐，仿生人环卫工会突然原地转圈用扫把横扫路人，新闻播报卡在“今日公共安全评分为1”这句上复读，还好没人相信1后面还跟着两个0。\r\n城市的立体交通更是场灾难，罢工、抗议、暴力事件，或只是一次“必要的月度检修”，都能让你的全勤奖泡汤。\r\n\r\n在DTB上班的这一年多时间里，你早就知道自己的生物钟和双腿比什么都可靠。");
+                slist.Add("在曼庚城，人们的疾病早已超出了传统医疗的管辖范围。\r\n你的工作是钻进他们的脑子，在梦境里修复那些偏离正轨的意识。\r\n\r\n至于这座城市究竟生了什么病？那不归你管。\r\n你只想在下班前搞定今天的指标，祈祷别再碰上些延误工时的话痨。\r\n你的信条很简单：梦境治疗不问真相，只讲疗效。\r\n\r\n毕竟，一个安稳的梦境，远比追寻那些疯狂的“真相”来得实惠——当然，也安全得多。");
+                sceneLoadManager.TryLoadToTargetSceneAsync(SceneDisplayID.ConsultationRoom, slist, true, true);
+                /*sceneLoadManager.TryLoadToTargetSceneAsync
+                    (SceneLoadManager.SceneDisplayID.ConsultationRoom, "开场白",true);*/
                 isLoadingScene = true;
                 Debug.Log("开始游戏");
                 break;

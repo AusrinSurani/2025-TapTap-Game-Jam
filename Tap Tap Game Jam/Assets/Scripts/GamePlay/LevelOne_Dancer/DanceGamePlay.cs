@@ -751,7 +751,9 @@ public class DanceGamePlay : MonoBehaviour
     {
         if (RoundEndui == null)
         {
+#if UNITY_EDITOR
             Debug.Log("Not Found RoundEndui in DanceGamePlay");
+#endif
             return;
         }
 

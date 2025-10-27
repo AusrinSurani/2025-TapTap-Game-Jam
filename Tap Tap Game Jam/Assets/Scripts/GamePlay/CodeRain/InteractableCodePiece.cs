@@ -18,12 +18,11 @@ public class InteractableCodePiece : CodePiece,IPointerClickHandler
 
     public InteractableCodePieceType PieceType;
 
-    private bool BHaveInteract;
+    public bool BHaveInteract;
 
     private void Start()
     {
-        BHaveInteract = false;
-         
+        BHaveInteract = false; 
     }
 
     public CodeGamePlay parentGamePlay;//
@@ -48,8 +47,15 @@ public class InteractableCodePiece : CodePiece,IPointerClickHandler
         if (_disolveIE != null && !_bDisolving)
             StopCoroutine(_disolveIE);
         _disolveIE = DisolveSelf();
-        StartCoroutine(_disolveIE);
+        if(this.gameObject.activeSelf)
+            StartCoroutine(_disolveIE);
 
+    }
+
+    public void ForceStopCorotine()
+    {
+        if (_disolveIE != null)
+            StopCoroutine(_disolveIE);
     }
 
     public CanvasGroup selfCanvasGroup;
@@ -68,7 +74,8 @@ public class InteractableCodePiece : CodePiece,IPointerClickHandler
             selfCanvasGroup.alpha -= Time.deltaTime;
             yield return null;
         }
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
+        //Destroy(this.gameObject);
     }
     private Color _tempColor;
     public void SetInteractType(InteractableCodePieceType t)
@@ -81,6 +88,9 @@ public class InteractableCodePiece : CodePiece,IPointerClickHandler
             _tempColor.a = 0;
             fadeEffect.color1 = _tempColor;
             fadeEffect.color2 = longCodeColor_RedError;
+            //速度降低
+            StartVelocity.y = -75f;
+            this.SelfRb.gravityScale = 40f;
         }
         else if (PieceType == InteractableCodePieceType.Special_Blue)
         {
@@ -89,6 +99,9 @@ public class InteractableCodePiece : CodePiece,IPointerClickHandler
             _tempColor.a = 0;
             fadeEffect.color1 = _tempColor;
             fadeEffect.color2 = longCodeColor_BlueSpecial;
+            //速度降低
+            StartVelocity.y = -75f;
+            this.SelfRb.gravityScale = 25f;
         } 
     }
      

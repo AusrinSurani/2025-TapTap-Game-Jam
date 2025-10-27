@@ -17,21 +17,7 @@ public class DacnerDirector : MonoBehaviour
 
     private void Update()
     {
-        //test
-        if(Input.GetKeyDown(KeyCode.B))
-        {
-            DancerDirector.Play();
-        }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            DirectResume();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            BackToConsoleRoom();
-        }
-        //endtest
+        
     }
 
     public bool BShowing;

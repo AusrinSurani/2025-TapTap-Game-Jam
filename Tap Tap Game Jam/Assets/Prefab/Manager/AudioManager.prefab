@@ -200,6 +200,12 @@ MonoBehaviour:
     sourceClip: {fileID: 8300000, guid: 8ee985bf3666a5a46b8f3d18a418f23a, type: 3}
     volumnValue: 1
     bCanMutPlay: 0
+  consultingBGM:
+    audioID: 0
+    audioClipDescription: 
+    sourceClip: {fileID: 0}
+    volumnValue: 0
+    bCanMutPlay: 0
   sceneLightSwitchAudioPiece:
     audioID: 10001
     audioClipDescription: "\u821E\u53F0\u573A\u666F\u62C9\u95F8\u58F0"
@@ -235,6 +241,24 @@ MonoBehaviour:
     audioClipDescription: "\u9519\u8BEF\u97F3\u6548"
     sourceClip: {fileID: 8300000, guid: 6b10f1fb58f60ae46a2a4d2ecd0729b1, type: 3}
     volumnValue: 0.8
+    bCanMutPlay: 0
+  codeGameBGM:
+    audioID: 30101
+    audioClipDescription: "\u4EE3\u7801\u96E8\u6E38\u620F\u80CC\u666F\u97F3\u4E50"
+    sourceClip: {fileID: 8300000, guid: de012321d2e6c294c8a60f16c6221e26, type: 3}
+    volumnValue: 0
+    bCanMutPlay: 0
+  redErrorInteractAudioPiece:
+    audioID: 30102
+    audioClipDescription: "\u6355\u83B7\u7EA2\u8272\u4EE3\u7801\u7247\u53CD\u9988\u97F3\u6548"
+    sourceClip: {fileID: 8300000, guid: de012321d2e6c294c8a60f16c6221e26, type: 3}
+    volumnValue: 1
+    bCanMutPlay: 0
+  blueSpecialInteractAudioPiece:
+    audioID: 30103
+    audioClipDescription: "\u6355\u83B7\u84DD\u8272\u4EE3\u7801\u7247\u6BB5\u53CD\u9988\u97F3\u6548"
+    sourceClip: {fileID: 8300000, guid: 65307989b79d09744bfbcd5860cf9973, type: 3}
+    volumnValue: 1
     bCanMutPlay: 0
 --- !u!1001 &404355388972324173
 PrefabInstance:

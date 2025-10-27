@@ -6609,6 +6609,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 29ecfae8b8cc85740a9ba71bb749fc32, type: 2}
     - {fileID: 11400000, guid: 8375a84242e28274280cb5366f7f68c2, type: 2}
     - {fileID: 11400000, guid: 56aee07fa21bafe4ca6f6df9e559ced4, type: 2}
+    - {fileID: 11400000, guid: 33bfe8d6478720c43a3511fd9ac72de7, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -6741,6 +6742,20 @@ MonoBehaviour:
         - m_Target: {fileID: 1545782623}
           m_TargetAssemblyTypeName: DacnerDirector, Assembly-CSharp
           m_MethodName: DownCurtain
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1545782623}
+          m_TargetAssemblyTypeName: DacnerDirector, Assembly-CSharp
+          m_MethodName: CurtainSoundEffect
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -9783,6 +9798,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af57758aa363e77489902e41d1869372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialDialog: {fileID: 0}
+  initialDialogHaveDone: 1
   moveSpeed: 5
   torchKey: 105
   sleepKey: 111
@@ -9860,10 +9877,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7820436270839838163, guid: 6468b2fa1bc0ae243954287660d754d3, type: 3}
-      propertyPath: dancerBGMAudioPiece.sourceClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 6c7bd14469895a54bbe620474b531565, type: 3}
     - target: {fileID: 8729994136563897445, guid: 6468b2fa1bc0ae243954287660d754d3, type: 3}
       propertyPath: m_Name
       value: AudioManager

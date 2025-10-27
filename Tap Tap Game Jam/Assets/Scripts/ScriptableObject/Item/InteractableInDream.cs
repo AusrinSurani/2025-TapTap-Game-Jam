@@ -62,7 +62,6 @@ public class InteractableInDream : Interactable
                 else
                     background?.gameObject.SetActive(false);
             }
-                
             isShowing = false;
             OnInteractFinished?.Invoke();
         }
@@ -72,7 +71,6 @@ public class InteractableInDream : Interactable
     {
         if(dialogMask.activeSelf == false)
             return;
-        
         base.OnPointerEnter(eventData);
     }
 

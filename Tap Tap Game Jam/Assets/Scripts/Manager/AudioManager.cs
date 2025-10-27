@@ -192,6 +192,7 @@ public class AudioManager : Singleton<AudioManager>
         public AudioSource source;
         public AudioStatus curStatus;
         public AudioPiece playingAuidoPiece;
+        public IEnumerator volumnRiseIE;
     }
 
     [System.Serializable]
@@ -203,6 +204,7 @@ public class AudioManager : Singleton<AudioManager>
         public float volumnValue;
         //可在不同音源同时播放
         public bool bCanMutPlay;
+
     }
     #endregion
 
@@ -271,6 +273,22 @@ public class AudioManager : Singleton<AudioManager>
         freeTargetAS.Play(); 
     }*/
 
+    private　IEnumerator LoopAudioVolumnRise(AudioSource asource,float targetVolumn,float riseVolumnSpeed)
+    {
+        asource.volume = 0;
+        asource.Play();
+        while (asource.volume<targetVolumn)
+        {
+            asource.volume += Time.deltaTime * riseVolumnSpeed;
+            if (asource.volume >= targetVolumn)
+            {
+                asource.volume = targetVolumn;
+                break;
+            }
+            yield return null;
+        }
+    }
+
     public void AudioLoopPlay(AudioPiece audioPiece)
     {
         AudioPlayData newapd = GetFreeAudioSourceFromBGMChannel(); 
@@ -280,6 +298,23 @@ public class AudioManager : Singleton<AudioManager>
         newapd.source.Play(); 
         newapd.curStatus = AudioStatus.Playing;
         newapd.playingAuidoPiece = audioPiece; 
+    }
+    public void AudioLoopPlay(AudioPiece audioPiece,bool bNeedRise,float riseVolumnSpeed)
+    {
+        if (bNeedRise)
+        {
+            AudioPlayData newapd = GetFreeAudioSourceFromBGMChannel();
+            newapd.source.loop = true;
+            newapd.source.clip = audioPiece.sourceClip;
+            newapd.curStatus = AudioStatus.Playing;
+            newapd.playingAuidoPiece = audioPiece;
+            newapd.volumnRiseIE=LoopAudioVolumnRise(newapd.source, globalVolumn * bgmVolumn * audioPiece.volumnValue, riseVolumnSpeed);
+            StartCoroutine(newapd.volumnRiseIE);
+        }
+        else
+        {
+            AudioLoopPlay(audioPiece);
+        }
     }
 
 
@@ -296,6 +331,8 @@ public class AudioManager : Singleton<AudioManager>
                 {
                     bgmAudiosPlayData[i].source.Pause();
                     bgmAudiosPlayData[i].curStatus = AudioStatus.Pause;
+                    if (bgmAudiosPlayData[i].volumnRiseIE != null)
+                        StopCoroutine(bgmAudiosPlayData[i].volumnRiseIE);
                 }
             }
         }
@@ -326,6 +363,8 @@ public class AudioManager : Singleton<AudioManager>
                 {
                     bgmAudiosPlayData[i].source.Stop();
                     bgmAudiosPlayData[i].curStatus = AudioStatus.None;
+                    if (bgmAudiosPlayData[i].volumnRiseIE != null)
+                        StopCoroutine(bgmAudiosPlayData[i].volumnRiseIE);
                 }
             }
         }
@@ -488,7 +527,8 @@ public class AudioManager : Singleton<AudioManager>
     public AudioPiece sceneLightSwitchAudioPiece;
     public AudioPiece spotLightSwitchAudioPiece;
     public AudioPiece dancerBGMAudioPiece;
-    
+    public AudioPiece curtainRiseAudioPiece;
+
     [Header("DanceGamePlay")]
     public AudioPiece correctInteractAudioPiece;
     public AudioPiece specialInteractAudioPiece;

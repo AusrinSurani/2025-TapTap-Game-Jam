@@ -74,7 +74,7 @@ public class CodeGamePlay : MonoBehaviour
         StartCoroutine(_gamePlayIE);
         if(AudioManager.Instance!=null)
         {
-            AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.codeGameBGM);
+            //AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.codeGameBGM);
         }
     }
 

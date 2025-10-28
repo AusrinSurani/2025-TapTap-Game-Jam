@@ -1896,8 +1896,7 @@ MonoBehaviour:
   initialDialog: {fileID: 0}
   initialDialogHaveDone: 1
   moveSpeed: 5
-  torchKey: 105
-  sleepKey: 111
+  timeBetweenSteps: 0
   virtualCamera: {fileID: 0}
   BInvertInput: 0
   BRemoveWrongActionTip: 0
@@ -2385,7 +2384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e6dc9be194355540af9a7966cd66347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoadID: 4
+  sceneToLoadID: 3
 --- !u!1 &1866416430
 GameObject:
   m_ObjectHideFlags: 0

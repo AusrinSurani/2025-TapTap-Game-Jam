@@ -2523,8 +2523,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 659af95d18db5c043b30ec8cbbdf317e, type: 3}
     - target: {fileID: 7820436270839838163, guid: 6468b2fa1bc0ae243954287660d754d3, type: 3}
+      propertyPath: mainMenuBGM.sourceClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e153ebb454f08444fbc06a9904e224e4, type: 3}
+    - target: {fileID: 7820436270839838163, guid: 6468b2fa1bc0ae243954287660d754d3, type: 3}
       propertyPath: mainMenuBGM.volumnValue
-      value: 0.8
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7820436270839838163, guid: 6468b2fa1bc0ae243954287660d754d3, type: 3}
       propertyPath: mainMenuBtnSfx.sourceClip

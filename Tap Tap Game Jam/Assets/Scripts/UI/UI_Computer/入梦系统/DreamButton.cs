@@ -148,6 +148,7 @@ public class DreamButton : BounceButton
         }
         
         guide.SetActive(false);
+        AudioManager.Instance.PauseTargetAudioPiece(AudioManager.Instance.consultingBGM);
         StartCoroutine(LoadCoroutine());
     }
 

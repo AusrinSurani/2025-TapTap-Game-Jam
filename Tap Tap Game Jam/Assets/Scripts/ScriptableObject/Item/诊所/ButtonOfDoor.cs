@@ -119,8 +119,6 @@ public class ButtonOfDoor : Interactable
         //切换至下一个章节,但是治疗没结束,天数不变
         GameFlowManager gameFlowManager = GameFlowManager.Instance;
         gameFlowManager.ChangeChapter(gameFlowManager.listOfChapter[gameFlowManager.currentDay],false, gameFlowManager.currentDay);
-        
-        AudioManager.Instance.PauseTargetAudioPiece(AudioManager.Instance.consultingBGM);
     }
 
     private IEnumerator DancerComeIn()

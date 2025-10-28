@@ -60,7 +60,7 @@ Material:
     - _ENUM: 2
     - _Frequency: 1
     - _FullScreen: 0
-    - _Intensity: 0
+    - _Intensity: 0.1
     - _Noise: 100
     - _Range: 1
     - _Strength: 0.2

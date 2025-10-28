@@ -33,6 +33,13 @@ public class UI_Map : MonoBehaviour
 
     private void Update()
     {
+        if (numOfFlag == 7 && !haveShowBird)
+        {
+            bird.SetActive(true);
+            haveShowBird = true;
+            AudioManager.Instance.AudioOncePlay(AudioManager.Instance.getMap);
+        }
+        
         if (haveGone)
         {
             return;
@@ -51,13 +58,6 @@ public class UI_Map : MonoBehaviour
             haveShowMessage = true;
             string[] message = {"好像还缺了点啥","七个地方，只有六个旅行计划？但是基本能找的地方都找过了。","去问问布莱梅看看吧"};
             DialogManager.Instance.ShowMessage(message);
-        }
-
-        if (numOfFlag == 7 && !haveShowBird)
-        {
-            bird.SetActive(true);
-            haveShowBird = true;
-            AudioManager.Instance.AudioOncePlay(AudioManager.Instance.getMap);
         }
     }
 

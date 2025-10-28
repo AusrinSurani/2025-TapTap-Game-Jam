@@ -15,12 +15,12 @@ public class UI_Computer : BaseUI
     
     private void OnEnable()
     {
-        openComputer.OnEventRaise += StartMove;
+        openComputer.OnEventRaise += StartMoveWithCheckEnd2;
     }
 
     private void OnDisable()
     {
-        openComputer.OnEventRaise -= StartMove;
+        openComputer.OnEventRaise -= StartMoveWithCheckEnd2;
     }
 
     private void Start()
@@ -30,16 +30,35 @@ public class UI_Computer : BaseUI
             &&SceneLoadManager.Instance.bGameEnd_FindTruth)
         { 
             errorWindow.SetActive(true);
-            //故障效果
-            errorWindow.GetComponent<ErrorWindow>()?.SetMaterialWrongOnce();
         }
     } 
-
+    
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             MoveBack();
         }
+    }
+
+    private void StartMoveWithCheckEnd2()
+    {
+        if (GameFlowManager.Instance.currentIsOver == true 
+            && GameFlowManager.Instance.currentDay == 3
+            &&SceneLoadManager.Instance.bGameEnd_FindTruth)
+        { 
+            errorWindow.SetActive(true);
+            //故障效果
+            StartCoroutine(OnClick());
+        }
+        
+        //正常情况直接Move
+        StartMove();
+    }
+
+    private IEnumerator OnClick()
+    {
+        yield return new WaitForSeconds(2f);
+        errorWindow.GetComponent<ErrorWindow>()?.SetMaterialWrongOnce();
     }
 }

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroy: 1
   currentChapter: 0
-  currentDay: 0
+  currentDay: 1
   currentIsOver: 0
   chapterChangeEvent: {fileID: 11400000, guid: 5abe17569c7681241975513f192e1c9c, type: 2}
   listOfChapter: 00000000010000000200000003000000

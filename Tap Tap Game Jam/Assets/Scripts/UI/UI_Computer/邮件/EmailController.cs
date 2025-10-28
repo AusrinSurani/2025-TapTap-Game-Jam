@@ -55,6 +55,7 @@ public class EmailController : MonoBehaviour
                 email5.SetActive(false);
                 break;
             case 2:
+                email4.SetActive(true);
                 email5.SetActive(false);
                 break;
         }

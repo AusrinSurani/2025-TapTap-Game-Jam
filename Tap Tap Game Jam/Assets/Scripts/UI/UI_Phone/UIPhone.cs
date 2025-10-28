@@ -29,15 +29,22 @@ public class UIPhone : BaseUI
     private void OnEnable()
     {
         openPhone.OnEventRaise += StartMove;
+        openPhone.OnEventRaise += OnOpen;
         openPhone.OnEventRaise += UseMask;
         chapterChangeEvent.OnEventRaise += RefreshInformation;
     }
 
     private void OnDisable()
     {
+        openPhone.OnEventRaise -= OnOpen;
         openPhone.OnEventRaise -= StartMove;
         openPhone.OnEventRaise -= UseMask;
         chapterChangeEvent.OnEventRaise -= RefreshInformation;
+    }
+
+    private void OnOpen()
+    {
+        numOfHaveRead+=2;
     }
     
     public void Update()

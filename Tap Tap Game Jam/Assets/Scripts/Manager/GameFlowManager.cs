@@ -35,10 +35,12 @@ public class GameFlowManager : Singleton<GameFlowManager>
     {
         if(File.Exists(Path.Combine(Application.persistentDataPath,CHAPTER_DATA_FILE)))
         {
+            Debug.Log("load");
             LoadChapterData();
         }
         else
         {
+            Debug.Log("Reset");
             //第一次玩没有数据，准备默认的数据
             SetDefaultChapterData();
         }

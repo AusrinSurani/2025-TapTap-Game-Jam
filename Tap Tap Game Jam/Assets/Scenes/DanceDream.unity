@@ -1576,7 +1576,7 @@ Transform:
   m_GameObject: {fileID: 398032283}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.2989614, y: 0.17485492, z: 0}
+  m_LocalPosition: {x: 3.1036701, y: 0.17485492, z: 0}
   m_LocalScale: {x: 1.05, y: 1.05, z: 1.05}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9808,6 +9808,8 @@ MonoBehaviour:
   BInvertInput: 0
   BRemoveWrongActionTip: 1
   BNoGetInput: 0
+  _waitTimer: 0
+  MaxWaitTime: 3
   OnPlayerAutoMoveFinished:
     m_PersistentCalls:
       m_Calls: []

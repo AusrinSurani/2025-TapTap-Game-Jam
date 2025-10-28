@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using TMPro;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -142,7 +143,13 @@ public class LoadingCoverFader : MonoBehaviour
         parasShowText.text = string.Empty;
         //结束
     }
-     
+
+    private float _pressTimer_SpaceKey;
+    public float PressTimeToSkip;
+
+    private void Update()
+    { 
+    }
 
 
     /*public void BeginFadeIn()

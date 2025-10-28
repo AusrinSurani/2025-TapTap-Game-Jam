@@ -226,6 +226,10 @@ public class PlayerController : MonoBehaviour
         autoMove_IE = AutoMove(v);
         StartCoroutine(autoMove_IE);
     }
+
+    [SerializeField]
+    private float _waitTimer;
+    public float MaxWaitTime = 3f;
     //记录移动方向，避免走过
     private float _directionX;
     private IEnumerator autoMove_IE;
@@ -237,6 +241,9 @@ public class PlayerController : MonoBehaviour
         //
         while (Vector2.Distance(this.transform.position, v) > 0.1f)
         {
+            _waitTimer += Time.deltaTime;
+            if (_waitTimer > MaxWaitTime)
+                break;
             if (_directionX * (this.transform.position.x - v.x) < 0)
                 break;
             else
@@ -248,9 +255,14 @@ public class PlayerController : MonoBehaviour
                 horizontalInput = -1f;
             yield return null;
         }
+        yield return null;
         horizontalInput = 0f;
         BNoGetInput = true;
-        this.transform.position = v; 
+        SetZeroVelocity();
+        this.transform.position = v;
+#if UNITY_EDITOR
+        Debug.Log("AutoMoveEnd");
+#endif
         OnPlayerAutoMoveFinished?.Invoke();
     }
      

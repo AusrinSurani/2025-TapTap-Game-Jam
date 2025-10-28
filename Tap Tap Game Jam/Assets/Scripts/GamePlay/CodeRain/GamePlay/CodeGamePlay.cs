@@ -75,7 +75,7 @@ public class CodeGamePlay : MonoBehaviour
         if(AudioManager.Instance!=null)
         {
             //AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.codeGameBGM);
-            AudioManager.Instance.ClearTargetAudioPiece(AudioManager.Instance.computerRoomBGM);
+            AudioManager.Instance.ClearTargetAudioPiece(AudioManager.Instance.rooftopBGM);
 
             AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.codeGameBGM, true, 0.5f);
         }
@@ -553,7 +553,9 @@ public class CodeGamePlay : MonoBehaviour
             terminalSystem.WaitUntilAllPiecesShow();
             //TODO:关机效果
             SceneLoadManager.Instance.bGameEnd_FindTruth = true;
+            GameFlowManager.Instance.ChangeChapter(GameFlowManager.Instance.currentChapter, true, GameFlowManager.Instance.currentDay);
             SceneLoadManager.Instance.TryLoadToTargetSceneAsync(SceneLoadManager.SceneDisplayID.ConsultationRoom, null, false);
+            AudioManager.Instance.ClearTargetAudioPiece(AudioManager.Instance.codeGameBGM);
             AudioManager.Instance.ResumeTargetAudioPiece(AudioManager.Instance.consultingBGM);
         }
 
@@ -572,10 +574,11 @@ public class CodeGamePlay : MonoBehaviour
             terminalSystem.AddNewCodeContent("检测到所有漏洞已完成修复，即将运行退出程序", false);
 
             //黑幕退场，加载到主场景
-            SceneLoadManager.Instance.bGameEnd_FindTruth = false;
+            SceneLoadManager.Instance.bGameEnd_FindTruth = false; 
             //改变游戏流程
             GameFlowManager.Instance.ChangeChapter(GameFlowManager.Instance.currentChapter, true, GameFlowManager.Instance.currentDay);
             SceneLoadManager.Instance.TryLoadToTargetSceneAsync(SceneLoadManager.SceneDisplayID.ConsultationRoom,null,false);
+            AudioManager.Instance.ClearTargetAudioPiece(AudioManager.Instance.codeGameBGM);
             AudioManager.Instance.ResumeTargetAudioPiece(AudioManager.Instance.consultingBGM);
         }
 

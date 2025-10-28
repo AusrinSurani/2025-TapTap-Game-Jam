@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class CodeGame_SceneController : MonoBehaviour
 {
-    
+    private void Start()
+    {
+        if(AudioManager.Instance!=null)
+        {
+            AudioManager.Instance.ClearTargetAudioPiece(AudioManager.Instance.computerRoomBGM);
+            AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.rooftopBGM,true,0.5f);
+        }
+    }
 
     public void BeginEnterGameShow()
     {

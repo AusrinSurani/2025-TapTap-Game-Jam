@@ -344,10 +344,16 @@ MonoBehaviour:
     sourceClip: {fileID: 8300000, guid: 4873a11bee0af8144b9aaad2160aedf2, type: 3}
     volumnValue: 0.8
     bCanMutPlay: 0
+  rooftopBGM:
+    audioID: 33002
+    audioClipDescription: "\u5929\u53F0\u80CC\u666F\u97F3\u4E50"
+    sourceClip: {fileID: 8300000, guid: 4fbbb3d5be039e642b550a12298994ac, type: 3}
+    volumnValue: 0.8
+    bCanMutPlay: 0
   codeGameBGM:
     audioID: 33101
     audioClipDescription: "\u9ED1\u5BA2\u68A6\u5883\u80CC\u666F\u97F3\u4E50"
-    sourceClip: {fileID: 8300000, guid: 4fbbb3d5be039e642b550a12298994ac, type: 3}
+    sourceClip: {fileID: 8300000, guid: 02601884dfb34244682154602773aeb0, type: 3}
     volumnValue: 0.8
     bCanMutPlay: 0
   redErrorInteractAudioPiece:

@@ -21,7 +21,7 @@ public class LightController : MonoBehaviour
                 if (!haveTriggerDialog)
                 {
                     haveTriggerDialog = true;
-                    playerRb.GetComponent<PlayerController>().initialDialogHaveDone = false;
+                    StartCoroutine(RaiseDialogAboutHotel());
                     AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.hotelBGM);
                 }
                 
@@ -48,5 +48,11 @@ public class LightController : MonoBehaviour
                 }
             }
         }
+    }
+
+    private IEnumerator RaiseDialogAboutHotel()
+    {
+        yield return new WaitForSeconds(1f);
+        playerRb.GetComponent<PlayerController>().initialDialogHaveDone = false;
     }
 }

@@ -58,9 +58,19 @@ public class UI_Map : MonoBehaviour
             haveShowMessage = true;
             string[] message = {"好像还缺了点啥","七个地方，只有六个旅行计划？但是基本能找的地方都找过了。","去问问布莱梅看看吧"};
             DialogManager.Instance.ShowMessage(message);
+
+            StartCoroutine(KeepPlayerIdle());
         }
     }
 
+    private IEnumerator KeepPlayerIdle()
+    {
+        yield return new WaitUntil(()=> playerTrans.GetComponent<PlayerController>().BNoGetInput == false);
+        playerTrans.GetComponent<PlayerController>().BNoGetInput = true;
+        playerTrans.GetComponent<PlayerController>().SetZeroVelocity();
+        playerTrans.GetComponent<PlayerController>().SetInputZero();
+    }
+    
     private IEnumerator BeforeVanish()
     {
         button.SetActive(false);

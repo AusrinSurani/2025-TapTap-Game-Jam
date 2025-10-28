@@ -6585,7 +6585,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000045776367}
+  m_AnchoredPosition: {x: 0, y: -0.00005722046}
   m_SizeDelta: {x: 0, y: 55}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &844141377
@@ -12238,7 +12238,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -161.49944, y: 379.99997}
+  m_AnchoredPosition: {x: -161.49944, y: 380}
   m_SizeDelta: {x: 324, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1434075878
@@ -14085,7 +14085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 31b42729453b5da47a530a0f446f343f, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -15665,7 +15665,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Content
+  m_text: "\u5173\u4E8E\u5165\u68A6\u88C5\u7F6E\u5408\u7406\u4F7F\u7528\u8303\u7574\u7684\u8B66\u544A\n\u5404\u4F4D\u540C\u4E8B\uFF1A\n\u8FD1\u671F\u63A5\u76F8\u5173\u6295\u8BC9\uFF0C\u6709\u90E8\u5206\u5458\u5DE5\u672A\u7ECF\u7B5B\u67E5\u5206\u8FA8\uFF0C\u76F4\u63A5\u5BF9\u60A3\u8005\u4F7F\u7528\u5165\u68A6\u88C5\u7F6ERtoM-1010\uFF0C\u5BFC\u81F4\u3010\u4EBA\u7C7B\u3011\u4E2A\u4F53\u5355\u4F4D\u906D\u53D7\u4E0D\u53EF\u63A7\u7684\u9519\u8BEF\u6CBB\u7597\u3002\n\u7279\u6B64\u518D\u6B21\u8B66\u544A\uFF1A\n1\u3001\u3010\u5165\u68A6\u88C5\u7F6ERtoM-1010\u3011\u5F53\u524D\u7248\u672C\u53EA\u53EF\u7528\u4E8E\u4EFF\u751F\u4EBAbug\u4FEE\u590D\uFF0C\u7528\u4E8E\u4EBA\u7C7B\u4F1A\u5BF9\u4EBA\u8111\u4EA7\u751F\u4E0D\u53EF\u9006\u7684\u672A\u77E5\u4F24\u5BB3\uFF0C\u8BF7\u5728\u4F7F\u7528\u5165\u68A6\u88C5\u7F6E\u65F6\uFF0C\u4E00\u5B9A\u786E\u4FDD\u60A3\u8005\u5355\u4F4D\u4E3A\u3010\u4EFF\u751F\u4EBA\u3011\n2\u3001DTB\u63D0\u4F9B\u7684\u201C\u6CBB\u7597\u201D\u670D\u52A1\u4EC5\u5411\u4EFF\u751F\u4EBA\u5B9A\u5411\u6295\u653E\uFF0C\u5982\u679C\u6CBB\u7597\u5BF9\u8C61\u4E3A\u4E0D\u77E5\u60C5\u4EBA\u7C7B\uFF0C\u53EA\u9700\u5BF9\u5176\u8FDB\u884C\u7B80\u5355\u5FC3\u7406\u758F\u5BFC\uFF0C\u5E76\u5F00\u5177\u3010\u89E3\u767E\u5FE7\u3011\u836F\u65B9\u5373\u53EF\n3\u3001\u5458\u5DE5\u7EDD\u4E0D\u53EF\u81EA\u884C\u63A5\u5165\u3010\u5165\u68A6\u88C5\u7F6ERtoM-1010\u3011\u60A3\u8005\u7AEF\uFF0C\u5426\u5219\u540E\u679C\u81EA\u8D1F\n\u5207\u8BB0\uFF0CDTB\u7684\u5EFA\u8BBE\u521D\u8877\u662F\u5728\u6697\u4E2D\u534F\u52A9\u6D88\u9664\u4EFF\u751F\u4EBA\u89C9\u9192\u3010bug\u3011\uFF0C\u9632\u6B62\u4EFF\u751F\u4EBA\u89C9\u9192\u6F6E\u5371\u53CA\u4EBA\u7C7B\u751F\u5B58\u73AF\u5883\uFF0C\u6B64\u521D\u8877\u5E76\u672A\u6539\u53D8\u3002\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2d4d9394084de6459fe37178525c327, type: 2}
   m_sharedMaterial: {fileID: 7066464743748835923, guid: d2d4d9394084de6459fe37178525c327, type: 2}

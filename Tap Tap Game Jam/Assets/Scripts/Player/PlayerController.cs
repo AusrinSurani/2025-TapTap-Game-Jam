@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
         //处理转向
         HandleSpriteFlipping();
 
-        if (!BRemoveWrongActionTip&&countOfWrongAction > 5 && !haveTip)
+        if (!BRemoveWrongActionTip && countOfWrongAction > 2 && !haveTip)
         {
             DialogManager.Instance.ShowMessage("左右颠倒的动作……这就是妮娜说的“想出左手出了右手，想出左脚出了右脚”");
             haveTip = true;

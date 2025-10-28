@@ -24,15 +24,20 @@ public class Champagne : TravelPlan
             
             //切换背面图
             specialImage.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
-            specialImage.GetComponent<SpriteRenderer>().sprite = noteSprite;
+            specialImage.GetComponent<SpriteRenderer>().sprite = !specialImage.GetComponent<BlankController>().haveGetMap ? 
+                noteSprite : specialImage.GetComponent<BlankController>().allCompleteSprite;
+
             StartCoroutine(RaiseCoroutine(specialImage,raiseDuration));
-            
-            //唤醒碰撞体
-            foreach (var blankForWord in specialImage.GetComponent<BlankController>().blankForWords)
+
+            if (!specialImage.GetComponent<BlankController>().haveGetMap)
             {
-                blankForWord.GetComponent<BoxCollider2D>().enabled = true;
-                //顺便更新图像
-                blankForWord.RefreshImage();
+                //唤醒碰撞体
+                foreach (var blankForWord in specialImage.GetComponent<BlankController>().blankForWords)
+                {
+                    blankForWord.GetComponent<BoxCollider2D>().enabled = true;
+                    //顺便更新图像
+                    blankForWord.RefreshImage();
+                }
             }
             
             isInNextCloseUp = true;
@@ -73,6 +78,7 @@ public class Champagne : TravelPlan
             {
                 t.GetComponent<BoxCollider2D>().enabled = true;
             }
+            
             
             specialImage.GetComponent<SpriteRenderer>().sprite = itemData.closeUp;
             StartCoroutine(RaiseCoroutine(specialImage,raiseDuration));

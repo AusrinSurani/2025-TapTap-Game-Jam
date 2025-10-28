@@ -58,6 +58,10 @@ public class EmailController : MonoBehaviour
                 email4.SetActive(true);
                 email5.SetActive(false);
                 break;
+            case 3:
+                email4.SetActive(true);
+                email5.SetActive(true);
+                break;
         }
         
         Debug.Log(currentDay+"day,邮件设置完毕");
@@ -123,7 +127,15 @@ public class EmailController : MonoBehaviour
         for (int i = 0; i < emailNameButtons.Length; i++)
         {
             emailNameButtons[i].haveRead = savedData.haveReadEmailData[i];
-            haveAllRead = savedData.haveAllRead;
+        }
+        
+        haveAllRead = savedData.haveAllRead;
+        foreach (var t in emailNameButtons)
+        {
+            if (!t.haveRead)
+            {
+                haveAllRead = false;
+            }
         }
         
         ApplyData();

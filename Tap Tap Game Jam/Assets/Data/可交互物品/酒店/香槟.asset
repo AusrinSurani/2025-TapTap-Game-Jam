@@ -17,7 +17,7 @@ MonoBehaviour:
   outline: {fileID: 21300000, guid: 66fb0096ad23d58458696bec997dfc86, type: 3}
   closeUp: {fileID: 21300000, guid: 77d924e9c49d60f419b829a4e63ba196, type: 3}
   dialog: {fileID: 4900000, guid: 1f8f3d0b0e13ec34cacc5c340207344a, type: 3}
-  description: "\u6211\u53EF\u4EE5\u770B\u770B\u9999\u69DF\u4E0A\u7684\u6807\u7B7E"
+  description: 
   descriptions: []
   nextDescriptions:
   - "\u8FD9\u4E2A\u6807\u7B7E\uFF0C\u597D\u50CF\u80FD\u62C6\u4E0B\u6765\u7684\u6837\u5B50\u3002"

@@ -95,6 +95,9 @@ public class LoadingCoverFader : MonoBehaviour
 
     public TextMeshProUGUI parasShowText;
     public TextMeshProUGUI resumeTip;
+
+    private WaitForSeconds _longParasWaitTimeForEachCharacters = new WaitForSeconds(0.1f);
+    private WaitForSeconds _normalParasWaitTimeForEachCharacters = new WaitForSeconds(0.15f);
     public IEnumerator TextTypeByParagraph(List<string> contentByPages)
     {
         if(DisplayTextPro.gameObject.activeSelf)
@@ -105,6 +108,7 @@ public class LoadingCoverFader : MonoBehaviour
         int pageCurIndex = 0;
         while (pageCurIndex < contentByPages.Count)
         {
+            _BGetSpaceDown = false;
             resumeTip.gameObject.SetActive(false);
             string[] paras = contentByPages[pageCurIndex].Split('\n');
             BTextTyping = true;
@@ -115,17 +119,35 @@ public class LoadingCoverFader : MonoBehaviour
             {
                 parasShowText.text += paras[i]+"\n";
                 //Debug.Log(paras[i] + "  : " + paras[i].Length);
-                if (paras[i].Length<3)
+                if (paras[i].Length < 3)
                 {
                     //空符号过短不等待
                 }
                 //太长少等待
-                else if (paras[i].Length>50)
+                else if (paras[i].Length > 50)
                 {
-                    yield return new WaitForSeconds(0.1f * (float)paras[i].Length);
+                    for (int j = 0; j < paras[i].Length; j++)
+                    {
+                        yield return _longParasWaitTimeForEachCharacters;
+                        if(_BGetSpaceDown)
+                        {
+                            _BGetSpaceDown = false;
+                            break;
+                        }
+                    }
                 }
                 else
-                    yield return new WaitForSeconds(0.15f*(float)paras[i].Length);
+                {
+                    for (int j = 0; j < paras[i].Length; j++)
+                    {
+                        yield return _normalParasWaitTimeForEachCharacters;
+                        if (_BGetSpaceDown)
+                        {
+                            _BGetSpaceDown = false;
+                            break;
+                        }
+                    }
+                }
             }
 
             resumeTip.gameObject.SetActive(true);
@@ -144,11 +166,13 @@ public class LoadingCoverFader : MonoBehaviour
         //结束
     }
 
-    private float _pressTimer_SpaceKey;
-    public float PressTimeToSkip;
-
+    private bool _BGetSpaceDown;
     private void Update()
-    { 
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            _BGetSpaceDown = true;
+        }
     }
 
 

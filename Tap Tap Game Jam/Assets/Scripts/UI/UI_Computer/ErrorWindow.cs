@@ -4,7 +4,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ErrorWindow : MonoBehaviour
-{ 
+{
+    private IEnumerator _errorShowIE;
+    public void SetMaterialWrongOnce()
+    {
+        if (_errorShowIE != null)
+            StopCoroutine(_errorShowIE);
+        _errorShowIE = ErrorShow();
+        StartCoroutine(_errorShowIE);
+    }
+
+    private WaitForSeconds ErrorTime = new WaitForSeconds(2f);
+    public Material errorMaterial;
+    public Material selfMaterial;
+    private IEnumerator ErrorShow()
+    {
+        selfMaterial.SetFloat("_Intensity", 0.1f);
+        yield return ErrorTime;
+        errorMaterial.SetFloat("_Intensity", 0f);
+        selfMaterial.CopyPropertiesFromMaterial(errorMaterial);
+    }
     public void End2()
     {
         UIManager.Instance.coverFader.gameObject.SetActive(true);

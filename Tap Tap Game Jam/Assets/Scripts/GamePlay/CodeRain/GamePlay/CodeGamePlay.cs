@@ -75,6 +75,9 @@ public class CodeGamePlay : MonoBehaviour
         if(AudioManager.Instance!=null)
         {
             //AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.codeGameBGM);
+            AudioManager.Instance.ClearTargetAudioPiece(AudioManager.Instance.computerRoomBGM);
+
+            AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.codeGameBGM, true, 0.5f);
         }
     }
 

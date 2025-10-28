@@ -545,6 +545,8 @@ public class AudioManager : Singleton<AudioManager>
 
 
     [Header("CodeGamePlay")]
+    public AudioPiece computerRoomBGM;
+
     public AudioPiece codeGameBGM;
     public AudioPiece redErrorInteractAudioPiece;
     public AudioPiece blueSpecialInteractAudioPiece;

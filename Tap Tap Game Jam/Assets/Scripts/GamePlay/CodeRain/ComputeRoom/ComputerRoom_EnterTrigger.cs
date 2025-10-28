@@ -9,7 +9,7 @@ public class ComputerRoom_EnterTrigger : MonoBehaviour
     {
         if (AudioManager.Instance != null)
         {
-            AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.codeGameBGM,true,0.5f);
+            AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.computerRoomBGM,true,0.5f);
         }
     }
      

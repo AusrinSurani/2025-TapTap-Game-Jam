@@ -31,6 +31,8 @@ public class Champagne : TravelPlan
             foreach (var blankForWord in specialImage.GetComponent<BlankController>().blankForWords)
             {
                 blankForWord.GetComponent<BoxCollider2D>().enabled = true;
+                //顺便更新图像
+                blankForWord.RefreshImage();
             }
             
             isInNextCloseUp = true;
@@ -61,6 +63,12 @@ public class Champagne : TravelPlan
 
     public override void OnPointerClick(PointerEventData eventData)
     {
+        if (specialImage.GetComponent<BlankController>().haveGetMap)
+        {
+            DialogManager.Instance.ShowMessage("我已经拿到了这里的地图碎片了");
+            return;
+        }
+        
         DialogManager.Instance.StartDialog(itemData.dialog);
         
         if (specialImage != null && specialImage.GetComponent<SpriteRenderer>() != null)

@@ -23,6 +23,8 @@ public class Bremen : MonoBehaviour,IPointerClickHandler
     
     private bool canTalkAboutTravelPlan7 = false;
     private bool haveTalkAboutTravelPlan7 = false;
+    
+    public bool haveVanish = false;
 
     private void OnEnable()
     {
@@ -36,7 +38,7 @@ public class Bremen : MonoBehaviour,IPointerClickHandler
 
     private void Update()
     {
-        if (!Input.GetKeyDown(KeyCode.Space) || !DialogManager.Instance.IsDialogEnded())
+        if (!Input.GetKeyDown(KeyCode.Space) || !DialogManager.Instance.IsDialogEnded() || !haveVanish)
         {
             return;
         }
@@ -97,6 +99,9 @@ public class Bremen : MonoBehaviour,IPointerClickHandler
                 new Color(1,1,1, Mathf.Lerp(1,0,timer/0.7f));
             yield return null;
         }
+
+        yield return new WaitForSeconds(1f);
+        haveVanish = true;
     }
 
     public void TriggerComplete()

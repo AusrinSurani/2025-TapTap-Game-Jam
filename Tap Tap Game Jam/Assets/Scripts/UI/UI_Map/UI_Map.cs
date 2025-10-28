@@ -20,6 +20,8 @@ public class UI_Map : MonoBehaviour
     public GameObject bird;
     public int numOfMap = 0;
     public int numOfFlag = 0;
+    public GameObject breman;
+    
     private bool haveShowMessage = false;
     private bool haveShowBird = false;
     private bool haveGone = false;
@@ -46,7 +48,7 @@ public class UI_Map : MonoBehaviour
             AudioManager.Instance.AudioOncePlay(AudioManager.Instance.getMap);
         }
 
-        if (numOfFlag == 7 && numOfMap == 7 && !haveGone)
+        if (numOfFlag == 7 && numOfMap == 7 && !haveGone && breman.GetComponent<Bremen>().haveVanish)
         {
             haveGone = true;
             StartCoroutine(BeforeVanish());
@@ -65,9 +67,10 @@ public class UI_Map : MonoBehaviour
         DialogManager.Instance.ShowMessage(message);
         
         yield return new WaitUntil(() => DialogManager.Instance.dialogBox.activeSelf == false);
+        yield return new WaitForSeconds(0.7f);
         
         AudioManager.Instance.ClearTargetAudioPiece(AudioManager.Instance.hotelBGM);
-        AudioManager.Instance.ClearTargetAudioPiece(AudioManager.Instance.consultingBGM);
+        AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.consultingBGM);
         
         SceneLoadManager.Instance.ResetSceneLoadStatus();
         GameFlowManager.Instance.ChangeChapter(GameFlowManager.Instance.currentChapter, true, GameFlowManager.Instance.currentDay);

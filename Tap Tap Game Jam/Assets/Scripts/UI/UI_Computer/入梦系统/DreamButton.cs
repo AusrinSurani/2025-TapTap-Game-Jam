@@ -78,11 +78,6 @@ public class DreamButton : BounceButton
         advice.text = dreamSystemConfig[currentConfig].advice;
     }
 
-    private void Update()
-    {
-  
-    }
-
     public override void OnPointerEnter(PointerEventData eventData)
     {
         if (isOpenWindows)
@@ -148,7 +143,6 @@ public class DreamButton : BounceButton
         }
         
         guide.SetActive(false);
-        AudioManager.Instance.PauseTargetAudioPiece(AudioManager.Instance.consultingBGM);
         StartCoroutine(LoadCoroutine());
     }
 
@@ -165,21 +159,30 @@ public class DreamButton : BounceButton
         machineAnimator.SetTrigger("Lower");
 
         yield return new WaitForSeconds(2.6f);
+        
+        //这个时候暂停音乐较佳
+        AudioManager.Instance.PauseTargetAudioPiece(AudioManager.Instance.consultingBGM);
         SceneLoadManager.Instance.ResetSceneLoadStatus();
 
-        if (sceneToLoad == SceneLoadManager.SceneDisplayID.WaiterDream)
+        switch (sceneToLoad)
         {
-            StartCoroutine(LoadToChapter2());
-        }
-        else
-        {
-            SceneLoadManager.Instance.TryLoadToTargetSceneAsync(sceneToLoad, "入梦", true);
+            case SceneLoadManager.SceneDisplayID.DressingRoom:
+                SceneLoadManager.Instance.TryLoadToTargetSceneAsync(sceneToLoad, "正在进入 妮娜的梦境", true);
+                break;
+            case SceneLoadManager.SceneDisplayID.WaiterDream:
+                StartCoroutine(LoadToChapter2());
+                break;
+            case SceneLoadManager.SceneDisplayID.ComputerRoom:
+                SceneLoadManager.Instance.TryLoadToTargetSceneAsync(sceneToLoad, "正在进入 桥田缪的梦境", true);
+                break;
+            default:
+                break;
         }
     }
 
     private IEnumerator LoadToChapter2()
     {
-        SceneLoadManager.Instance.TryLoadToTargetSceneAsync(sceneToLoad, "入梦", true);
+        SceneLoadManager.Instance.TryLoadToTargetSceneAsync(sceneToLoad, "正在进入 布莱梅的梦境", true);
 
         yield return new WaitForSeconds(0.5F);
         DialogManager.Instance.StartDialog(chapter2);

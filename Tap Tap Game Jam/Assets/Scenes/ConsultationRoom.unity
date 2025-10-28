@@ -986,7 +986,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2138142169}
   m_Direction: 2
   m_Value: 1
-  m_Size: 1
+  m_Size: 0.9999981
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7707,7 +7707,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1130598299}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.63333267
+  m_Size: 0.6333333
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11465,10 +11465,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 997921746290297723, guid: 4ecd56e339ad3d04b8b4a5039ec129a6, type: 3}
-      propertyPath: bGameEnd_FindTruth
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1197494861553681273, guid: 4ecd56e339ad3d04b8b4a5039ec129a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -12156,7 +12152,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1706084467}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.23234679
+  m_Size: 0.23234677
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12238,7 +12234,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -161.49944, y: 379.99997}
+  m_AnchoredPosition: {x: -161.49944, y: 379.99985}
   m_SizeDelta: {x: 324, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1434075878

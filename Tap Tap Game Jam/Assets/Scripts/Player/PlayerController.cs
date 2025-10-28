@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
     {
         BNoGetInput =  true;
         SetZeroVelocity();
+        SetInputZero();
     }
 
     private void OnDialogEnd()
@@ -88,10 +89,6 @@ public class PlayerController : MonoBehaviour
                 horizontalInput = Input.GetAxisRaw("Horizontal") * -1f;
             else
                 horizontalInput = Input.GetAxisRaw("Horizontal");
-        }
-        else
-        {
-            horizontalInput = 0;
         }
 
         #region 酒店特殊功能
@@ -263,5 +260,9 @@ public class PlayerController : MonoBehaviour
     public void SetZeroVelocity()
     {
         rb.velocity = Vector2.zero;
+    }
+    public void SetInputZero()
+    {
+        horizontalInput = 0f;
     }
 }

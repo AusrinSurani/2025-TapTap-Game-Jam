@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ErrorWindow : MonoBehaviour
 {
@@ -14,15 +15,14 @@ public class ErrorWindow : MonoBehaviour
         StartCoroutine(_errorShowIE);
     }
 
-    private WaitForSeconds ErrorTime = new WaitForSeconds(2f);
+    private WaitForSeconds ErrorTime = new WaitForSeconds(1.5f);
     public Material errorMaterial;
-    public Material selfMaterial;
+    public Image targetImage;
     private IEnumerator ErrorShow()
     {
-        selfMaterial.SetFloat("_Intensity", 0.1f);
+        targetImage.material = errorMaterial;
         yield return ErrorTime;
-        errorMaterial.SetFloat("_Intensity", 0f);
-        selfMaterial.CopyPropertiesFromMaterial(errorMaterial);
+        targetImage.material = null; 
     }
     public void End2()
     {

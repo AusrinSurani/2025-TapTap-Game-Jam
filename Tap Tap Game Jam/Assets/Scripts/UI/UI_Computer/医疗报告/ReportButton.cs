@@ -47,7 +47,7 @@ public class ReportButton : BounceButton
 
     private void ClearOtherOptions(int index)
     {
-        SetMaterialWrongOnce();
+        //SetMaterialWrongOnce();
         var keep = dropdown.options[index];
         dropdown.ClearOptions();
         dropdown.options.Add(keep);
@@ -221,23 +221,26 @@ public class ReportButton : BounceButton
     
     private IEnumerator _errorShowIE;
     private void SetMaterialWrongOnce()
-    {
+    {/*
         if (_errorShowIE != null)
             StopCoroutine(_errorShowIE);
         _errorShowIE = ErrorShow();
-        StartCoroutine(_errorShowIE);
+        StartCoroutine(_errorShowIE);*/
     }
 
-    private WaitForSeconds ErrorTime = new WaitForSeconds(0.7f);
+    /*private WaitForSeconds ErrorTime = new WaitForSeconds(0.7f);
     public Material errorMaterial;
-    public Material selfMaterial;
+    public Image targetImage;
     private IEnumerator ErrorShow()
     {
-        selfMaterial.SetFloat("_Intensity", 0.1f);
+        targetImage.material = errorMaterial;
+        errorMaterial.SetFloat("_Intensity", 0.1f);
         yield return ErrorTime;
-        errorMaterial.SetFloat("_Intensity", 0f);
-        selfMaterial.CopyPropertiesFromMaterial(errorMaterial);
+        targetImage.material = null;*/
     }
 
     #endregion
+
+    
+
 }

@@ -50,6 +50,7 @@ public class Map : Interactable
         bedCollider.enabled = false;
         player.BNoGetInput = true;
         player.SetZeroVelocity();
+        player.SetInputZero();
         map.GetComponent<UI_Map>().StartMove();
     }
 }

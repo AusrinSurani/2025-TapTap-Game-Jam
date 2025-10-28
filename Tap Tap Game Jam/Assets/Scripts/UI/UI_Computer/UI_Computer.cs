@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UI_Computer : BaseUI
@@ -24,11 +25,15 @@ public class UI_Computer : BaseUI
 
     private void Start()
     {
-        if (GameFlowManager.Instance.currentIsOver == true && GameFlowManager.Instance.currentDay == 3)
-        {
+        if (GameFlowManager.Instance.currentIsOver == true 
+            && GameFlowManager.Instance.currentDay == 3
+            &&SceneLoadManager.Instance.bGameEnd_FindTruth)
+        { 
             errorWindow.SetActive(true);
+            //故障效果
+            errorWindow.GetComponent<ErrorWindow>()?.SetMaterialWrongOnce();
         }
-    }
+    } 
 
     public void Update()
     {

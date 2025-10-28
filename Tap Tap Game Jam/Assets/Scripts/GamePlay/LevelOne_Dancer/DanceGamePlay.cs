@@ -9,10 +9,7 @@ public class DanceGamePlay : MonoBehaviour
 {
     private void Start()
     {
-        if(DialogManager.Instance!=null)
-        {
-            DialogManager.Instance.OnDialogueClose.AddListener(OnReceiveDiaolgueEnd);
-        }
+         
     }
 
     private void OnDestroy()
@@ -67,6 +64,13 @@ public class DanceGamePlay : MonoBehaviour
     public PlayerController playerCtr;
     public void StartDanceGamePlay()
     {
+        //游戏开始时，往对话结束事件中添加监听事件
+        if (DialogManager.Instance != null)
+        {
+            DialogManager.Instance.OnDialogueClose.AddListener(OnReceiveDiaolgueEnd);
+        }
+
+
         _bGameEnd = false;
         BCanGetInput = true;
         BAllowInverseInput = true;//初始允许反向

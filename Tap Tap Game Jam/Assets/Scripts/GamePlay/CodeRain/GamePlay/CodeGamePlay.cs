@@ -553,6 +553,7 @@ public class CodeGamePlay : MonoBehaviour
             terminalSystem.WaitUntilAllPiecesShow();
             //TODO:关机效果
             SceneLoadManager.Instance.bGameEnd_FindTruth = true;
+            GameFlowManager.Instance.ChangeChapter(GameFlowManager.Instance.currentChapter, true, GameFlowManager.Instance.currentDay);
             SceneLoadManager.Instance.TryLoadToTargetSceneAsync(SceneLoadManager.SceneDisplayID.ConsultationRoom, null, false);
             AudioManager.Instance.ResumeTargetAudioPiece(AudioManager.Instance.consultingBGM);
         }

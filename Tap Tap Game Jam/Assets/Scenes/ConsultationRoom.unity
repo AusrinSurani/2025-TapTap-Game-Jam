@@ -985,7 +985,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2138142170}
   m_HandleRect: {fileID: 2138142169}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5161,7 +5161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   errorMaterial: {fileID: 2100000, guid: 757f441aa009ac64796e9adf5bf6fe23, type: 2}
-  targetImage: {fileID: 0}
+  targetImage: {fileID: 640949810}
 --- !u!1 &662422655
 GameObject:
   m_ObjectHideFlags: 0
@@ -6585,7 +6585,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000118255615}
+  m_AnchoredPosition: {x: 0, y: -0.00004196167}
   m_SizeDelta: {x: 0, y: 55}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &844141377
@@ -7707,7 +7707,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1130598299}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.63333386
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11465,6 +11465,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 997921746290297723, guid: 4ecd56e339ad3d04b8b4a5039ec129a6, type: 3}
+      propertyPath: bGameEnd_FindTruth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1197494861553681273, guid: 4ecd56e339ad3d04b8b4a5039ec129a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -12234,7 +12238,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -161.49944, y: 379.99997}
+  m_AnchoredPosition: {x: -161.49944, y: 379.99994}
   m_SizeDelta: {x: 324, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1434075878

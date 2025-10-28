@@ -46,7 +46,7 @@ public class ReportButton : BounceButton
     private void ClearOtherOptions(int index)
     {
         SetMaterialWrongOnce();
-        var keep = dropdown.options[index];
+        var keep = dropdown.options[1];
         dropdown.ClearOptions();
         dropdown.options.Add(keep);
         dropdown.value = 0;

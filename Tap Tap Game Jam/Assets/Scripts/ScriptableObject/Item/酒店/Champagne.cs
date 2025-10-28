@@ -63,12 +63,6 @@ public class Champagne : TravelPlan
 
     public override void OnPointerClick(PointerEventData eventData)
     {
-        if (specialImage.GetComponent<BlankController>().haveGetMap)
-        {
-            DialogManager.Instance.ShowMessage("我已经拿到了这里的地图碎片了");
-            return;
-        }
-        
         DialogManager.Instance.StartDialog(itemData.dialog);
         
         if (specialImage != null && specialImage.GetComponent<SpriteRenderer>() != null)

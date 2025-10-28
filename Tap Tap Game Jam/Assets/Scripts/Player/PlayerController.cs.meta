@@ -3,7 +3,11 @@ guid: af57758aa363e77489902e41d1869372
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - beginDialogEvent: {fileID: 11400000, guid: f699ff65f6ef8464197ea2723547c890, type: 2}
+  - endDialogEvent: {fileID: 11400000, guid: 1521c6f40b0f02d40a092f546a1f509a, type: 2}
+  - initialDialog: {instanceID: 0}
+  - virtualCamera: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

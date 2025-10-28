@@ -7,6 +7,10 @@ using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("事件监听")]
+    public VoidEventSO beginDialogEvent;
+    public VoidEventSO endDialogEvent;
+    
     [Header("酒店剧情")]
     public TextAsset initialDialog;
     public bool initialDialogHaveDone = true;
@@ -38,6 +42,35 @@ public class PlayerController : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
+
+
+    #region 对话与可否走动
+
+    private void OnEnable()
+    {
+        beginDialogEvent.OnEventRaise += OnDialogBegin;
+        endDialogEvent.OnEventRaise += OnDialogEnd;
+    }
+
+    private void OnDisable()
+    {
+        beginDialogEvent.OnEventRaise -= OnDialogBegin;
+        endDialogEvent.OnEventRaise -= OnDialogEnd;
+    }
+
+    private void OnDialogBegin()
+    {
+        BNoGetInput =  true;
+        SetZeroVelocity();
+    }
+
+    private void OnDialogEnd()
+    {
+        BNoGetInput = false;
+    }
+
+    #endregion
+    
 
     void Start()
     {

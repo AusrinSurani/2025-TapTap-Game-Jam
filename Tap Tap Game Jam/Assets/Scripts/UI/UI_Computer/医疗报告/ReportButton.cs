@@ -218,8 +218,9 @@ public class ReportButton : BounceButton
     }
 
     #region Error
+    
     private IEnumerator _errorShowIE;
-    public void SetMaterialWrongOnce()
+    private void SetMaterialWrongOnce()
     {
         if (_errorShowIE != null)
             StopCoroutine(_errorShowIE);
@@ -227,13 +228,13 @@ public class ReportButton : BounceButton
         StartCoroutine(_errorShowIE);
     }
 
-    private WaitForSeconds errorTime = new WaitForSeconds(0.7f);
+    private WaitForSeconds ErrorTime = new WaitForSeconds(0.7f);
     public Material errorMaterial;
     public Material selfMaterial;
     private IEnumerator ErrorShow()
     {
         selfMaterial.SetFloat("_Intensity", 0.1f);
-        yield return errorTime;
+        yield return ErrorTime;
         errorMaterial.SetFloat("_Intensity", 0f);
         selfMaterial.CopyPropertiesFromMaterial(errorMaterial);
     }

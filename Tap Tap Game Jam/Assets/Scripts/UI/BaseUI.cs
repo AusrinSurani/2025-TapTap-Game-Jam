@@ -23,7 +23,7 @@ public class BaseUI : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
     }
     
-    public void StartMove()
+    public virtual void StartMove()
     {
         gameObject.SetActive(true);
         //终断当前的移动

@@ -63,3 +63,4 @@ MonoBehaviour:
   onSceneLoadEnd:
     m_PersistentCalls:
       m_Calls: []
+  bGameEnd_FindTruth: 0

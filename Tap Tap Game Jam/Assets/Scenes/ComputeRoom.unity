@@ -614,7 +614,6 @@ MonoBehaviour:
   BNoAnimator: 1
   raiseDuration: 0.7
   backDuration: 0.5
-  needDialog: 0
   OnInteractFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -847,7 +846,6 @@ MonoBehaviour:
   BNoAnimator: 1
   raiseDuration: 0.7
   backDuration: 0.5
-  needDialog: 0
   OnInteractFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -1079,7 +1077,6 @@ MonoBehaviour:
   BNoAnimator: 1
   raiseDuration: 0.7
   backDuration: 0.5
-  needDialog: 0
   OnInteractFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -1531,7 +1528,6 @@ MonoBehaviour:
   BNoAnimator: 1
   raiseDuration: 0.7
   backDuration: 0.5
-  needDialog: 0
   OnInteractFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -1887,11 +1883,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af57758aa363e77489902e41d1869372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beginDialogEvent: {fileID: 11400000, guid: f699ff65f6ef8464197ea2723547c890, type: 2}
+  endDialogEvent: {fileID: 11400000, guid: 1521c6f40b0f02d40a092f546a1f509a, type: 2}
   initialDialog: {fileID: 0}
   initialDialogHaveDone: 1
   moveSpeed: 5
-  torchKey: 105
-  sleepKey: 111
+  timeBetweenSteps: 0
   virtualCamera: {fileID: 0}
   BInvertInput: 1
   BRemoveWrongActionTip: 1
@@ -2310,7 +2307,6 @@ MonoBehaviour:
   BNoAnimator: 1
   raiseDuration: 0.7
   backDuration: 0.5
-  needDialog: 0
   OnInteractFinished:
     m_PersistentCalls:
       m_Calls:

@@ -1516,7 +1516,7 @@ Transform:
   m_GameObject: {fileID: 137512949}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 10.16, z: 0}
+  m_LocalPosition: {x: -0.5, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1544,7 +1544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   get7MapsEvent: {fileID: 11400000, guid: 95be8d33a7ce3ee4e86f9fd335de0960, type: 2}
-  startPosition: {x: -0.5, y: 13}
+  startPosition: {x: -0.5, y: 20}
   targetPosition: {x: -0.5, y: 1.3}
   duration: 0.7
   delay: 0
@@ -9671,7 +9671,6 @@ MonoBehaviour:
   aboutVase: {fileID: 4900000, guid: c465cbbeee059564aa93faf992bb4a96, type: 3}
   aboutTravelPlan7: {fileID: 4900000, guid: a46a124d78cd55c4699f7545e90c19ca, type: 3}
   lastDialog: {fileID: 4900000, guid: 3e546acab5dfd3e4f87cdca40be972b5, type: 3}
-  haveVanish: 0
 --- !u!1001 &1152653540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18029,6 +18028,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af57758aa363e77489902e41d1869372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beginDialogEvent: {fileID: 11400000, guid: f699ff65f6ef8464197ea2723547c890, type: 2}
+  endDialogEvent: {fileID: 11400000, guid: 1521c6f40b0f02d40a092f546a1f509a, type: 2}
   initialDialog: {fileID: 4900000, guid: 32de653be2c43e7459601b4890007b22, type: 3}
   initialDialogHaveDone: 1
   moveSpeed: 5

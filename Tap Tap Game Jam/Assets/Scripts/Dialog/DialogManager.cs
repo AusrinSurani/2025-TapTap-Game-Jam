@@ -127,9 +127,11 @@ public class DialogManager : Singleton<DialogManager>
         {
             StartExample();
         }*/
-        
-        if(!dialogBox.activeSelf)
+
+        if (!dialogBox.activeSelf)
+        {
             return;
+        }
         
         if (Input.GetKeyUp(KeyCode.Space))
         {

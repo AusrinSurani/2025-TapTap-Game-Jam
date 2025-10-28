@@ -221,7 +221,8 @@ public class ReportButton : BounceButton
     
     private IEnumerator _errorShowIE;
     private void SetMaterialWrongOnce()
-    {/*
+    {
+        /*
         if (_errorShowIE != null)
             StopCoroutine(_errorShowIE);
         _errorShowIE = ErrorShow();
@@ -236,8 +237,8 @@ public class ReportButton : BounceButton
         targetImage.material = errorMaterial;
         errorMaterial.SetFloat("_Intensity", 0.1f);
         yield return ErrorTime;
-        targetImage.material = null;*/
-    }
+        targetImage.material = null;
+    }*/
 
     #endregion
 

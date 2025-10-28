@@ -56,9 +56,9 @@ public class LoadingCoverFader : MonoBehaviour
     private IEnumerator TextType()
     {
         DisplayTextPro.gameObject.SetActive(true);
+        DisplayTextPro.text = string.Empty;
         parasShowText.gameObject.SetActive(false);
         BTextTyping = true;
-        DisplayTextPro.text = string.Empty;
         for(int i = 0; i < _preShowTextContent.Length; i++) 
         { 
             DisplayTextPro.text += _preShowTextContent[i];
@@ -70,10 +70,12 @@ public class LoadingCoverFader : MonoBehaviour
     public IEnumerator TextType(string content)
     {
         DisplayTextPro.gameObject.SetActive(true);
+        DisplayTextPro.text = string.Empty;
         parasShowText.gameObject.SetActive(false);
+        if(parasShowText.gameObject.activeSelf)
+            parasShowText.text = string.Empty;
         _preShowTextContent = content;
         BTextTyping = true;
-        DisplayTextPro.text = string.Empty;
         for (int i = 0; i < _preShowTextContent.Length; i++)
         {
             DisplayTextPro.text += _preShowTextContent[i];
@@ -91,8 +93,11 @@ public class LoadingCoverFader : MonoBehaviour
     public TextMeshProUGUI resumeTip;
     public IEnumerator TextTypeByParagraph(List<string> contentByPages)
     {
+        if(DisplayTextPro.gameObject.activeSelf)
+            DisplayTextPro.text = string.Empty;
         DisplayTextPro.gameObject.SetActive(false);
         parasShowText.gameObject.SetActive(true);
+        parasShowText.text = string.Empty;
         int pageCurIndex = 0;
         while (pageCurIndex < contentByPages.Count)
         {
@@ -130,6 +135,7 @@ public class LoadingCoverFader : MonoBehaviour
         }
           
         BTextTyping = false;
+        parasShowText.text = string.Empty;
         //结束
     }
      

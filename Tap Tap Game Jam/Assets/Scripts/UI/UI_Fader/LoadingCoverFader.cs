@@ -54,10 +54,11 @@ public class LoadingCoverFader : MonoBehaviour
     //打字结束后过渡等待滞留时间
     private WaitForSeconds _finishWaitTime = new WaitForSeconds(2f);
     private IEnumerator TextType()
-    {
+    { 
         DisplayTextPro.gameObject.SetActive(true);
         DisplayTextPro.text = string.Empty;
         parasShowText.gameObject.SetActive(false);
+        resumeTip.gameObject.SetActive(false);
         BTextTyping = true;
         for(int i = 0; i < _preShowTextContent.Length; i++) 
         { 
@@ -69,10 +70,12 @@ public class LoadingCoverFader : MonoBehaviour
     //TODO:响应点击，快速展示所有内容
     public IEnumerator TextType(string content)
     {
+        _preShowTextContent = string.Empty;
         DisplayTextPro.gameObject.SetActive(true);
         DisplayTextPro.text = string.Empty;
         parasShowText.gameObject.SetActive(false);
-        if(parasShowText.gameObject.activeSelf)
+        resumeTip.gameObject.SetActive(false);
+        if (parasShowText.gameObject.activeSelf)
             parasShowText.text = string.Empty;
         _preShowTextContent = content;
         BTextTyping = true;
@@ -133,7 +136,8 @@ public class LoadingCoverFader : MonoBehaviour
             pageCurIndex++;
             yield return new WaitForSeconds(0.5f);
         }
-          
+
+        resumeTip.gameObject.SetActive(false);
         BTextTyping = false;
         parasShowText.text = string.Empty;
         //结束
@@ -196,6 +200,12 @@ public class LoadingCoverFader : MonoBehaviour
             }
         }
         BFading = false;
+
+        //检查是否有残余文字，将其清楚
+        if (DisplayTextPro.gameObject.activeSelf)
+            DisplayTextPro.text = string.Empty;
+        if (parasShowText.gameObject.activeSelf)
+            parasShowText.text = string.Empty;
         this.gameObject.SetActive(false);
     }
      

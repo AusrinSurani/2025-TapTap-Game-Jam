@@ -181,7 +181,7 @@ public class ReportButton : BounceButton
         GetComponentInParent<UI_Computer>().MoveBack(false);
 
         yield return UIManager.Instance.coverFader.FadeIn();
-        if (GameFlowManager.Instance.currentDay < 3)
+        if (GameFlowManager.Instance.currentDay - 1 < 3)
         {
             yield return UIManager.Instance.coverFader.TextType("又一天过去了，让我们祈祷下个工作日也风平浪静");
         }

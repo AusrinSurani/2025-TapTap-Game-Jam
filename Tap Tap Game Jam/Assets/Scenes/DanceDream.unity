@@ -9779,7 +9779,7 @@ Transform:
   m_GameObject: {fileID: 4369780120160558497}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.59, y: 1.49, z: 0}
+  m_LocalPosition: {x: -4.18, y: 0.1747963, z: 0}
   m_LocalScale: {x: 1.05, y: 1.05, z: 1.05}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -9801,8 +9801,7 @@ MonoBehaviour:
   initialDialog: {fileID: 0}
   initialDialogHaveDone: 1
   moveSpeed: 5
-  torchKey: 105
-  sleepKey: 111
+  timeBetweenSteps: 0
   virtualCamera: {fileID: 0}
   BInvertInput: 0
   BRemoveWrongActionTip: 1

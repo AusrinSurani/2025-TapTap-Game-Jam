@@ -73,7 +73,7 @@ Material:
     - _ENUM: 0
     - _Frequency: 0.3
     - _FullScreen: 0
-    - _Intensity: 0
+    - _Intensity: 0.1
     - _Noise: 100
     m_Colors: []
   m_BuildTextureStacks: []

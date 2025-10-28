@@ -15,7 +15,7 @@ public class UI_Map : MonoBehaviour
     [SerializeField] public float delay = 0.0f;
     [SerializeField] public bool useEasing = true;
 
-    [Header("进展")] 
+    [Header("进展")] public PolygonCollider2D bedCollider;
     public GameObject mapItem;
     public GameObject bird;
     public int numOfMap = 0;
@@ -33,6 +33,18 @@ public class UI_Map : MonoBehaviour
 
     private void Update()
     {
+        if (haveGone)
+        {
+            return;
+        }
+        
+        if (numOfFlag == 7 && numOfMap == 7 && !haveGone)
+        {
+            haveGone = true;
+            StartCoroutine(BeforeVanish());
+            return;
+        }
+        
         if (numOfMap == 7 && !haveShowMessage)
         {
             get7MapsEvent.RaiseEvent();
@@ -46,12 +58,6 @@ public class UI_Map : MonoBehaviour
             bird.SetActive(true);
             haveShowBird = true;
             AudioManager.Instance.AudioOncePlay(AudioManager.Instance.getMap);
-        }
-
-        if (numOfFlag == 7 && numOfMap == 7 && !haveGone && breman.GetComponent<Bremen>().haveVanish)
-        {
-            haveGone = true;
-            StartCoroutine(BeforeVanish());
         }
     }
 
@@ -137,6 +143,7 @@ public class UI_Map : MonoBehaviour
 
     public void Exit()
     {
+        bedCollider.enabled = true;
         playerTrans.GetComponent<PlayerController>().BNoGetInput = false;
         MoveBack(false);
     }

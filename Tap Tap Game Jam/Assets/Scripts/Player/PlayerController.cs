@@ -56,6 +56,10 @@ public class PlayerController : MonoBehaviour
             else
                 horizontalInput = Input.GetAxisRaw("Horizontal");
         }
+        else
+        {
+            horizontalInput = 0;
+        }
 
         #region 酒店特殊功能
 
@@ -222,5 +226,9 @@ public class PlayerController : MonoBehaviour
      
     public UnityEvent OnPlayerAutoMoveFinished;
     #endregion
-    
+
+    public void SetZeroVelocity()
+    {
+        rb.velocity = Vector2.zero;
+    }
 }

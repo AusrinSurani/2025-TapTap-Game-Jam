@@ -43,9 +43,9 @@ public class ButtonOfDoor : Interactable
         characters.Add(ChapterOfGame.ChapterWaiter,waiter);
         characters.Add(ChapterOfGame.ChapterProgrammer,programmer);
         
-        words.Add(ChapterOfGame.ChapterDancer, "舞女");
-        words.Add(ChapterOfGame.ChapterWaiter, "服务员");
-        words.Add(ChapterOfGame.ChapterProgrammer, "黑客");
+        words.Add(ChapterOfGame.ChapterDancer, "患者进入了诊室");
+        words.Add(ChapterOfGame.ChapterWaiter, "患者进入了诊室");
+        words.Add(ChapterOfGame.ChapterProgrammer, "患者进入了诊室");
         
         beginTextAssets.Add(ChapterOfGame.ChapterDancer, dialogWithDancer0);
         endTextAssets.Add(ChapterOfGame.ChapterDancer, dialogWithDancer1);

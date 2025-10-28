@@ -13,6 +13,7 @@ public class ReportButton : BounceButton
     
     private Animator animator;
     private bool isOpenWindows = false;
+    private bool haveChoose = false;
     
     public GameObject windows;
     public GameObject darkMask;
@@ -35,6 +36,8 @@ public class ReportButton : BounceButton
     
     private void Start()
     {
+        dropdown.onValueChanged.AddListener(ClearOtherOptions);
+        
         animator = GetComponentInChildren<Animator>();
         rectTransform = GetComponent<RectTransform>();
         windows.GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -42,9 +45,15 @@ public class ReportButton : BounceButton
         RefreshInformation();
     }
 
-    private void Update()
+    private void ClearOtherOptions(int index)
     {
-        
+        SetMaterialWrongOnce();
+        var keep = dropdown.options[index];
+        dropdown.ClearOptions();
+        dropdown.options.Add(keep);
+        dropdown.value = 0;
+        dropdown.RefreshShownValue();
+        haveChoose = true;
     }
 
     private void RefreshInformation()
@@ -140,7 +149,7 @@ public class ReportButton : BounceButton
     public void Submit()
     {
         //如果没有治疗结束或者没有选择最终诊断，则无法提交
-        if (!GameFlowManager.Instance.currentIsOver || dropdown.value == 0)
+        if (!GameFlowManager.Instance.currentIsOver || !haveChoose)
         {
             DialogManager.Instance.ShowMessage("治疗还未开始，或者没有选择最终诊断");
             return;
@@ -162,7 +171,6 @@ public class ReportButton : BounceButton
             }
         }
         
-        
         gameFlowManager.ChangeChapter(ChapterOfGame.NoOne, false, gameFlowManager.currentDay + 1);
         StartCoroutine(AfterSubmit());
     }
@@ -172,7 +180,12 @@ public class ReportButton : BounceButton
         UIManager.Instance.coverFader.gameObject.SetActive(true);
         CloseWindows();
         GetComponentInParent<UI_Computer>().MoveBack(false);
+        
         yield return UIManager.Instance.coverFader.FadeIn();
+        if (GameFlowManager.Instance.currentDay < 3)
+        {
+            yield return UIManager.Instance.coverFader.TextType("又一天过去了，让我们祈祷下个工作日也风平浪静");
+        }
         yield return UIManager.Instance.coverFader.FadeOut();
     }
 
@@ -203,4 +216,27 @@ public class ReportButton : BounceButton
         SceneLoadManager.Instance.TryLoadToTargetSceneAsync(
             SceneLoadManager.SceneDisplayID.StartMenu, slist, true, true);
     }
+
+    #region Error
+    private IEnumerator _errorShowIE;
+    public void SetMaterialWrongOnce()
+    {
+        if (_errorShowIE != null)
+            StopCoroutine(_errorShowIE);
+        _errorShowIE = ErrorShow();
+        StartCoroutine(_errorShowIE);
+    }
+
+    private WaitForSeconds errorTime = new WaitForSeconds(0.7f);
+    public Material errorMaterial;
+    public Material selfMaterial;
+    private IEnumerator ErrorShow()
+    {
+        selfMaterial.SetFloat("_Intensity", 0.1f);
+        yield return errorTime;
+        errorMaterial.SetFloat("_Intensity", 0f);
+        selfMaterial.CopyPropertiesFromMaterial(errorMaterial);
+    }
+
+    #endregion
 }

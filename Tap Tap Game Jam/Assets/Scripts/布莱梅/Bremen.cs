@@ -23,8 +23,6 @@ public class Bremen : MonoBehaviour,IPointerClickHandler
     
     private bool canTalkAboutTravelPlan7 = false;
     private bool haveTalkAboutTravelPlan7 = false;
-    
-    public bool haveVanish = false;
 
     private void OnEnable()
     {
@@ -34,16 +32,6 @@ public class Bremen : MonoBehaviour,IPointerClickHandler
     private void OnDisable()
     {
         get7MapsEvent.OnEventRaise -= () => canTalkAboutTravelPlan7 = false;
-    }
-
-    private void Update()
-    {
-        if (!Input.GetKeyDown(KeyCode.Space) || !DialogManager.Instance.IsDialogEnded() || !haveVanish)
-        {
-            return;
-        }
-
-        StartCoroutine(Plan7Vanish());
     }
 
     public void TriggerVase()
@@ -58,6 +46,7 @@ public class Bremen : MonoBehaviour,IPointerClickHandler
             haveTalkAboutTravelPlan7 = true;
             DialogManager.Instance.StartDialog(aboutTravelPlan7);
             StartCoroutine(RaisePlan7());
+            StartCoroutine(Plan7Vanish());
             return;
         }
         
@@ -76,6 +65,7 @@ public class Bremen : MonoBehaviour,IPointerClickHandler
                 GetComponent<TextMeshProUGUI>().text.Contains("他从围裙口袋里掏出一个信封递给我"));
         
         plan7.SetActive(true);
+        AudioManager.Instance.AudioOncePlay(AudioManager.Instance.raisePaper);
         
         float timer = 0;
 
@@ -90,6 +80,10 @@ public class Bremen : MonoBehaviour,IPointerClickHandler
 
     private IEnumerator Plan7Vanish()
     {
+        yield return new WaitUntil(() =>
+            DialogManager.Instance.GetComponentInChildren<ClickableTextController>().
+                GetComponent<TextMeshProUGUI>().text.Contains("这是……他的梦想吗？"));
+        
         float timer = 0;
         
         while (timer < 0.7f)
@@ -101,11 +95,10 @@ public class Bremen : MonoBehaviour,IPointerClickHandler
         }
 
         yield return new WaitForSeconds(1f);
-        haveVanish = true;
     }
 
     public void TriggerComplete()
     {
-        plan7.GetComponent<SpriteRenderer>().sprite = completeLetter;
+        StartCoroutine(Plan7Vanish());
     }
 }

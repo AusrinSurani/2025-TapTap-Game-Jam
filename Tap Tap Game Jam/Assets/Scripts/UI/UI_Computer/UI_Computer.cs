@@ -58,7 +58,7 @@ public class UI_Computer : BaseUI
 
     private IEnumerator OnClick()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         errorWindow.GetComponent<ErrorWindow>()?.SetMaterialWrongOnce();
     }
 }

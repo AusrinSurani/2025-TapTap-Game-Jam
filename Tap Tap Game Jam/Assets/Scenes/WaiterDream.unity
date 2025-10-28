@@ -1549,6 +1549,7 @@ MonoBehaviour:
   duration: 0.7
   delay: 0
   useEasing: 1
+  bedCollider: {fileID: 6744960386183428358}
   mapItem: {fileID: 2245818579693676916}
   bird: {fileID: 1208691624}
   numOfMap: 0
@@ -1588,7 +1589,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.41765833, y: 0.4620223}
+  m_Offset: {x: -0.2672906, y: 0.4620223}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1599,7 +1600,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 14.155805, y: 9.53551}
+  m_Size: {x: 14.45654, y: 9.53551}
   m_EdgeRadius: 0
 --- !u!1 &142493718
 GameObject:
@@ -24123,6 +24124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 104cbb6af66c48e4288e8179fde3e4ba, type: 2}
   outLine: {fileID: 4929557646724036367}
+  bedCollider: {fileID: 6744960386183428358}
   getFirstMapEvent: {fileID: 11400000, guid: 55d578dab1edaee4d9c9b54bebb392e4, type: 2}
   map: {fileID: 137512949}
   player: {fileID: 198173993822200246}
@@ -24134,6 +24136,7 @@ MonoBehaviour:
   - "\u8FD8\u662F\u5148\u5230\u5904\u627E\u627E\u7EBF\u7D22\u5427\u2026\u2026"
   secondMessage: []
   haveFirstMap: 0
+  isInMap: 0
 --- !u!60 &6744960387336927045
 PolygonCollider2D:
   m_ObjectHideFlags: 0

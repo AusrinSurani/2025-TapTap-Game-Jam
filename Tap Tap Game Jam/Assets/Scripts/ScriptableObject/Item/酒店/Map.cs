@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class Map : Interactable
 {
+    public PolygonCollider2D bedCollider;
+    
     [Header("事件监听")] 
     public VoidEventSO getFirstMapEvent;
     
@@ -17,6 +19,7 @@ public class Map : Interactable
     public string[] secondMessage;
     public bool haveFirstMap = false;
     private bool isFirstlyInteract = true;
+    public bool isInMap = false;
 
     private void OnEnable()
     {
@@ -44,7 +47,9 @@ public class Map : Interactable
             return;
         }
         
+        bedCollider.enabled = false;
         player.BNoGetInput = true;
+        player.SetZeroVelocity();
         map.GetComponent<UI_Map>().StartMove();
     }
 }

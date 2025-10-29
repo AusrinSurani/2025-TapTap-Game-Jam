@@ -197,4 +197,14 @@ public class ClickableTextController : MonoBehaviour, IPointerClickHandler
         newItem.GetComponent<DraggableItem>().SetUpWords(itemData);
         newItem.transform.SetParent(container.transform);
     }
+
+    public void ResetWordsDict()
+    {
+        wordsDict.Clear();
+        
+        foreach (InventoryWordsData word in wordsData)
+        {
+            wordsDict.Add(word, false);
+        }
+    }
 }

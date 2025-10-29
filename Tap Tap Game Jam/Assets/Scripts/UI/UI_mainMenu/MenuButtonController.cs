@@ -9,9 +9,12 @@ public class MenuButtonController : BaseUI
 
     [Header("制作人员名单")] public GameObject creatorList;
 
+    public MenuButton[] buttons;
+
 	void Start () 
 	{
         AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.mainMenuBGM);
+        buttons = GetComponentsInChildren<MenuButton>();
         
         //显示制作人员名单
         if (GameFlowManager.Instance.currentDay == 3 &&
@@ -19,6 +22,11 @@ public class MenuButtonController : BaseUI
             GameFlowManager.Instance.currentChapter == ChapterOfGame.ChapterProgrammer)
         {
             creatorList.SetActive(true);
+
+            foreach (var t in buttons)
+            {
+                t.canControl = false;
+            }
         }
 	}
 

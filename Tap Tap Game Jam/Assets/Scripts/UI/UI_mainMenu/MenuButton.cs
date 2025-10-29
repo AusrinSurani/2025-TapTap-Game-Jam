@@ -26,6 +26,8 @@ public class MenuButton : MonoBehaviour,
     private SceneLoadManager sceneLoadManager;
     
     private bool isLoadingScene = false;
+
+    public bool canControl = true;
     
     private void Awake()
     {
@@ -39,6 +41,8 @@ public class MenuButton : MonoBehaviour,
 
     void Update()
     {
+        if(!canControl)
+            return;
         KeyBoardCheck();
     }
 

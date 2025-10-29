@@ -49,11 +49,6 @@ public class UIPhone : BaseUI
     
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            mask.SetActive(false);
-            MoveBack(false);
-        }
     }
 
     public void OnExitButtonClick()

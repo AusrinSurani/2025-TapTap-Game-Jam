@@ -24,7 +24,7 @@ public class MenuButtonController : BaseUI
 
             foreach (var t in buttons)
             {
-                t.canControl = false;
+                t.canControl = false;       
             }
         }
 	}

@@ -32,14 +32,6 @@ public class UI_Computer : BaseUI
             errorWindow.SetActive(true);
         }
     } 
-    
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            MoveBack();
-        }
-    }
 
     private void StartMoveWithCheckEnd2()
     {

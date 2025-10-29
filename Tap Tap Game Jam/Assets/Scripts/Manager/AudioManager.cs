@@ -317,6 +317,18 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
+    public void ClearAllBGMAudioPiece()
+    {
+        for(int i=0;i<bgmAudiosPlayData.Count;i++)
+        {
+            if (bgmAudiosPlayData[i].source.isPlaying)
+            {
+                bgmAudiosPlayData[i].source.Stop();
+            }
+            bgmAudiosPlayData[i].curStatus = AudioStatus.None; 
+        }
+    }
+
 
     public void PauseTargetAudioPiece(AudioPiece targetAP)
     {

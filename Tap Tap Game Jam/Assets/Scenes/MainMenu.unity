@@ -1779,6 +1779,11 @@ MonoBehaviour:
   maxIndex: 3
   optionsUI: {fileID: 247222524}
   creatorList: {fileID: 1617366565}
+  buttons:
+  - {fileID: 106103831507287831}
+  - {fileID: 2037287427079692072}
+  - {fileID: 2037287425936354608}
+  - {fileID: 2037287425811120653}
 --- !u!1 &952352244
 GameObject:
   m_ObjectHideFlags: 0
@@ -2923,6 +2928,7 @@ MonoBehaviour:
   creatorList: {fileID: 1617366566}
   duration: 23
   defaultSpeed: 100
+  buttons: []
 --- !u!114 &1617366568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3698,6 +3704,7 @@ MonoBehaviour:
   animator: {fileID: 105332226858183735}
   animatorFunctions: {fileID: 3953300953137573503}
   thisIndex: 0
+  canControl: 1
 --- !u!1001 &1008409332672699779
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3773,6 +3780,7 @@ MonoBehaviour:
   animator: {fileID: 2038764882732732717}
   animatorFunctions: {fileID: 3162055273940603749}
   thisIndex: 3
+  canControl: 1
 --- !u!114 &2037287425936354608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3791,6 +3799,7 @@ MonoBehaviour:
   animator: {fileID: 2038764883126435344}
   animatorFunctions: {fileID: 3162055273816308824}
   thisIndex: 2
+  canControl: 1
 --- !u!114 &2037287427079692072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3809,6 +3818,7 @@ MonoBehaviour:
   animator: {fileID: 2038764881988062216}
   animatorFunctions: {fileID: 3162055274953608768}
   thisIndex: 1
+  canControl: 1
 --- !u!95 &2038764881988062216
 Animator:
   serializedVersion: 5

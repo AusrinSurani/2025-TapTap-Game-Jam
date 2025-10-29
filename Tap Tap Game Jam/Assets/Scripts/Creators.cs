@@ -13,6 +13,8 @@ public class Creators : MonoBehaviour
     private float currentSpeed;
     private Vector2 position;
     
+    public MenuButton[] buttons;
+    
     private void Start()
     {
         StartCoroutine(RaiseList());
@@ -31,6 +33,12 @@ public class Creators : MonoBehaviour
         yield return new WaitForSeconds(duration);
         currentSpeed = 0;
         yield return new WaitForSeconds(3f);
+        
+        foreach (var t in buttons)
+        {
+            t.canControl = false;
+        }
+        
         StartCoroutine(Vanish());
     }
 

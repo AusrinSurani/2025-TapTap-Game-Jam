@@ -3632,10 +3632,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2185981645369077756, guid: 096c4e7279eb84a4cb359122f86bbcf4, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 4679668504726427927, guid: 096c4e7279eb84a4cb359122f86bbcf4, type: 3}
       propertyPath: m_Name
       value: UIManager
@@ -3678,10 +3674,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8357853670416764248, guid: 096c4e7279eb84a4cb359122f86bbcf4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9027097411922903996, guid: 096c4e7279eb84a4cb359122f86bbcf4, type: 3}
-      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

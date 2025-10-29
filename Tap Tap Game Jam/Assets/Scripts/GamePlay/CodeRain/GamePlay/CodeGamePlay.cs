@@ -253,7 +253,7 @@ public class CodeGamePlay : MonoBehaviour
         terminalSystem.AddNewCodeContent("--<i>输▢任意▢->继续▢复流程</i>--", false);
         yield return WaitAnyKeyDown();
         terminalSystem.ClearAllText();
-        intro_ui.gameObject.SetActive(false);
+        //intro_ui.gameObject.SetActive(false);
 
 
         //开始关卡二

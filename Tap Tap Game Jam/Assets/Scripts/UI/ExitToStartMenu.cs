@@ -38,6 +38,7 @@ public class ExitToStartMenu : Singleton<ExitToStartMenu>
         SceneLoadManager.Instance.ResetSceneLoadStatus();
         SceneLoadManager.Instance.TryLoadToTargetSceneAsync(
             SceneLoadManager.SceneDisplayID.StartMenu, null, false);
+        this.gameObject.SetActive(false);
     }
 
     public void SetDisable()

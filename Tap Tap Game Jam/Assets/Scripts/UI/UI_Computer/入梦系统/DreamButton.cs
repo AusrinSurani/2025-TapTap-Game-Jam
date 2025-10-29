@@ -113,6 +113,7 @@ public class DreamButton : BounceButton
         animator.SetBool("Open", false);
         isOpenWindows = false;
         windows.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        rectTransform.SetAsFirstSibling();
     }
     
     private IEnumerator DarkMaskCoroutine(bool isDark)

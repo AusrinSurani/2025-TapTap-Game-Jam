@@ -2928,7 +2928,11 @@ MonoBehaviour:
   creatorList: {fileID: 1617366566}
   duration: 23
   defaultSpeed: 100
-  buttons: []
+  buttons:
+  - {fileID: 106103831507287831}
+  - {fileID: 2037287427079692072}
+  - {fileID: 2037287425936354608}
+  - {fileID: 2037287425811120653}
 --- !u!114 &1617366568
 MonoBehaviour:
   m_ObjectHideFlags: 0

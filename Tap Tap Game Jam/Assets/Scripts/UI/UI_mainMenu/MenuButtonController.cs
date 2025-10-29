@@ -14,7 +14,6 @@ public class MenuButtonController : BaseUI
 	void Start () 
 	{
         AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.mainMenuBGM);
-        buttons = GetComponentsInChildren<MenuButton>();
         
         //显示制作人员名单
         if (GameFlowManager.Instance.currentDay == 3 &&

@@ -36,7 +36,7 @@ public class Creators : MonoBehaviour
         
         foreach (var t in buttons)
         {
-            t.canControl = false;
+            t.canControl = true;
         }
         
         StartCoroutine(Vanish());

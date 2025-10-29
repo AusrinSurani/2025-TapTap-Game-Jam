@@ -6,7 +6,9 @@ using UnityEngine.EventSystems;
 
 public class ButtonOfDoor : Interactable
 {
-    [Header("指引")] public GameObject guide;
+    [Header("指引")] 
+    public GameObject dreamGuide;
+    public GameObject reportGuide;
     
     [Header("邮件与资讯")] 
     public EmailController emailController;
@@ -73,22 +75,19 @@ public class ButtonOfDoor : Interactable
             if (GameFlowManager.Instance.currentDay == 3 && !haveReachEnd)
             {
                 haveReachEnd = true;
-                if (SceneLoadManager.Instance.bGameEnd_FindTruth == false)
-                {
-                    DialogManager.Instance.StartDialog(end1);
-                }
-                else
-                {
-                    DialogManager.Instance.StartDialog(end2);
-                }
-                
+                DialogManager.Instance.StartDialog(SceneLoadManager.Instance.bGameEnd_FindTruth == false ? end1 : end2);
+                StartCoroutine(ReportGuide());
                 return;
             }
             
             characters[GameFlowManager.Instance.currentChapter].SetActive(true);
-            
-            if(beginTextAssets[GameFlowManager.Instance.currentChapter] != null)
+
+            if (beginTextAssets[GameFlowManager.Instance.currentChapter] != null)
+            {
                 DialogManager.Instance.StartDialog( endTextAssets[GameFlowManager.Instance.currentChapter]);
+                StartCoroutine(ReportGuide());
+
+            }
             else
             {
                 DialogManager.Instance.ShowMessage("暂无剧情");
@@ -146,7 +145,7 @@ public class ButtonOfDoor : Interactable
         {
             DialogManager.Instance.StartDialog( beginTextAssets[GameFlowManager.Instance.currentChapter]);
             //等到对话结束，显示指引
-            StartCoroutine(RaiseGuide());
+            StartCoroutine(DreamGuide());
         }
         else
         {
@@ -154,10 +153,16 @@ public class ButtonOfDoor : Interactable
         }
     }
 
-    private IEnumerator RaiseGuide()
+    private IEnumerator DreamGuide()
     {
         yield return new WaitUntil(() => !DialogManager.Instance.IsDialogOpen());
-        guide.SetActive(true);
+        dreamGuide.SetActive(true);
+    }
+    
+    private IEnumerator ReportGuide()
+    {
+        yield return new WaitUntil(() => !DialogManager.Instance.IsDialogOpen());
+        reportGuide.SetActive(true);
     }
 
     private bool CheckPhoneAndEmail()

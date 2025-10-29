@@ -7,6 +7,9 @@ using UnityEngine.EventSystems;
 
 public class Bremen : MonoBehaviour,IPointerClickHandler
 {
+    [Header("提示旗子用法")] 
+    public GameObject flagTips;
+    
     [Header("信纸--旅行计划7")]
     public Sprite completeLetter;
     public GameObject plan7;
@@ -47,6 +50,7 @@ public class Bremen : MonoBehaviour,IPointerClickHandler
             DialogManager.Instance.StartDialog(aboutTravelPlan7);
             StartCoroutine(RaisePlan7());
             StartCoroutine(Plan7Vanish());
+            StartCoroutine(RaiseFlagTip());
             return;
         }
         
@@ -97,8 +101,17 @@ public class Bremen : MonoBehaviour,IPointerClickHandler
         yield return new WaitForSeconds(1f);
     }
 
+    private IEnumerator RaiseFlagTip()
+    {
+        yield return new WaitUntil(() => !DialogManager.Instance.IsDialogOpen());
+        flagTips.SetActive(true);
+        yield return new WaitForSeconds(6f);
+        flagTips.SetActive(false);
+    }
+
     public void TriggerComplete()
     {
+        plan7.GetComponent<SpriteRenderer>().sprite = completeLetter;
         StartCoroutine(Plan7Vanish());
     }
 }

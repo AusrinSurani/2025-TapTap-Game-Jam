@@ -7,9 +7,19 @@ public class MenuButtonController : BaseUI
 	[SerializeField] int maxIndex;
 	[SerializeField] private UI_option optionsUI;
 
+    [Header("制作人员名单")] public GameObject creatorList;
+
 	void Start () 
 	{
         AudioManager.Instance.AudioLoopPlay(AudioManager.Instance.mainMenuBGM);
+        
+        //显示制作人员名单
+        if (GameFlowManager.Instance.currentDay == 3 &&
+            GameFlowManager.Instance.currentIsOver && 
+            GameFlowManager.Instance.currentChapter == ChapterOfGame.ChapterProgrammer)
+        {
+            creatorList.SetActive(true);
+        }
 	}
 
 	void Update () 

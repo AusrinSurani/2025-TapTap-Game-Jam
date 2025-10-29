@@ -22,6 +22,9 @@ public class ReportButton : BounceButton
     public TextMeshProUGUI informationText;
     public TMP_Dropdown dropdown;
 
+    [Header("要关闭的指引")] 
+    public GameObject reportGuide;
+
     private void OnEnable()
     {
         chapterChangeEvent.OnEventRaise += RefreshInformation;
@@ -176,6 +179,8 @@ public class ReportButton : BounceButton
 
     private IEnumerator AfterSubmit()
     {
+        reportGuide.SetActive(false);
+        
         UIManager.Instance.coverFader.gameObject.SetActive(true);
         CloseWindows();
         GetComponentInParent<UI_Computer>().MoveBack(false);

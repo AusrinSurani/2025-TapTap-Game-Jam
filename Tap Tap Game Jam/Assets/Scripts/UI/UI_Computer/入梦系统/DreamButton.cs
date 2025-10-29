@@ -8,7 +8,7 @@ public class DreamButton : BounceButton
 {
     [Header("事件监听")] public VoidEventSO chapterChangeEvent;
 
-    [Header("要关闭的指引")] public GameObject guide;
+    [Header("要关闭的指引")] public GameObject dreamGuide;
     
     private Animator animator;
     private bool isOpenWindows = false;
@@ -142,7 +142,7 @@ public class DreamButton : BounceButton
             return;
         }
         
-        guide.SetActive(false);
+        dreamGuide.SetActive(false);
         StartCoroutine(LoadCoroutine());
     }
 

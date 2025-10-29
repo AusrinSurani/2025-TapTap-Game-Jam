@@ -108,7 +108,7 @@ public class ButtonOfDoor : Interactable
         
         if (!CheckPhoneAndEmail())
         {
-            DialogManager.Instance.ShowMessage("传唤患者的按键。我现在还不想开始工作，再看看邮件刷刷手机吧");
+            DialogManager.Instance.ShowMessage("传唤患者的按键。我现在还不想开始工作，再看看邮件、刷刷手机吧");
             return;
         }
         

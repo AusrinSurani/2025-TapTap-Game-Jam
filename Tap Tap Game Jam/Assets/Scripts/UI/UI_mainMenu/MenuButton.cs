@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using static SceneLoadManager;
 
 public class MenuButton : MonoBehaviour,
@@ -31,10 +32,10 @@ public class MenuButton : MonoBehaviour,
     {
         //TODO:把开头就会出现的按钮音效去掉
     }
-
+     
     private void Start()
     {
-        sceneLoadManager = SceneLoadManager.Instance;
+        sceneLoadManager = SceneLoadManager.Instance; 
     }
 
     void Update()

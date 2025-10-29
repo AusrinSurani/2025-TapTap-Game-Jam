@@ -473,9 +473,9 @@ public class CodeGamePlay : MonoBehaviour
         terminalSystem.AddNewCodeContentMixed("shadow$bioroid:", "mod user_permission shadow Read|Execute|Write\n", systemTextColor, hackerInputTextColor, 0.02f, 0.5f, 0.5f);
         terminalSystem.AddNewCodeContent("用户shadow的权限修改成功，当前: 读取、执行、写入", false);
 
-        terminalSystem.AddNewCodeContentMixed("Niander_Wallace$bioroid::", "prohibit -permission_change shadow\n", systemTextColor, hackerInputTextColor, 0.02f, 0.5f, 0.5f);
+        terminalSystem.AddNewCodeContentMixed("Niander_Wallace$bioroid::", "prohibit -permission_change shadow\n", systemTextColor, playerInputTextColor, 0.02f, 0.5f, 0.5f);
         terminalSystem.AddNewCodeContent("已禁用shadow的权限更改功能", false);
-        yield return terminalSystem.WaitUntilAllPiecesShow(); terminalSystem.AddNewCodeContentMixed("Niander_Wallace$bioroid::", "mod -f user_permission shadow None", systemTextColor, hackerInputTextColor, 0.02f, 0.5f, 0.5f);
+        yield return terminalSystem.WaitUntilAllPiecesShow(); terminalSystem.AddNewCodeContentMixed("Niander_Wallace$bioroid::", "mod -f user_permission shadow None", systemTextColor, playerInputTextColor, 0.02f, 0.5f, 0.5f);
         terminalSystem.AddNewCodeContent("强制变更shadow的权限为: 无任何权限", false);
 
         terminalSystem.AddNewCodeContentMixed("Niander_Wallace$bioroid:", "system check -continue\n", systemTextColor, playerInputTextColor, 0.08f, 0f, 1f);
@@ -546,11 +546,20 @@ public class CodeGamePlay : MonoBehaviour
             yield return _tempWaitSeconds;
             terminalSystem.AddNewCodeContent("编译成功", false);
             terminalSystem.AddNewCodeContentMixed("root#bioroid:", "g-- -o bioroidintelligenceExit.o ExitDream \n", systemTextColor, hackerInputTextColor, 0.02f, 0.5f, 0.5f);
+
+            yield return terminalSystem.WaitUntilAllPiecesShow();
+            yield return new WaitForSeconds(1f); 
+            terminalSystem.AddNewCodeContent("已重载退出程序\n", false);
+
+            terminalSystem.ClearAllText();
             terminalSystem.AddNewCodeContentMixed("root#bioroid:", "run -f ExitDream \n", systemTextColor, hackerInputTextColor, 0.02f, 0.5f, 2f);
+            yield return  terminalSystem.WaitUntilAllPiecesShow();
+            yield return new WaitForSeconds(1f);
+
             //退场演出，准备加载场景
             terminalSystem.AddNewCodeContent("正在进行系统检测...", true);
-            terminalSystem.AddNewCodeContent("即将运行退出程序", false);
-            terminalSystem.WaitUntilAllPiecesShow();
+            terminalSystem.AddNewCodeContent("即将运行退出程序", false); 
+            yield return terminalSystem.WaitUntilAllPiecesShow();
             //TODO:关机效果
             SceneLoadManager.Instance.bGameEnd_FindTruth = true;
             GameFlowManager.Instance.ChangeChapter(GameFlowManager.Instance.currentChapter, true, GameFlowManager.Instance.currentDay);
@@ -586,6 +595,7 @@ public class CodeGamePlay : MonoBehaviour
         //结束游戏
         yield return null;
     }
+    
 
     public void EndCurrentLevel()
     {
@@ -724,7 +734,15 @@ public class CodeGamePlay : MonoBehaviour
             //进度条
             _curRepairValue+= AddRepairValueOnePiece;
             if (_curRepairValue > MaxRepairValue)
-                _curRepairValue = MaxRepairValue;
+            { 
+                _curRepairValue = MaxRepairValue; 
+                if(CurGameLevel==1||CurGameLevel==2)
+                {
+                    terminalSystem.AddNewCodeContent("[WARNING]:当前区域存在异常代码", false, hackerInputTextColor, 0.02f, 0f, true);
+                }
+
+            }
+
             codeRepairBar.SetBarValue((float)_curRepairValue / (float)TotalRepairValue);
             //输出修复内容
             if(_curErrorPieceGetCount<=MaxErrorPieceGetCount

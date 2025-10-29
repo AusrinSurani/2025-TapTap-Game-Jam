@@ -1,5 +1,16 @@
 public class ExitToStartMenu : Singleton<ExitToStartMenu>
 {
+    private void Start()
+    {
+        SceneLoadManager.Instance?.onSceneLoadEnd.AddListener(SetEnable);
+    }
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        SceneLoadManager.Instance?.onSceneLoadEnd.RemoveListener(SetEnable);
+
+    }
+
     public bool canPress = true;
     
     public void TransToStartMenu()

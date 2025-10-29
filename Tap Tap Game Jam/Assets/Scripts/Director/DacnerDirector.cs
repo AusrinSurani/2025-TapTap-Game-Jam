@@ -134,6 +134,7 @@ public class DacnerDirector : MonoBehaviour
         gamePlayPart.JoystickCtr.SetAnimatorStatus(JoystickController.JoystickStatus.Middle);
         //灯光
         gamePlayPart.JoystickCtr.transform.GetChild(0).gameObject.SetActive(true);
+        ExitToStartMenu.Instance.SetDisable();
     }
     //射灯
     public void TurnOnSpotLight()

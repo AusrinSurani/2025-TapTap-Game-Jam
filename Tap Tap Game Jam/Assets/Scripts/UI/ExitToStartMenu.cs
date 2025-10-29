@@ -28,6 +28,11 @@ public class ExitToStartMenu : Singleton<ExitToStartMenu>
             GameFlowManager.Instance.ChangeChapter(ChapterOfGame.NoOne, false, GameFlowManager.Instance.currentDay);
             GameFlowManager.Instance.SaveChapterData();
         }
+        //BGM关闭
+        AudioManager.Instance?.ClearAllBGMAudioPiece();
+
+
+
         SceneLoadManager.Instance.ResetSceneLoadStatus();
         SceneLoadManager.Instance.TryLoadToTargetSceneAsync(
             SceneLoadManager.SceneDisplayID.StartMenu, null, false);

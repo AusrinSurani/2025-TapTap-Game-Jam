@@ -197,7 +197,7 @@ MonoBehaviour:
   mainMenuBGM:
     audioID: 1
     audioClipDescription: "\u5F00\u59CB\u754C\u9762BGM"
-    sourceClip: {fileID: 8300000, guid: e153ebb454f08444fbc06a9904e224e4, type: 3}
+    sourceClip: {fileID: 8300000, guid: b986a84db9d21b44295fdf3576bac46b, type: 3}
     volumnValue: 0.6
     bCanMutPlay: 0
   consultingBGM:

@@ -48,11 +48,12 @@ public class GameFlowManager : Singleton<GameFlowManager>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha8))
+        //test
+        /*if (Input.GetKeyDown(KeyCode.Alpha8))
         {
             SaveChapterData();
             chapterChangeEvent.RaiseEvent();
-        }
+        }*/
     }
 
     public void ChangeChapter(ChapterOfGame chapter, bool isOver, int day)

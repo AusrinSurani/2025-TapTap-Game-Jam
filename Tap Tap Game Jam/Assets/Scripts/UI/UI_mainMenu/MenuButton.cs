@@ -106,14 +106,23 @@ public class MenuButton : MonoBehaviour,
                 sceneLoadManager.TryLoadToTargetSceneAsync(SceneDisplayID.ConsultationRoom, slist, true, true);
                 break;
             case 1:
-                //TODO:切换场景继续游戏(从某一章开头开始)
+                //TODO:切换场景继续游戏(从某一章开头开始,第一章不能按下)
+                if(GameFlowManager.Instance.currentDay == 1)
+                    return;
+
+                if (GameFlowManager.Instance.currentIsOver)
+                {
+                    GameFlowManager.Instance.ChangeChapter(GameFlowManager.Instance.currentChapter, true, GameFlowManager.Instance.currentDay);
+                    GameFlowManager.Instance.SaveChapterData();
+                }
+                else
+                {
+                    GameFlowManager.Instance.ChangeChapter(ChapterOfGame.NoOne, false, GameFlowManager.Instance.currentDay);
+                    GameFlowManager.Instance.SaveChapterData();
+                }
+                
                 isLoadingScene = true;
-                
-                //数据选择
-                GameFlowManager.Instance.currentIsOver = false;
-                GameFlowManager.Instance.currentChapter = ChapterOfGame.NoOne;
-                GameFlowManager.Instance.SaveChapterData();
-                
+ 
                 //场景切换
                 sceneLoadManager.TryLoadToTargetSceneAsync
                     (SceneLoadManager.SceneDisplayID.ConsultationRoom, null,false);

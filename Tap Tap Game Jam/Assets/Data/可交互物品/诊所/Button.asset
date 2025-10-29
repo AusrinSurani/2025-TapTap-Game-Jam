@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Button
   m_EditorClassIdentifier: 
   itemName: "\u6309\u94AE"
-  icon: {fileID: 21300000, guid: 9320bfa64e278f44b90470d6c926b68d, type: 3}
-  outline: {fileID: 21300000, guid: c42b98a2abb3bed47baaa3720fa62b8c, type: 3}
+  icon: {fileID: 21300000, guid: e03edc3ec1a3b4c4ba3341d4c10db5dd, type: 3}
+  outline: {fileID: 21300000, guid: 169ddc1ce6e712840856fb6d5ad850d6, type: 3}
+  closeUp: {fileID: 0}
+  dialog: {fileID: 0}
   description: 
+  descriptions: []
+  nextDescriptions: []

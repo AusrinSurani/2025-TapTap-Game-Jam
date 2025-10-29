@@ -89,13 +89,15 @@ public class MenuButton : MonoBehaviour,
 
     // 执行按钮对应的功能
     private void ExecuteButtonAction()
-    {
+    {  
         switch (thisIndex)
         {
             case 0:
                 //TODO:切换场景开始游戏
                 isLoadingScene = true;
-                
+
+                //激活返回主菜单按钮
+                ExitToStartMenu.Instance?.gameObject.SetActive(true);
                 //数据选择
                 SaveSystem.DeleteSavedFile("HaveReadEmailData.txt");
                 GameFlowManager.Instance.SetDefaultChapterData();
@@ -114,6 +116,8 @@ public class MenuButton : MonoBehaviour,
                 //TODO:切换场景继续游戏(从某一章开头开始,第一章不能按下)
                 if(GameFlowManager.Instance.currentDay == 1)
                     return;
+                //激活返回主菜单按钮
+                ExitToStartMenu.Instance?.gameObject.SetActive(true);
 
                 if (GameFlowManager.Instance.currentIsOver)
                 {

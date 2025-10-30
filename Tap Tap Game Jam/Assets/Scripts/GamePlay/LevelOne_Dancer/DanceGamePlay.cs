@@ -691,22 +691,22 @@ public class DanceGamePlay : MonoBehaviour
             if (AlreadyAppearedOrderDisplays[_curInputIndex] == null)
                 return;
             //识别玩家输入
-            if (Input.GetKeyDown(leftOrderKey))
+            if (Input.GetKeyDown(leftOrderKey)||Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 JoystickCtr.SetAnimatorStatus(JoystickController.JoystickStatus.Left);
                 GetDanceOrderInput(AlreadyAppearedOrderDisplays[_curInputIndex].GetInteractOrder(DanceOrder.Left, BAllowInverseInput, BMustInverseInput), DanceOrder.Left);
             }
-            else if (Input.GetKeyDown(rightOrderKey))
+            else if (Input.GetKeyDown(rightOrderKey) || Input.GetKeyDown(KeyCode.RightArrow))
             {
                 JoystickCtr.SetAnimatorStatus(JoystickController.JoystickStatus.Right);
                 GetDanceOrderInput(AlreadyAppearedOrderDisplays[_curInputIndex].GetInteractOrder(DanceOrder.Right, BAllowInverseInput, BMustInverseInput), DanceOrder.Right);
             }
-            else if (Input.GetKeyDown(upOrderKey))
+            else if (Input.GetKeyDown(upOrderKey) || Input.GetKeyDown(KeyCode.UpArrow))
             {
                 JoystickCtr.SetAnimatorStatus(JoystickController.JoystickStatus.Up);
                 GetDanceOrderInput(AlreadyAppearedOrderDisplays[_curInputIndex].GetInteractOrder(DanceOrder.Up, BAllowInverseInput, BMustInverseInput), DanceOrder.Up);
             }
-            else if (Input.GetKeyDown(downOrderKey))
+            else if (Input.GetKeyDown(downOrderKey) || Input.GetKeyDown(KeyCode.DownArrow))
             {
                 JoystickCtr.SetAnimatorStatus(JoystickController.JoystickStatus.Down);
                 GetDanceOrderInput(AlreadyAppearedOrderDisplays[_curInputIndex].GetInteractOrder(DanceOrder.Down, BAllowInverseInput, BMustInverseInput), DanceOrder.Down);

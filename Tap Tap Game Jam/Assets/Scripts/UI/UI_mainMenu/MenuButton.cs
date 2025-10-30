@@ -87,6 +87,8 @@ public class MenuButton : MonoBehaviour,
         }
     }
 
+    public GameObject exitBtnObj;
+
     // 执行按钮对应的功能
     private void ExecuteButtonAction()
     {  
@@ -96,8 +98,8 @@ public class MenuButton : MonoBehaviour,
                 //TODO:切换场景开始游戏
                 isLoadingScene = true;
 
-                //激活返回主菜单按钮
-                ExitToStartMenu.Instance?.gameObject.SetActive(true);
+                //激活返回主菜单按钮--exitBtn有bug，暂时隐藏不激活
+                //UIManager.Instance?.transform.GetChild(1)?.GetChild(0)?.gameObject.SetActive(true);
                 //数据选择
                 SaveSystem.DeleteSavedFile("HaveReadEmailData.txt");
                 GameFlowManager.Instance.SetDefaultChapterData();
@@ -116,8 +118,8 @@ public class MenuButton : MonoBehaviour,
                 //TODO:切换场景继续游戏(从某一章开头开始,第一章不能按下)
                 if(GameFlowManager.Instance.currentDay == 1)
                     return;
-                //激活返回主菜单按钮
-                ExitToStartMenu.Instance?.gameObject.SetActive(true);
+                //激活返回主菜单按钮 --exitBtn有bug，暂时隐藏不激活
+                //UIManager.Instance?.transform.GetChild(1)?.GetChild(0)?.gameObject.SetActive(true);
 
                 if (GameFlowManager.Instance.currentIsOver)
                 {

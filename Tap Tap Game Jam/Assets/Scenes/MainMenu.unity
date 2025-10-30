@@ -3377,6 +3377,11 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1869210790 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6235546954566270974, guid: 096c4e7279eb84a4cb359122f86bbcf4, type: 3}
+  m_PrefabInstance: {fileID: 1008409332672699779}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1903525804
 GameObject:
   m_ObjectHideFlags: 0
@@ -3709,6 +3714,7 @@ MonoBehaviour:
   animatorFunctions: {fileID: 3953300953137573503}
   thisIndex: 0
   canControl: 1
+  exitBtnObj: {fileID: 1869210790}
 --- !u!1001 &1008409332672699779
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3789,6 +3795,7 @@ MonoBehaviour:
   animatorFunctions: {fileID: 3162055273940603749}
   thisIndex: 3
   canControl: 1
+  exitBtnObj: {fileID: 1869210790}
 --- !u!114 &2037287425936354608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3808,6 +3815,7 @@ MonoBehaviour:
   animatorFunctions: {fileID: 3162055273816308824}
   thisIndex: 2
   canControl: 1
+  exitBtnObj: {fileID: 1869210790}
 --- !u!114 &2037287427079692072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3827,6 +3835,7 @@ MonoBehaviour:
   animatorFunctions: {fileID: 3162055274953608768}
   thisIndex: 1
   canControl: 1
+  exitBtnObj: {fileID: 1869210790}
 --- !u!95 &2038764881988062216
 Animator:
   serializedVersion: 5

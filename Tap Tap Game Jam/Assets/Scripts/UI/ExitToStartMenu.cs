@@ -18,7 +18,9 @@ public class ExitToStartMenu : Singleton<ExitToStartMenu>
         if(!canPress)
             return;
         
+        DialogManager.Instance.dialogBox.SetActive(true);
         DialogManager.Instance.GetComponentInChildren<ClickableTextController>().ResetWordsDict();
+        DialogManager.Instance.dialogBox.SetActive(false);
 
         if (GameFlowManager.Instance.currentIsOver)
         {
